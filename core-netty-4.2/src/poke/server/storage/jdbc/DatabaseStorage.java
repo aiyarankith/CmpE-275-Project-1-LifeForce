@@ -34,10 +34,10 @@ import eye.Comm.NameSpace;
 public class DatabaseStorage implements TenantStorage {
 	protected static Logger logger = LoggerFactory.getLogger("database");
 
-	public static final String sDriver = "jdbc.driver";
-	public static final String sUrl = "jdbc.url";
-	public static final String sUser = "jdbc.user";
-	public static final String sPass = "jdbc.password";
+	public static final String sDriver = "com.mysql.jdbc.Driver";
+	public static final String sUrl = "jdbc:mysql://localhost/test";
+	public static final String sUser = "root";
+	public static final String sPass = "root";
 
 	protected Properties cfg;
 	protected BoneCP cpool;
@@ -96,6 +96,7 @@ public class DatabaseStorage implements TenantStorage {
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 			// TODO complete code to retrieve through JDBC/SQL
 			// select * from space where id = spaceId
+			logger.info("This is inside JDBC ................................................");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error("failed/exception on looking up space " + spaceId, ex);

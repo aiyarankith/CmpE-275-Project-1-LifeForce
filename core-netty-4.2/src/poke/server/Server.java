@@ -70,7 +70,8 @@ public class Server {
 	protected NetworkManager networkMgr;
 	protected HeartbeatManager heartbeatMgr;
 	protected ElectionManager electionMgr;
-
+	// Server's own node id -- Added
+	//public static int ownNodeID;
 	/**
 	 * static because we need to get a handle to the factory from the shutdown
 	 * resource
@@ -183,6 +184,7 @@ public class Server {
 
 				// should use a future channel listener to do this step
 				// allChannels.add(f.channel());
+				
 
 				// block until the server socket is closed.
 				f.channel().closeFuture().sync();
@@ -267,6 +269,9 @@ public class Server {
 		// start the inbound and outbound manager worker threads
 		ManagementQueue.startup();
 
+		//Added -- 
+		//ownNodeID = conf.getNodeId();
+		
 		// create manager for network changes
 		networkMgr = NetworkManager.initManager(conf);
 
@@ -308,7 +313,7 @@ public class Server {
 
 		// storage initialization
 		// TODO storage setup (e.g., connection to a database)
-
+		
 		startManagers();
 
 		StartManagement mgt = new StartManagement(conf);

@@ -15581,6 +15581,735 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Request)
   }
 
+  public interface ResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Response)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required .Header header = 1;</code>
+     */
+    boolean hasHeader();
+    /**
+     * <code>required .Header header = 1;</code>
+     */
+    eye.Comm.Header getHeader();
+    /**
+     * <code>required .Header header = 1;</code>
+     */
+    eye.Comm.HeaderOrBuilder getHeaderOrBuilder();
+
+    /**
+     * <code>required .Payload body = 2;</code>
+     */
+    boolean hasBody();
+    /**
+     * <code>required .Payload body = 2;</code>
+     */
+    eye.Comm.Payload getBody();
+    /**
+     * <code>required .Payload body = 2;</code>
+     */
+    eye.Comm.PayloadOrBuilder getBodyOrBuilder();
+  }
+  /**
+   * Protobuf type {@code Response}
+   */
+  public static final class Response extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:Response)
+      ResponseOrBuilder {
+    // Use Response.newBuilder() to construct.
+    private Response(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Response(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Response defaultInstance;
+    public static Response getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Response getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Response(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              eye.Comm.Header.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = header_.toBuilder();
+              }
+              header_ = input.readMessage(eye.Comm.Header.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(header_);
+                header_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000001;
+              break;
+            }
+            case 18: {
+              eye.Comm.Payload.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = body_.toBuilder();
+              }
+              body_ = input.readMessage(eye.Comm.Payload.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(body_);
+                body_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eye.Comm.internal_static_Response_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eye.Comm.internal_static_Response_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              eye.Comm.Response.class, eye.Comm.Response.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Response> PARSER =
+        new com.google.protobuf.AbstractParser<Response>() {
+      public Response parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Response(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Response> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int HEADER_FIELD_NUMBER = 1;
+    private eye.Comm.Header header_;
+    /**
+     * <code>required .Header header = 1;</code>
+     */
+    public boolean hasHeader() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required .Header header = 1;</code>
+     */
+    public eye.Comm.Header getHeader() {
+      return header_;
+    }
+    /**
+     * <code>required .Header header = 1;</code>
+     */
+    public eye.Comm.HeaderOrBuilder getHeaderOrBuilder() {
+      return header_;
+    }
+
+    public static final int BODY_FIELD_NUMBER = 2;
+    private eye.Comm.Payload body_;
+    /**
+     * <code>required .Payload body = 2;</code>
+     */
+    public boolean hasBody() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required .Payload body = 2;</code>
+     */
+    public eye.Comm.Payload getBody() {
+      return body_;
+    }
+    /**
+     * <code>required .Payload body = 2;</code>
+     */
+    public eye.Comm.PayloadOrBuilder getBodyOrBuilder() {
+      return body_;
+    }
+
+    private void initFields() {
+      header_ = eye.Comm.Header.getDefaultInstance();
+      body_ = eye.Comm.Payload.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasHeader()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasBody()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getHeader().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getBody().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, header_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, body_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, header_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, body_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static eye.Comm.Response parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eye.Comm.Response parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eye.Comm.Response parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eye.Comm.Response parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eye.Comm.Response parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static eye.Comm.Response parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static eye.Comm.Response parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static eye.Comm.Response parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static eye.Comm.Response parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static eye.Comm.Response parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eye.Comm.Response prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Response}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Response)
+        eye.Comm.ResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eye.Comm.internal_static_Response_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eye.Comm.internal_static_Response_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                eye.Comm.Response.class, eye.Comm.Response.Builder.class);
+      }
+
+      // Construct using eye.Comm.Response.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getHeaderFieldBuilder();
+          getBodyFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (headerBuilder_ == null) {
+          header_ = eye.Comm.Header.getDefaultInstance();
+        } else {
+          headerBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (bodyBuilder_ == null) {
+          body_ = eye.Comm.Payload.getDefaultInstance();
+        } else {
+          bodyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eye.Comm.internal_static_Response_descriptor;
+      }
+
+      public eye.Comm.Response getDefaultInstanceForType() {
+        return eye.Comm.Response.getDefaultInstance();
+      }
+
+      public eye.Comm.Response build() {
+        eye.Comm.Response result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public eye.Comm.Response buildPartial() {
+        eye.Comm.Response result = new eye.Comm.Response(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (headerBuilder_ == null) {
+          result.header_ = header_;
+        } else {
+          result.header_ = headerBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (bodyBuilder_ == null) {
+          result.body_ = body_;
+        } else {
+          result.body_ = bodyBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eye.Comm.Response) {
+          return mergeFrom((eye.Comm.Response)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(eye.Comm.Response other) {
+        if (other == eye.Comm.Response.getDefaultInstance()) return this;
+        if (other.hasHeader()) {
+          mergeHeader(other.getHeader());
+        }
+        if (other.hasBody()) {
+          mergeBody(other.getBody());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasHeader()) {
+          
+          return false;
+        }
+        if (!hasBody()) {
+          
+          return false;
+        }
+        if (!getHeader().isInitialized()) {
+          
+          return false;
+        }
+        if (!getBody().isInitialized()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        eye.Comm.Response parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (eye.Comm.Response) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private eye.Comm.Header header_ = eye.Comm.Header.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Header, eye.Comm.Header.Builder, eye.Comm.HeaderOrBuilder> headerBuilder_;
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public boolean hasHeader() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public eye.Comm.Header getHeader() {
+        if (headerBuilder_ == null) {
+          return header_;
+        } else {
+          return headerBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public Builder setHeader(eye.Comm.Header value) {
+        if (headerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          header_ = value;
+          onChanged();
+        } else {
+          headerBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public Builder setHeader(
+          eye.Comm.Header.Builder builderForValue) {
+        if (headerBuilder_ == null) {
+          header_ = builderForValue.build();
+          onChanged();
+        } else {
+          headerBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public Builder mergeHeader(eye.Comm.Header value) {
+        if (headerBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              header_ != eye.Comm.Header.getDefaultInstance()) {
+            header_ =
+              eye.Comm.Header.newBuilder(header_).mergeFrom(value).buildPartial();
+          } else {
+            header_ = value;
+          }
+          onChanged();
+        } else {
+          headerBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public Builder clearHeader() {
+        if (headerBuilder_ == null) {
+          header_ = eye.Comm.Header.getDefaultInstance();
+          onChanged();
+        } else {
+          headerBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public eye.Comm.Header.Builder getHeaderBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getHeaderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      public eye.Comm.HeaderOrBuilder getHeaderOrBuilder() {
+        if (headerBuilder_ != null) {
+          return headerBuilder_.getMessageOrBuilder();
+        } else {
+          return header_;
+        }
+      }
+      /**
+       * <code>required .Header header = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Header, eye.Comm.Header.Builder, eye.Comm.HeaderOrBuilder> 
+          getHeaderFieldBuilder() {
+        if (headerBuilder_ == null) {
+          headerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              eye.Comm.Header, eye.Comm.Header.Builder, eye.Comm.HeaderOrBuilder>(
+                  getHeader(),
+                  getParentForChildren(),
+                  isClean());
+          header_ = null;
+        }
+        return headerBuilder_;
+      }
+
+      private eye.Comm.Payload body_ = eye.Comm.Payload.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Payload, eye.Comm.Payload.Builder, eye.Comm.PayloadOrBuilder> bodyBuilder_;
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public boolean hasBody() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public eye.Comm.Payload getBody() {
+        if (bodyBuilder_ == null) {
+          return body_;
+        } else {
+          return bodyBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public Builder setBody(eye.Comm.Payload value) {
+        if (bodyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          body_ = value;
+          onChanged();
+        } else {
+          bodyBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public Builder setBody(
+          eye.Comm.Payload.Builder builderForValue) {
+        if (bodyBuilder_ == null) {
+          body_ = builderForValue.build();
+          onChanged();
+        } else {
+          bodyBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public Builder mergeBody(eye.Comm.Payload value) {
+        if (bodyBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              body_ != eye.Comm.Payload.getDefaultInstance()) {
+            body_ =
+              eye.Comm.Payload.newBuilder(body_).mergeFrom(value).buildPartial();
+          } else {
+            body_ = value;
+          }
+          onChanged();
+        } else {
+          bodyBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public Builder clearBody() {
+        if (bodyBuilder_ == null) {
+          body_ = eye.Comm.Payload.getDefaultInstance();
+          onChanged();
+        } else {
+          bodyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public eye.Comm.Payload.Builder getBodyBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getBodyFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      public eye.Comm.PayloadOrBuilder getBodyOrBuilder() {
+        if (bodyBuilder_ != null) {
+          return bodyBuilder_.getMessageOrBuilder();
+        } else {
+          return body_;
+        }
+      }
+      /**
+       * <code>required .Payload body = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Payload, eye.Comm.Payload.Builder, eye.Comm.PayloadOrBuilder> 
+          getBodyFieldBuilder() {
+        if (bodyBuilder_ == null) {
+          bodyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              eye.Comm.Payload, eye.Comm.Payload.Builder, eye.Comm.PayloadOrBuilder>(
+                  getBody(),
+                  getParentForChildren(),
+                  isClean());
+          body_ = null;
+        }
+        return bodyBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:Response)
+    }
+
+    static {
+      defaultInstance = new Response(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:Response)
+  }
+
   public interface HeartbeatOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Heartbeat)
       com.google.protobuf.MessageOrBuilder {
@@ -24364,6 +25093,11 @@ public final class Comm {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Response_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Response_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Heartbeat_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -24460,46 +25194,47 @@ public final class Comm {
       "JobOperation\022\036\n\njob_status\030\r \001(\0132\n.JobSt" +
       "atus\022&\n\014space_status\030\014 \001(\0132\020.NameSpaceSt" +
       "atus\":\n\007Request\022\027\n\006header\030\001 \002(\0132\007.Header" +
-      "\022\026\n\004body\030\002 \002(\0132\010.Payload\"\035\n\tHeartbeat\022\020\n" +
-      "\010time_ref\030\002 \002(\003\"\303\001\n\007Network\022\024\n\014from_node",
-      "_id\030\001 \002(\005\022\022\n\nto_node_id\030\002 \002(\005\022&\n\006action\030" +
-      "\003 \002(\0162\026.Network.NetworkAction\"f\n\rNetwork" +
-      "Action\022\014\n\010NODEJOIN\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010N" +
-      "ODEDEAD\020\003\022\r\n\tCREATEMAP\0207\022\014\n\010ANNOUNCE\0208\022\r" +
-      "\n\010SHUTDOWN\020\347\007\"\243\002\n\016LeaderElection\022\020\n\010elec" +
-      "t_id\030\002 \002(\t\022\024\n\014candidate_id\030\003 \002(\005\022\014\n\004desc" +
-      "\030\004 \001(\t\022+\n\006action\030\005 \002(\0162\033.LeaderElection." +
-      "ElectAction\022\023\n\007expires\030\006 \001(\003:\002-1\022\020\n\004hops" +
-      "\030\007 \001(\005:\002-1\"\206\001\n\013ElectAction\022\023\n\017DECLAREELE" +
-      "CTION\020\001\022\014\n\010NOMINATE\020\002\022\013\n\007ABSTAIN\020\003\022\021\n\rDE",
-      "CLAREWINNER\020\004\022\017\n\013DECLAREVOID\020\005\022\022\n\016WHOIST" +
-      "HELEADER\020\006\022\017\n\013THELEADERIS\020\007\"\200\002\n\014VotingBa" +
-      "llot\022\021\n\tballot_id\030\001 \002(\t\022\014\n\004desc\030\002 \002(\t\022/\n" +
-      "\rballot_format\030\003 \002(\0162\030.VotingBallot.Ball" +
-      "otType\022\023\n\013expires_sec\030\006 \001(\003\022\025\n\rmargin_to" +
-      "_win\030\007 \001(\005\022\024\n\010max_hops\030\010 \001(\005:\002-1\"\\\n\nBall" +
-      "otType\022\022\n\016SIMPLEMAJORITY\020\001\022\033\n\027TIMECONSTR" +
-      "AINEDMAJORITY\020\002\022\n\n\006RANKED\020\003\022\021\n\rINSTANTRU" +
-      "NOFF\020\004\"O\n\nVotingCast\022\r\n\005voter\030\001 \002(\t\022\021\n\tb" +
-      "allot_id\030\002 \002(\t\022\021\n\tcandidate\030\n \001(\005\022\014\n\004ran",
-      "k\030\013 \001(\005\"\220\001\n\014VotingStatus\022\021\n\tballot_id\030\001 " +
-      "\002(\t\022(\n\006status\030\002 \002(\0162\030.VotingStatus.VoteS" +
-      "tatus\022\016\n\006winner\030\003 \001(\005\"3\n\nVoteStatus\022\023\n\017B" +
-      "ALLOTABANDONED\020\001\022\020\n\014BALLOTWINNER\020\002\"Z\n\nMg" +
-      "mtHeader\022\022\n\noriginator\030\002 \002(\005\022\014\n\004time\030\004 \001" +
-      "(\003\022\032\n\004path\030\007 \003(\0132\014.RoutingPath\022\016\n\006toNode" +
-      "\030\010 \001(\005\"\245\002\n\nManagement\022\033\n\006header\030\001 \002(\0132\013." +
-      "MgmtHeader\022\027\n\005graph\030\002 \001(\0132\010.Network\022\030\n\004b" +
-      "eat\030\003 \001(\0132\n.Heartbeat\022!\n\010election\030\004 \001(\0132" +
-      "\017.LeaderElection\022!\n\013job_propose\030\005 \001(\0132\014.",
-      "JobProposal\022\030\n\007job_bid\030\006 \001(\0132\007.JobBid\022#\n" +
-      "\014vote_declare\030\007 \001(\0132\r.VotingBallot\022\036\n\tvo" +
-      "te_cast\030\010 \001(\0132\013.VotingCast\022\"\n\013vote_statu" +
-      "s\030\t \001(\0132\r.VotingStatus*\221\001\n\nPokeStatus\022\n\n" +
-      "\006UKNOWN\020\001\022\013\n\007SUCCESS\020\002\022\013\n\007NOFOUND\020d\022\020\n\014N" +
-      "OINCOMPLETE\020e\022\n\n\006NOAUTH\020f\022\020\n\014NOCONNECTIO" +
-      "N\020g\022\017\n\013NOREACHABLE\020h\022\016\n\nNORESOURCE\020i\022\014\n\007" +
-      "FAILURE\020\307\001B\007\n\003eyeH\001"
+      "\022\026\n\004body\030\002 \002(\0132\010.Payload\";\n\010Response\022\027\n\006" +
+      "header\030\001 \002(\0132\007.Header\022\026\n\004body\030\002 \002(\0132\010.Pa",
+      "yload\"\035\n\tHeartbeat\022\020\n\010time_ref\030\002 \002(\003\"\303\001\n" +
+      "\007Network\022\024\n\014from_node_id\030\001 \002(\005\022\022\n\nto_nod" +
+      "e_id\030\002 \002(\005\022&\n\006action\030\003 \002(\0162\026.Network.Net" +
+      "workAction\"f\n\rNetworkAction\022\014\n\010NODEJOIN\020" +
+      "\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEAD\020\003\022\r\n\tCREATE" +
+      "MAP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"\243\002\n\016L" +
+      "eaderElection\022\020\n\010elect_id\030\002 \002(\t\022\024\n\014candi" +
+      "date_id\030\003 \002(\005\022\014\n\004desc\030\004 \001(\t\022+\n\006action\030\005 " +
+      "\002(\0162\033.LeaderElection.ElectAction\022\023\n\007expi" +
+      "res\030\006 \001(\003:\002-1\022\020\n\004hops\030\007 \001(\005:\002-1\"\206\001\n\013Elec",
+      "tAction\022\023\n\017DECLAREELECTION\020\001\022\014\n\010NOMINATE" +
+      "\020\002\022\013\n\007ABSTAIN\020\003\022\021\n\rDECLAREWINNER\020\004\022\017\n\013DE" +
+      "CLAREVOID\020\005\022\022\n\016WHOISTHELEADER\020\006\022\017\n\013THELE" +
+      "ADERIS\020\007\"\200\002\n\014VotingBallot\022\021\n\tballot_id\030\001" +
+      " \002(\t\022\014\n\004desc\030\002 \002(\t\022/\n\rballot_format\030\003 \002(" +
+      "\0162\030.VotingBallot.BallotType\022\023\n\013expires_s" +
+      "ec\030\006 \001(\003\022\025\n\rmargin_to_win\030\007 \001(\005\022\024\n\010max_h" +
+      "ops\030\010 \001(\005:\002-1\"\\\n\nBallotType\022\022\n\016SIMPLEMAJ" +
+      "ORITY\020\001\022\033\n\027TIMECONSTRAINEDMAJORITY\020\002\022\n\n\006" +
+      "RANKED\020\003\022\021\n\rINSTANTRUNOFF\020\004\"O\n\nVotingCas",
+      "t\022\r\n\005voter\030\001 \002(\t\022\021\n\tballot_id\030\002 \002(\t\022\021\n\tc" +
+      "andidate\030\n \001(\005\022\014\n\004rank\030\013 \001(\005\"\220\001\n\014VotingS" +
+      "tatus\022\021\n\tballot_id\030\001 \002(\t\022(\n\006status\030\002 \002(\016" +
+      "2\030.VotingStatus.VoteStatus\022\016\n\006winner\030\003 \001" +
+      "(\005\"3\n\nVoteStatus\022\023\n\017BALLOTABANDONED\020\001\022\020\n" +
+      "\014BALLOTWINNER\020\002\"Z\n\nMgmtHeader\022\022\n\norigina" +
+      "tor\030\002 \002(\005\022\014\n\004time\030\004 \001(\003\022\032\n\004path\030\007 \003(\0132\014." +
+      "RoutingPath\022\016\n\006toNode\030\010 \001(\005\"\245\002\n\nManageme" +
+      "nt\022\033\n\006header\030\001 \002(\0132\013.MgmtHeader\022\027\n\005graph" +
+      "\030\002 \001(\0132\010.Network\022\030\n\004beat\030\003 \001(\0132\n.Heartbe",
+      "at\022!\n\010election\030\004 \001(\0132\017.LeaderElection\022!\n" +
+      "\013job_propose\030\005 \001(\0132\014.JobProposal\022\030\n\007job_" +
+      "bid\030\006 \001(\0132\007.JobBid\022#\n\014vote_declare\030\007 \001(\013" +
+      "2\r.VotingBallot\022\036\n\tvote_cast\030\010 \001(\0132\013.Vot" +
+      "ingCast\022\"\n\013vote_status\030\t \001(\0132\r.VotingSta" +
+      "tus*\221\001\n\nPokeStatus\022\n\n\006UKNOWN\020\001\022\013\n\007SUCCES" +
+      "S\020\002\022\013\n\007NOFOUND\020d\022\020\n\014NOINCOMPLETE\020e\022\n\n\006NO" +
+      "AUTH\020f\022\020\n\014NOCONNECTION\020g\022\017\n\013NOREACHABLE\020" +
+      "h\022\016\n\nNORESOURCE\020i\022\014\n\007FAILURE\020\307\001B\007\n\003eyeH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -24597,50 +25332,56 @@ public final class Comm {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Request_descriptor,
         new java.lang.String[] { "Header", "Body", });
-    internal_static_Heartbeat_descriptor =
+    internal_static_Response_descriptor =
       getDescriptor().getMessageTypes().get(14);
+    internal_static_Response_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_Response_descriptor,
+        new java.lang.String[] { "Header", "Body", });
+    internal_static_Heartbeat_descriptor =
+      getDescriptor().getMessageTypes().get(15);
     internal_static_Heartbeat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Heartbeat_descriptor,
         new java.lang.String[] { "TimeRef", });
     internal_static_Network_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_Network_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Network_descriptor,
         new java.lang.String[] { "FromNodeId", "ToNodeId", "Action", });
     internal_static_LeaderElection_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_LeaderElection_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_LeaderElection_descriptor,
         new java.lang.String[] { "ElectId", "CandidateId", "Desc", "Action", "Expires", "Hops", });
     internal_static_VotingBallot_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_VotingBallot_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_VotingBallot_descriptor,
         new java.lang.String[] { "BallotId", "Desc", "BallotFormat", "ExpiresSec", "MarginToWin", "MaxHops", });
     internal_static_VotingCast_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_VotingCast_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_VotingCast_descriptor,
         new java.lang.String[] { "Voter", "BallotId", "Candidate", "Rank", });
     internal_static_VotingStatus_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_VotingStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_VotingStatus_descriptor,
         new java.lang.String[] { "BallotId", "Status", "Winner", });
     internal_static_MgmtHeader_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_MgmtHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_MgmtHeader_descriptor,
         new java.lang.String[] { "Originator", "Time", "Path", "ToNode", });
     internal_static_Management_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_Management_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_Management_descriptor,
