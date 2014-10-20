@@ -18,6 +18,7 @@ package poke.server.storage;
 import java.util.List;
 import java.util.Properties;
 
+import poke.server.conf.ServerConf.ResourceConf;
 import eye.Comm.JobDesc;
 import eye.Comm.NameSpace;
 

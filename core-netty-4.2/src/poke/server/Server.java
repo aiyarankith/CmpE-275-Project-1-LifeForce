@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
@@ -46,6 +47,7 @@ import poke.server.managers.HeartbeatManager;
 import poke.server.managers.JobManager;
 import poke.server.managers.NetworkManager;
 import poke.server.resources.ResourceFactory;
+import poke.server.storage.jdbc.DatabaseStorage;
 
 /**
  * Note high surges of messages can close down the channel if the handler cannot
@@ -70,6 +72,8 @@ public class Server {
 	protected NetworkManager networkMgr;
 	protected HeartbeatManager heartbeatMgr;
 	protected ElectionManager electionMgr;
+	//Database
+	protected DatabaseStorage storage;
 	// Server's own node id -- Added
 	//public static int ownNodeID;
 	/**
@@ -312,7 +316,18 @@ public class Server {
 		logger.info("Initializing server " + conf.getNodeId());
 
 		// storage initialization
-		// TODO storage setup (e.g., connection to a database)
+		FileInputStream fis = null;
+		Properties props = new Properties();
+		try {
+			fis = new FileInputStream(getClass().getResource("mysql_db.properties").getPath());
+			props.load(fis);
+			storage = new DatabaseStorage(props);
+		}
+		catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+		}
+		logger.info("Initializing Database Connection to MySQL");
 		
 		startManagers();
 

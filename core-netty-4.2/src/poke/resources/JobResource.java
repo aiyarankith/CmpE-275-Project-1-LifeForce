@@ -15,14 +15,28 @@
  */
 package poke.resources;
 
+import poke.server.managers.JobManager;
 import poke.server.resources.Resource;
+import poke.server.storage.jdbc.DatabaseStorage;
 import eye.Comm.Request;
 
-public class JobResource implements Resource {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class JobResource implements Resource {
+	protected DatabaseStorage storage;
+	protected static Logger logger = LoggerFactory.getLogger("database");
+	
 	@Override
 	public Request process(Request request) {
-		// TODO Auto-generated method stub
+	
+		logger.info("poke: " + request.getBody().getJobOp().getAction());
+		
+		String type = new String();
+		type = request.getBody().getJobOp().getAction().toString();
+		
+		System.out.println("REQUEST::::::::::::::::::::::::"+request.toString());
+		storage = DatabaseStorage.connect();
 		return null;
 	}
 

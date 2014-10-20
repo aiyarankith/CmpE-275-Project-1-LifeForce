@@ -16,7 +16,9 @@
 package poke.server.storage.jdbc;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
 
@@ -34,13 +36,13 @@ import eye.Comm.NameSpace;
 public class DatabaseStorage implements TenantStorage {
 	protected static Logger logger = LoggerFactory.getLogger("database");
 
-	public static final String sDriver = "com.mysql.jdbc.Driver";
+	/*public static final String sDriver = "com.mysql.jdbc.Driver";
 	public static final String sUrl = "jdbc:mysql://localhost/test";
 	public static final String sUser = "root";
-	public static final String sPass = "root";
+	public static final String sPass = "root";*/
 
 	protected Properties cfg;
-	protected BoneCP cpool;
+	protected static BoneCP cpool;
 
 	protected DatabaseStorage() {
 	}
@@ -57,16 +59,17 @@ public class DatabaseStorage implements TenantStorage {
 		this.cfg = cfg;
 
 		try {
-			Class.forName(cfg.getProperty(sDriver));
+			Class.forName(cfg.getProperty("DB_DRIVER_CLASS"));
 			BoneCPConfig config = new BoneCPConfig();
-			config.setJdbcUrl(cfg.getProperty(sUrl));
-			config.setUsername(cfg.getProperty(sUser, "sa"));
-			config.setPassword(cfg.getProperty(sPass, ""));
+			config.setJdbcUrl(cfg.getProperty("DB_URL"));
+			config.setUsername(cfg.getProperty("DB_USERNAME"));
+			config.setPassword(cfg.getProperty("DB_PASSWORD"));
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(1);
 
 			cpool = new BoneCP(config);
+			System.out.println("POlllllllllllllllllllllllllllllll");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,6 +99,15 @@ public class DatabaseStorage implements TenantStorage {
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 			// TODO complete code to retrieve through JDBC/SQL
 			// select * from space where id = spaceId
+
+			if (conn != null){
+				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				Statement stmt =  conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM test"); // do something with the connection.
+				while(rs.next()){
+					System.out.println(rs.getString(1)); // should print out "1"'
+				}
+			}
 			logger.info("This is inside JDBC ................................................");
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -206,6 +218,41 @@ public class DatabaseStorage implements TenantStorage {
 	@Override
 	public List<JobDesc> findJobs(String namespace, JobDesc criteria) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static DatabaseStorage connect() {
+		System.out.println("INSIDE CONNEEEEEEEEEEEEEEEEEEEEEEEEt");
+		Connection conn = null;
+		try {
+			conn = cpool.getConnection();
+			System.out.println("INSIDE CONNEEEEEEEEEEEEEEEEEEEEEEEEt CPOOOOOOOOOOOOOOOOOL::::::::::::  "+conn);
+			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
+			// TODO complete code to retrieve through JDBC/SQL
+			// select * from space where id = spaceId
+
+			if (conn != null){
+				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				Statement stmt =  conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM message"); // do something with the connection.
+				while(rs.next()){
+					System.out.println(rs.getString(1)); // should print out "1"'
+				}
+			}
+			logger.info("This is inside JDBC ................................................");
+
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			//logger.error("failed/exception on looking up space " + spaceId, ex);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return null;
 	}
 }

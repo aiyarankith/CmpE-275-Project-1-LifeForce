@@ -92,7 +92,7 @@ def buildSignupJob(username, password,firstName, lastName, ownerId):
     r.body.job_op.data.options.node.extend([email, psw, fName, lName])
     
     r.header.originator = 1  
-    r.header.routing_id = comm_pb2.Header.PING
+    r.header.routing_id = comm_pb2.Header.JOBS
     r.header.toNode = int(0)
     
     msg = r.SerializeToString()
@@ -368,13 +368,16 @@ def sendMsg(msg_out, port, host):
     s.connect((host, port))        
     msg_len = struct.pack('>L', len(msg_out))    
     s.sendall(msg_len + msg_out)
+    print "inside"
     len_buf = receiveMsg(s, 4)
+    print len_buf
     msg_in_len = struct.unpack('>L', len_buf)[0]
+    print msg_in_len
     msg_in = receiveMsg(s, msg_in_len)
     
     r = comm_pb2.Request()
     r.ParseFromString(msg_in)
-#    print msg_in
+    print msg_in
 #    print r.body.job_status 
 #    print r.header.reply_msg
 #    print r.body.job_op.data.options
@@ -413,7 +416,7 @@ if __name__ == '__main__':
 
     port = int(port)
     whoAmI = 1;
-    input = raw_input("Welcome to our MOOC client! Kindly select your desirable action:\n1.Sign up\n2.Sign in\n")
+    input = raw_input("Welcome to our MOOC client! Kindly select your desirable action:\n1.Sign up\n2.Sign in\n3.Ping Response\n")
     if input == "1":
         username = raw_input("email:")
         password = raw_input("Password:")
@@ -435,6 +438,10 @@ if __name__ == '__main__':
             if result.body.job_status.status == 2:
                 login = True
                 whoAmI = result.body.job_status.data[0].owner_id
+    elif input == "3":        
+        print("Ping Resource") 
+        ping = buildPing(2,2)
+        result = sendMsg(ping, port, host)
     while True:
         input = raw_input("\nPlease select your desirable action:\n0.Quit\n1.Get a course description\n2.List all courses being offered\n3.Ask a question\n4.See all posted questions\n5.Answer a Question\n6.See all posted answers\n")
         if input == "1":

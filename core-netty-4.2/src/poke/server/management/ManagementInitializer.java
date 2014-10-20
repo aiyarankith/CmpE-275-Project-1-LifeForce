@@ -34,6 +34,7 @@ public class ManagementInitializer extends ChannelInitializer<SocketChannel> {
 		 * framer with a max of 64 Mb message, 4 bytes are the length, and strip
 		 * 4 bytes
 		 */
+		//Modified length 67108864
 		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(67108864, 0, 4, 0, 4));
 
 		// decoder must be first

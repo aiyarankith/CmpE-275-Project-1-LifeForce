@@ -38,6 +38,7 @@ public class PingResource implements Resource {
 	 */
 	public Request process(Request request) {
 		// TODO add code to process the message/event received
+		System.out.println("PING+++++++++++++++++++++++++++ ::"+request.toString());
 		logger.info("poke: " + request.getBody().getPing().getTag());
 
 		Request.Builder rb = Request.newBuilder();
@@ -54,7 +55,7 @@ public class PingResource implements Resource {
 		rb.setBody(pb.build());
 
 		Request reply = rb.build();
-
+		System.out.println("Reply::::::::::::::::::::::::"+reply.toString());
 		return reply;
 	}
 }

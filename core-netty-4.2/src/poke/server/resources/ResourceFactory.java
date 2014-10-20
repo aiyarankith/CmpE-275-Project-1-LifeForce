@@ -23,6 +23,8 @@ import org.slf4j.LoggerFactory;
 
 import poke.server.conf.ServerConf;
 import poke.server.conf.ServerConf.ResourceConf;
+import poke.server.storage.TenantStorage;
+import poke.server.storage.TenantStorage;
 import eye.Comm.Header;
 
 /**
@@ -74,7 +76,7 @@ public class ResourceFactory {
 	 * @param route
 	 * @return
 	 */
-	public Resource resourceInstance(Header header) {
+	public Resource resourceInstance(Header header ) {
 		// is the message for this server?
 		if (header.hasToNode()) {
 			if (cfg.getNodeId() == header.getToNode())
@@ -83,8 +85,10 @@ public class ResourceFactory {
 				// forward request
 			}
 		}
-
+		
+System.out.println("Header 1111111111111111111111111111111111111111111!!:::::::::::"+header.toString());
 		ResourceConf rc = cfg.findById(header.getRoutingId().getNumber());
+		System.out.println("Number JOB:::::::::::::::::::::: "+header.getRoutingId().getNumber());
 		if (rc == null)
 			return null;
 
