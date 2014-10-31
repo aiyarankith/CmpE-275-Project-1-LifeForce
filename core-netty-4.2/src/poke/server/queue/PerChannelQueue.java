@@ -181,12 +181,12 @@ public class PerChannelQueue implements ChannelQueue {
 				try {
 					// block until a message is enqueued
 					GeneratedMessage msg = sq.outbound.take();
-					System.out.println("Outbound Messageeeeeeeeeeeeeeeeeee ::"+msg);
+					//System.out.println("Outbound Messageeeeeeeeeeeeeeeeeee ::"+msg);
 					if (conn.isWritable()) {
 						boolean rtn = false;
 						if (channel != null && channel.isOpen() && channel.isWritable()) {
 							ChannelFuture cf = channel.writeAndFlush(msg);
-							System.out.println("I am HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+							System.out.println("I am OUTBOUND WORKER");
 							// blocks on write - use listener to be async
 							if(cf.isDone()) {
 								System.out.println("done///////////////////////////////////////////////////////////");

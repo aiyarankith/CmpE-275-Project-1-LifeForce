@@ -115,6 +115,34 @@ def buildPhotoJob(photoname, data):
     msg = r.SerializeToString()
     return msg
 
+def buildPhotoRequestJob(uuid):
+    
+    r = comm_pb2.Request()    
+   
+    r.body.photoPayload.uuid = uuid
+    
+    r.header.originator = 1  
+    r.header.routing_id = comm_pb2.Header.JOBS
+    r.header.toNode = int(0)
+    r.header.photoHeader.requestType = 0
+    
+    msg = r.SerializeToString()
+    return msg
+    
+def buildPhotoDeleteJob(uuid):
+    
+    r = comm_pb2.Request()    
+   
+    r.body.photoPayload.uuid = uuid
+    
+    r.header.originator = 1  
+    r.header.routing_id = comm_pb2.Header.JOBS
+    r.header.toNode = int(0)
+    r.header.photoHeader.requestType = 2
+    
+    msg = r.SerializeToString()
+    return msg
+    
 def buildSigninJob(username, password,ownerId):
     
     jobId = str(int(round(time.time() * 1000)))
@@ -433,7 +461,7 @@ if __name__ == '__main__':
 
     port = int(port)
     whoAmI = 1;
-    input = raw_input("Welcome to our MOOC client! Kindly select your desirable action:\n1.Sign up\n2.Sign in\n3.Ping Response\n4.Photo\n")
+    input = raw_input("Welcome to our MOOC client! Kindly select your desirable action:\n1.Sign up\n2.Sign in\n3.Ping Response\n4.Photo Write\n5.Photo Request\n6.Photo Delete\n")
     if input == "1":
         username = raw_input("email:")
         password = raw_input("Password:")
@@ -465,6 +493,16 @@ if __name__ == '__main__':
         photo = raw_input("Pic:")
         buildPhotoJob = buildPhotoJob(name,photo)
         result = sendMsg(buildPhotoJob, port, host)
+    elif input == "5":        
+        print("Photo Search") 
+        uuid = raw_input("Photo UUID:")
+        buildPhotoRequestJob = buildPhotoRequestJob(uuid)
+        result = sendMsg(buildPhotoRequestJob, port, host)
+    elif input == "6":        
+        print("Photo Delete") 
+        uuid = raw_input("Photo UUID:")
+        buildPhotoDeleteJob = buildPhotoDeleteJob(uuid)
+        result = sendMsg(buildPhotoDeleteJob, port, host)
     while True:
         input = raw_input("\nPlease select your desirable action:\n0.Quit\n1.Get a course description\n2.List all courses being offered\n3.Ask a question\n4.See all posted questions\n5.Answer a Question\n6.See all posted answers\n")
         if input == "1":

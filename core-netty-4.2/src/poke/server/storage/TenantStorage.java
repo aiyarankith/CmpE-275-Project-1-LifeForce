@@ -59,4 +59,8 @@ public interface TenantStorage {
 	List<JobDesc> findJobs(String namespace, JobDesc criteria);
 	
 	String addImage (String name, ByteString data);
+	
+	ByteString readImage (String uuid);
+	
+	boolean deleteImage (String uuid);
 }

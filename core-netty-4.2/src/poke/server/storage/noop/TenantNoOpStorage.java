@@ -91,4 +91,16 @@ public class TenantNoOpStorage implements TenantStorage {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ByteString readImage(String uuid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteImage(String uuid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
