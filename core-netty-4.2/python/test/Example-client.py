@@ -97,6 +97,23 @@ def buildSignupJob(username, password,firstName, lastName, ownerId):
     
     msg = r.SerializeToString()
     return msg
+    
+def buildPhotoJob(photoname, data):
+    
+    r = comm_pb2.Request()    
+    b = data.encode('utf-8')
+    r.body.photoPayload.name = photoname
+    r.body.photoPayload.data = b
+    
+    r.header.originator = 1  
+    r.header.routing_id = comm_pb2.Header.JOBS
+    r.header.toNode = int(0)
+    r.header.photoHeader.requestType = 1
+    r.header.photoHeader.lastModified = 0
+    r.header.photoHeader.contentLength = int(56)
+    
+    msg = r.SerializeToString()
+    return msg
 
 def buildSigninJob(username, password,ownerId):
     
@@ -416,7 +433,7 @@ if __name__ == '__main__':
 
     port = int(port)
     whoAmI = 1;
-    input = raw_input("Welcome to our MOOC client! Kindly select your desirable action:\n1.Sign up\n2.Sign in\n3.Ping Response\n")
+    input = raw_input("Welcome to our MOOC client! Kindly select your desirable action:\n1.Sign up\n2.Sign in\n3.Ping Response\n4.Photo\n")
     if input == "1":
         username = raw_input("email:")
         password = raw_input("Password:")
@@ -442,6 +459,12 @@ if __name__ == '__main__':
         print("Ping Resource") 
         ping = buildPing(2,2)
         result = sendMsg(ping, port, host)
+    elif input == "4":        
+        print("Photo Resource") 
+        name = raw_input("Photo Name:")
+        photo = raw_input("Pic:")
+        buildPhotoJob = buildPhotoJob(name,photo)
+        result = sendMsg(buildPhotoJob, port, host)
     while True:
         input = raw_input("\nPlease select your desirable action:\n0.Quit\n1.Get a course description\n2.List all courses being offered\n3.Ask a question\n4.See all posted questions\n5.Answer a Question\n6.See all posted answers\n")
         if input == "1":

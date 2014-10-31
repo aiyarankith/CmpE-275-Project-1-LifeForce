@@ -181,16 +181,21 @@ public class PerChannelQueue implements ChannelQueue {
 				try {
 					// block until a message is enqueued
 					GeneratedMessage msg = sq.outbound.take();
+					System.out.println("Outbound Messageeeeeeeeeeeeeeeeeee ::"+msg);
 					if (conn.isWritable()) {
 						boolean rtn = false;
 						if (channel != null && channel.isOpen() && channel.isWritable()) {
-							ChannelFuture cf = channel.write(msg);
-
+							ChannelFuture cf = channel.writeAndFlush(msg);
+							System.out.println("I am HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 							// blocks on write - use listener to be async
+							if(cf.isDone()) {
+								System.out.println("done///////////////////////////////////////////////////////////");
+							}
 							cf.awaitUninterruptibly();
 							rtn = cf.isSuccess();
-							if (!rtn)
+							if (!rtn) {
 								sq.outbound.putFirst(msg);
+							}
 						}
 
 					} else
@@ -255,6 +260,7 @@ public class PerChannelQueue implements ChannelQueue {
 									"Request not processed");
 						} else
 							reply = rsc.process(req);
+						System.out.println("reply.................."+ reply.toString());
 
 						sq.enqueueResponse(reply, null);
 					}

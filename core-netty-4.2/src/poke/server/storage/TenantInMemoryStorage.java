@@ -15,6 +15,7 @@
  */
 package poke.server.storage;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.protobuf.ByteString;
 
 import eye.Comm.JobDesc;
 import eye.Comm.NameSpace;
@@ -243,5 +246,12 @@ public class TenantInMemoryStorage implements TenantStorage {
 	public void release() {
 		// TODO Auto-generated method stub
 
+	}
+
+
+	@Override
+	public String addImage(String name, ByteString data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -18,8 +18,9 @@ package poke.server.storage.noop;
 import java.util.List;
 import java.util.Properties;
 
-import poke.server.storage.TenantStorage;
+import com.google.protobuf.ByteString;
 
+import poke.server.storage.TenantStorage;
 import eye.Comm.JobDesc;
 import eye.Comm.NameSpace;
 
@@ -83,5 +84,11 @@ public class TenantNoOpStorage implements TenantStorage {
 	public void release() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String addImage(String name, ByteString data) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

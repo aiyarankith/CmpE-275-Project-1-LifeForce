@@ -93,4 +93,28 @@ public class ResourceUtil {
 
 		return bldr.build();
 	}
+	
+	//Created -- 30th OCT
+	public static Header buildHeaderFrom(Header header, int successValue,
+			String statusMsg) {
+		// TODO Auto-generated method stub
+		return buildHeader(header.getRoutingId(), successValue, statusMsg, header.getOriginator(), header.getTag());
+	}
+
+	private static Header buildHeader(Routing routingId, int successValue, String statusMsg,
+			int originator, String tag) {
+		// TODO Auto-generated method stub
+		Header.Builder bldr = Header.newBuilder();
+		bldr.setOriginator(originator);
+		bldr.setRoutingId(routingId);
+		bldr.setTag(tag);
+		//bldr.setReplyCode(successValue);
+
+		if (statusMsg != null)
+			bldr.setReplyMsg(statusMsg);
+
+		bldr.setTime(System.currentTimeMillis());
+
+		return bldr.build();
+	}
 }

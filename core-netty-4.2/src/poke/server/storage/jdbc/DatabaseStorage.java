@@ -27,6 +27,8 @@ import org.slf4j.LoggerFactory;
 
 import poke.server.storage.TenantStorage;
 
+import com.google.common.primitives.Bytes;
+import com.google.protobuf.ByteString;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
 
@@ -43,7 +45,8 @@ public class DatabaseStorage implements TenantStorage {
 
 	protected Properties cfg;
 	protected static BoneCP cpool;
-
+	protected String schema;
+	
 	protected DatabaseStorage() {
 	}
 
@@ -58,7 +61,7 @@ public class DatabaseStorage implements TenantStorage {
 
 		this.cfg = cfg;
 
-		try {
+		try {			
 			Class.forName(cfg.getProperty("DB_DRIVER_CLASS"));
 			BoneCPConfig config = new BoneCPConfig();
 			config.setJdbcUrl(cfg.getProperty("DB_URL"));
@@ -221,23 +224,33 @@ public class DatabaseStorage implements TenantStorage {
 		return null;
 	}
 
-	public static DatabaseStorage connect() {
+	@Override
+	public String addImage(String photoname, ByteString data) {
 		System.out.println("INSIDE CONNEEEEEEEEEEEEEEEEEEEEEEEEt");
 		Connection conn = null;
+		String insertId = null;
 		try {
 			conn = cpool.getConnection();
 			System.out.println("INSIDE CONNEEEEEEEEEEEEEEEEEEEEEEEEt CPOOOOOOOOOOOOOOOOOL::::::::::::  "+conn);
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 			// TODO complete code to retrieve through JDBC/SQL
 			// select * from space where id = spaceId
-
+			
+			String insert = "insert into ImageStore (name, image) values('" + photoname + "','" + data + "');"; 
+			String select = "SELECT LAST_INSERT_ID();";
 			if (conn != null){
 				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				Statement stmt =  conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM message"); // do something with the connection.
-				while(rs.next()){
-					System.out.println(rs.getString(1)); // should print out "1"'
-				}
+				stmt.executeUpdate(insert);
+				ResultSet rs = stmt.executeQuery(select);
+				 while (rs.next()) {
+					 System.out.println("IDDDDDDDDDDDDDDDDDDDDDd::::::::::::: "+rs.getLong("last_insert_id()"));
+					 insertId = rs.getString("last_insert_id()"); 
+				 }
+				 
+				
+				logger.debug("Storing Image " + photoname + " - ");
+				return insertId;
 			}
 			logger.info("This is inside JDBC ................................................");
 
@@ -253,6 +266,6 @@ public class DatabaseStorage implements TenantStorage {
 				}
 			}
 		}
-		return null;
+		return insertId;
 	}
 }

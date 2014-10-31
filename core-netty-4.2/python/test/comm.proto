@@ -166,6 +166,9 @@ message Header {
     // implementation and since requests and responses differ only 
     // by these two fields, a new message is not created.
 
+	//image request
+    optional PhotoHeader photoHeader = 10;
+    
     optional PokeStatus reply_code = 5;
     optional string reply_msg = 6;
     
@@ -200,11 +203,40 @@ message Payload {
     // replies only
     optional JobStatus job_status = 13;
     optional NameSpaceStatus space_status = 12;
+    
+    //image req/ resp
+    optional PhotoPayload photoPayload = 4;
    
     // TBD
     // reports
 }
+message PhotoHeader {
+   
+    optional RequestType requestType = 1 [default = read];
+    optional ResponseFlag responseFlag = 2 [default = success];
+    optional int64 lastModified = 3;                     // Unix timestamp
+    optional int32 contentLength = 4;
+   
+    enum RequestType {
+        read = 0;
+        write = 1;
+        delete = 2;
+    }
+   
+    enum ResponseFlag {
+        success = 0;
+        failure = 1;
+    }
+   
+}
 
+message PhotoPayload {
+   
+    optional string uuid = 1;                            // Required for types 0 & 2
+    optional string name = 2;                            // Required for type 1
+    optional bytes data = 3;                             // Required for type 1
+   
+}
 message Request {
     required Header header = 1;
     required Payload body = 2;

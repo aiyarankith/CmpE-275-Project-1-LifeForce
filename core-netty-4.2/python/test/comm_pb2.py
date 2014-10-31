@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='comm.proto',
   package='',
-  serialized_pb=_b('\n\ncomm.proto\"\x94\x01\n\x0cNameValueSet\x12)\n\tnode_type\x18\x01 \x02(\x0e\x32\x16.NameValueSet.NodeType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x1b\n\x04node\x18\x04 \x03(\x0b\x32\r.NameValueSet\"\x1f\n\x08NodeType\x12\x08\n\x04NODE\x10\x01\x12\t\n\x05VALUE\x10\x02\"\x94\x01\n\tNameSpace\x12\x11\n\x05ns_id\x18\x02 \x02(\x03:\x02-1\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0c\n\x04\x64\x65sc\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\x03\x12\x15\n\rlast_modified\x18\x06 \x01(\x03\x12\r\n\x05owner\x18\x07 \x01(\t\x12!\n\nproperties\x18\x08 \x01(\x0b\x32\r.NameValueSet\"\xea\x01\n\x07JobDesc\x12\x12\n\nname_space\x18\x01 \x02(\t\x12\x10\n\x08owner_id\x18\x02 \x02(\x03\x12\x0e\n\x06job_id\x18\x03 \x02(\t\x12 \n\x06status\x18\x04 \x02(\x0e\x32\x10.JobDesc.JobCode\x12\x1e\n\x07options\x18\x05 \x01(\x0b\x32\r.NameValueSet\"g\n\x07JobCode\x12\x0e\n\nJOBUNKNOWN\x10\x01\x12\x0f\n\x0bJOBRECEIVED\x10\x02\x12\r\n\tJOBQUEUED\x10\x03\x12\x0e\n\nJOBRUNNING\x10\x04\x12\r\n\tJOBKILLED\x10\x64\x12\r\n\tJOBFAILED\x10\x65\"#\n\x04Ping\x12\x0e\n\x06number\x18\x01 \x02(\x05\x12\x0b\n\x03tag\x18\x02 \x02(\t\"\xe1\x01\n\x12NameSpaceOperation\x12/\n\x06\x61\x63tion\x18\x01 \x02(\x0e\x32\x1f.NameSpaceOperation.SpaceAction\x12\x11\n\x05ns_id\x18\x02 \x01(\x03:\x02-1\x12\x18\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\n.NameSpace\x12\x1e\n\x07options\x18\x04 \x01(\x0b\x32\r.NameValueSet\"M\n\x0bSpaceAction\x12\x0c\n\x08\x41\x44\x44SPACE\x10\x01\x12\x0f\n\x0bUPDATESPACE\x10\x02\x12\x0f\n\x0bREMOVESPACE\x10\x03\x12\x0e\n\nLISTSPACES\x10\x04\"H\n\x0fNameSpaceStatus\x12\x1b\n\x06status\x18\x01 \x02(\x0e\x32\x0b.PokeStatus\x12\x18\n\x04\x64\x61ta\x18\x02 \x03(\x0b\x32\n.NameSpace\"\xa2\x01\n\x0cJobOperation\x12\'\n\x06\x61\x63tion\x18\x01 \x02(\x0e\x32\x17.JobOperation.JobAction\x12\x0e\n\x06job_id\x18\x02 \x01(\t\x12\x16\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x08.JobDesc\"A\n\tJobAction\x12\n\n\x06\x41\x44\x44JOB\x10\x01\x12\x0b\n\x07STOPJOB\x10\x02\x12\r\n\tREMOVEJOB\x10\x03\x12\x0c\n\x08LISTJOBS\x10\x04\"s\n\x0bJobProposal\x12\x12\n\nname_space\x18\x01 \x02(\t\x12\x10\n\x08owner_id\x18\x02 \x02(\x03\x12\x0e\n\x06job_id\x18\x03 \x02(\t\x12\x0e\n\x06weight\x18\x04 \x02(\x05\x12\x1e\n\x07options\x18\x05 \x01(\x0b\x32\r.NameValueSet\"K\n\x06JobBid\x12\x12\n\nname_space\x18\x01 \x02(\t\x12\x10\n\x08owner_id\x18\x02 \x02(\x03\x12\x0e\n\x06job_id\x18\x03 \x02(\t\x12\x0b\n\x03\x62id\x18\x04 \x02(\x05\"u\n\tJobStatus\x12\x0e\n\x06job_id\x18\x01 \x02(\t\x12\x1b\n\x06status\x18\x02 \x02(\x0e\x32\x0b.PokeStatus\x12#\n\tjob_state\x18\x03 \x02(\x0e\x32\x10.JobDesc.JobCode\x12\x16\n\x04\x64\x61ta\x18\x04 \x03(\x0b\x32\x08.JobDesc\",\n\x0bRoutingPath\x12\x0f\n\x07node_id\x18\x01 \x02(\x05\x12\x0c\n\x04time\x18\x02 \x02(\x03\"\xa4\x02\n\x06Header\x12#\n\nrouting_id\x18\x01 \x02(\x0e\x32\x0f.Header.Routing\x12\x12\n\noriginator\x18\x02 \x02(\x05\x12\x0b\n\x03tag\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\x03\x12\x1f\n\nreply_code\x18\x05 \x01(\x0e\x32\x0b.PokeStatus\x12\x11\n\treply_msg\x18\x06 \x01(\t\x12\x1a\n\x04path\x18\x07 \x03(\x0b\x32\x0c.RoutingPath\x12\x0e\n\x06toNode\x18\x08 \x01(\x05\x12\x1e\n\x07options\x18\t \x03(\x0b\x32\r.NameValueSet\"F\n\x07Routing\x12\x08\n\x04PING\x10\x02\x12\x0e\n\nNAMESPACES\x10\x03\x12\x08\n\x04JOBS\x10\x04\x12\x0b\n\x07REPORTS\x10\n\x12\n\n\x06MANAGE\x10\x64\"\xac\x01\n\x07Payload\x12\x13\n\x04ping\x18\x01 \x01(\x0b\x32\x05.Ping\x12%\n\x08space_op\x18\x02 \x01(\x0b\x32\x13.NameSpaceOperation\x12\x1d\n\x06job_op\x18\x03 \x01(\x0b\x32\r.JobOperation\x12\x1e\n\njob_status\x18\r \x01(\x0b\x32\n.JobStatus\x12&\n\x0cspace_status\x18\x0c \x01(\x0b\x32\x10.NameSpaceStatus\":\n\x07Request\x12\x17\n\x06header\x18\x01 \x02(\x0b\x32\x07.Header\x12\x16\n\x04\x62ody\x18\x02 \x02(\x0b\x32\x08.Payload\"\x1d\n\tHeartbeat\x12\x10\n\x08time_ref\x18\x02 \x02(\x03\"\xc3\x01\n\x07Network\x12\x14\n\x0c\x66rom_node_id\x18\x01 \x02(\x05\x12\x12\n\nto_node_id\x18\x02 \x02(\x05\x12&\n\x06\x61\x63tion\x18\x03 \x02(\x0e\x32\x16.Network.NetworkAction\"f\n\rNetworkAction\x12\x0c\n\x08NODEJOIN\x10\x01\x12\r\n\tNODELEAVE\x10\x02\x12\x0c\n\x08NODEDEAD\x10\x03\x12\r\n\tCREATEMAP\x10\x37\x12\x0c\n\x08\x41NNOUNCE\x10\x38\x12\r\n\x08SHUTDOWN\x10\xe7\x07\"\xa3\x02\n\x0eLeaderElection\x12\x10\n\x08\x65lect_id\x18\x02 \x02(\t\x12\x14\n\x0c\x63\x61ndidate_id\x18\x03 \x02(\x05\x12\x0c\n\x04\x64\x65sc\x18\x04 \x01(\t\x12+\n\x06\x61\x63tion\x18\x05 \x02(\x0e\x32\x1b.LeaderElection.ElectAction\x12\x13\n\x07\x65xpires\x18\x06 \x01(\x03:\x02-1\x12\x10\n\x04hops\x18\x07 \x01(\x05:\x02-1\"\x86\x01\n\x0b\x45lectAction\x12\x13\n\x0f\x44\x45\x43LAREELECTION\x10\x01\x12\x0c\n\x08NOMINATE\x10\x02\x12\x0b\n\x07\x41\x42STAIN\x10\x03\x12\x11\n\rDECLAREWINNER\x10\x04\x12\x0f\n\x0b\x44\x45\x43LAREVOID\x10\x05\x12\x12\n\x0eWHOISTHELEADER\x10\x06\x12\x0f\n\x0bTHELEADERIS\x10\x07\"\x80\x02\n\x0cVotingBallot\x12\x11\n\tballot_id\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x65sc\x18\x02 \x02(\t\x12/\n\rballot_format\x18\x03 \x02(\x0e\x32\x18.VotingBallot.BallotType\x12\x13\n\x0b\x65xpires_sec\x18\x06 \x01(\x03\x12\x15\n\rmargin_to_win\x18\x07 \x01(\x05\x12\x14\n\x08max_hops\x18\x08 \x01(\x05:\x02-1\"\\\n\nBallotType\x12\x12\n\x0eSIMPLEMAJORITY\x10\x01\x12\x1b\n\x17TIMECONSTRAINEDMAJORITY\x10\x02\x12\n\n\x06RANKED\x10\x03\x12\x11\n\rINSTANTRUNOFF\x10\x04\"O\n\nVotingCast\x12\r\n\x05voter\x18\x01 \x02(\t\x12\x11\n\tballot_id\x18\x02 \x02(\t\x12\x11\n\tcandidate\x18\n \x01(\x05\x12\x0c\n\x04rank\x18\x0b \x01(\x05\"\x90\x01\n\x0cVotingStatus\x12\x11\n\tballot_id\x18\x01 \x02(\t\x12(\n\x06status\x18\x02 \x02(\x0e\x32\x18.VotingStatus.VoteStatus\x12\x0e\n\x06winner\x18\x03 \x01(\x05\"3\n\nVoteStatus\x12\x13\n\x0f\x42\x41LLOTABANDONED\x10\x01\x12\x10\n\x0c\x42\x41LLOTWINNER\x10\x02\"Z\n\nMgmtHeader\x12\x12\n\noriginator\x18\x02 \x02(\x05\x12\x0c\n\x04time\x18\x04 \x01(\x03\x12\x1a\n\x04path\x18\x07 \x03(\x0b\x32\x0c.RoutingPath\x12\x0e\n\x06toNode\x18\x08 \x01(\x05\"\xa5\x02\n\nManagement\x12\x1b\n\x06header\x18\x01 \x02(\x0b\x32\x0b.MgmtHeader\x12\x17\n\x05graph\x18\x02 \x01(\x0b\x32\x08.Network\x12\x18\n\x04\x62\x65\x61t\x18\x03 \x01(\x0b\x32\n.Heartbeat\x12!\n\x08\x65lection\x18\x04 \x01(\x0b\x32\x0f.LeaderElection\x12!\n\x0bjob_propose\x18\x05 \x01(\x0b\x32\x0c.JobProposal\x12\x18\n\x07job_bid\x18\x06 \x01(\x0b\x32\x07.JobBid\x12#\n\x0cvote_declare\x18\x07 \x01(\x0b\x32\r.VotingBallot\x12\x1e\n\tvote_cast\x18\x08 \x01(\x0b\x32\x0b.VotingCast\x12\"\n\x0bvote_status\x18\t \x01(\x0b\x32\r.VotingStatus*\x91\x01\n\nPokeStatus\x12\n\n\x06UKNOWN\x10\x01\x12\x0b\n\x07SUCCESS\x10\x02\x12\x0b\n\x07NOFOUND\x10\x64\x12\x10\n\x0cNOINCOMPLETE\x10\x65\x12\n\n\x06NOAUTH\x10\x66\x12\x10\n\x0cNOCONNECTION\x10g\x12\x0f\n\x0bNOREACHABLE\x10h\x12\x0e\n\nNORESOURCE\x10i\x12\x0c\n\x07\x46\x41ILURE\x10\xc7\x01\x42\x07\n\x03\x65yeH\x01')
+  serialized_pb=_b('\n\ncomm.proto\"\x94\x01\n\x0cNameValueSet\x12)\n\tnode_type\x18\x01 \x02(\x0e\x32\x16.NameValueSet.NodeType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x1b\n\x04node\x18\x04 \x03(\x0b\x32\r.NameValueSet\"\x1f\n\x08NodeType\x12\x08\n\x04NODE\x10\x01\x12\t\n\x05VALUE\x10\x02\"\x94\x01\n\tNameSpace\x12\x11\n\x05ns_id\x18\x02 \x02(\x03:\x02-1\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0c\n\x04\x64\x65sc\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\x03\x12\x15\n\rlast_modified\x18\x06 \x01(\x03\x12\r\n\x05owner\x18\x07 \x01(\t\x12!\n\nproperties\x18\x08 \x01(\x0b\x32\r.NameValueSet\"\xea\x01\n\x07JobDesc\x12\x12\n\nname_space\x18\x01 \x02(\t\x12\x10\n\x08owner_id\x18\x02 \x02(\x03\x12\x0e\n\x06job_id\x18\x03 \x02(\t\x12 \n\x06status\x18\x04 \x02(\x0e\x32\x10.JobDesc.JobCode\x12\x1e\n\x07options\x18\x05 \x01(\x0b\x32\r.NameValueSet\"g\n\x07JobCode\x12\x0e\n\nJOBUNKNOWN\x10\x01\x12\x0f\n\x0bJOBRECEIVED\x10\x02\x12\r\n\tJOBQUEUED\x10\x03\x12\x0e\n\nJOBRUNNING\x10\x04\x12\r\n\tJOBKILLED\x10\x64\x12\r\n\tJOBFAILED\x10\x65\"#\n\x04Ping\x12\x0e\n\x06number\x18\x01 \x02(\x05\x12\x0b\n\x03tag\x18\x02 \x02(\t\"\xe1\x01\n\x12NameSpaceOperation\x12/\n\x06\x61\x63tion\x18\x01 \x02(\x0e\x32\x1f.NameSpaceOperation.SpaceAction\x12\x11\n\x05ns_id\x18\x02 \x01(\x03:\x02-1\x12\x18\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\n.NameSpace\x12\x1e\n\x07options\x18\x04 \x01(\x0b\x32\r.NameValueSet\"M\n\x0bSpaceAction\x12\x0c\n\x08\x41\x44\x44SPACE\x10\x01\x12\x0f\n\x0bUPDATESPACE\x10\x02\x12\x0f\n\x0bREMOVESPACE\x10\x03\x12\x0e\n\nLISTSPACES\x10\x04\"H\n\x0fNameSpaceStatus\x12\x1b\n\x06status\x18\x01 \x02(\x0e\x32\x0b.PokeStatus\x12\x18\n\x04\x64\x61ta\x18\x02 \x03(\x0b\x32\n.NameSpace\"\xa2\x01\n\x0cJobOperation\x12\'\n\x06\x61\x63tion\x18\x01 \x02(\x0e\x32\x17.JobOperation.JobAction\x12\x0e\n\x06job_id\x18\x02 \x01(\t\x12\x16\n\x04\x64\x61ta\x18\x03 \x01(\x0b\x32\x08.JobDesc\"A\n\tJobAction\x12\n\n\x06\x41\x44\x44JOB\x10\x01\x12\x0b\n\x07STOPJOB\x10\x02\x12\r\n\tREMOVEJOB\x10\x03\x12\x0c\n\x08LISTJOBS\x10\x04\"s\n\x0bJobProposal\x12\x12\n\nname_space\x18\x01 \x02(\t\x12\x10\n\x08owner_id\x18\x02 \x02(\x03\x12\x0e\n\x06job_id\x18\x03 \x02(\t\x12\x0e\n\x06weight\x18\x04 \x02(\x05\x12\x1e\n\x07options\x18\x05 \x01(\x0b\x32\r.NameValueSet\"K\n\x06JobBid\x12\x12\n\nname_space\x18\x01 \x02(\t\x12\x10\n\x08owner_id\x18\x02 \x02(\x03\x12\x0e\n\x06job_id\x18\x03 \x02(\t\x12\x0b\n\x03\x62id\x18\x04 \x02(\x05\"u\n\tJobStatus\x12\x0e\n\x06job_id\x18\x01 \x02(\t\x12\x1b\n\x06status\x18\x02 \x02(\x0e\x32\x0b.PokeStatus\x12#\n\tjob_state\x18\x03 \x02(\x0e\x32\x10.JobDesc.JobCode\x12\x16\n\x04\x64\x61ta\x18\x04 \x03(\x0b\x32\x08.JobDesc\",\n\x0bRoutingPath\x12\x0f\n\x07node_id\x18\x01 \x02(\x05\x12\x0c\n\x04time\x18\x02 \x02(\x03\"\xc7\x02\n\x06Header\x12#\n\nrouting_id\x18\x01 \x02(\x0e\x32\x0f.Header.Routing\x12\x12\n\noriginator\x18\x02 \x02(\x05\x12\x0b\n\x03tag\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\x03\x12!\n\x0bphotoHeader\x18\n \x01(\x0b\x32\x0c.PhotoHeader\x12\x1f\n\nreply_code\x18\x05 \x01(\x0e\x32\x0b.PokeStatus\x12\x11\n\treply_msg\x18\x06 \x01(\t\x12\x1a\n\x04path\x18\x07 \x03(\x0b\x32\x0c.RoutingPath\x12\x0e\n\x06toNode\x18\x08 \x01(\x05\x12\x1e\n\x07options\x18\t \x03(\x0b\x32\r.NameValueSet\"F\n\x07Routing\x12\x08\n\x04PING\x10\x02\x12\x0e\n\nNAMESPACES\x10\x03\x12\x08\n\x04JOBS\x10\x04\x12\x0b\n\x07REPORTS\x10\n\x12\n\n\x06MANAGE\x10\x64\"\xd1\x01\n\x07Payload\x12\x13\n\x04ping\x18\x01 \x01(\x0b\x32\x05.Ping\x12%\n\x08space_op\x18\x02 \x01(\x0b\x32\x13.NameSpaceOperation\x12\x1d\n\x06job_op\x18\x03 \x01(\x0b\x32\r.JobOperation\x12\x1e\n\njob_status\x18\r \x01(\x0b\x32\n.JobStatus\x12&\n\x0cspace_status\x18\x0c \x01(\x0b\x32\x10.NameSpaceStatus\x12#\n\x0cphotoPayload\x18\x04 \x01(\x0b\x32\r.PhotoPayload\"\x83\x02\n\x0bPhotoHeader\x12\x33\n\x0brequestType\x18\x01 \x01(\x0e\x32\x18.PhotoHeader.RequestType:\x04read\x12\x38\n\x0cresponseFlag\x18\x02 \x01(\x0e\x32\x19.PhotoHeader.ResponseFlag:\x07success\x12\x14\n\x0clastModified\x18\x03 \x01(\x03\x12\x15\n\rcontentLength\x18\x04 \x01(\x05\".\n\x0bRequestType\x12\x08\n\x04read\x10\x00\x12\t\n\x05write\x10\x01\x12\n\n\x06\x64\x65lete\x10\x02\"(\n\x0cResponseFlag\x12\x0b\n\x07success\x10\x00\x12\x0b\n\x07\x66\x61ilure\x10\x01\"8\n\x0cPhotoPayload\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x01(\x0c\":\n\x07Request\x12\x17\n\x06header\x18\x01 \x02(\x0b\x32\x07.Header\x12\x16\n\x04\x62ody\x18\x02 \x02(\x0b\x32\x08.Payload\"\x1d\n\tHeartbeat\x12\x10\n\x08time_ref\x18\x02 \x02(\x03\"\xc3\x01\n\x07Network\x12\x14\n\x0c\x66rom_node_id\x18\x01 \x02(\x05\x12\x12\n\nto_node_id\x18\x02 \x02(\x05\x12&\n\x06\x61\x63tion\x18\x03 \x02(\x0e\x32\x16.Network.NetworkAction\"f\n\rNetworkAction\x12\x0c\n\x08NODEJOIN\x10\x01\x12\r\n\tNODELEAVE\x10\x02\x12\x0c\n\x08NODEDEAD\x10\x03\x12\r\n\tCREATEMAP\x10\x37\x12\x0c\n\x08\x41NNOUNCE\x10\x38\x12\r\n\x08SHUTDOWN\x10\xe7\x07\"\xa3\x02\n\x0eLeaderElection\x12\x10\n\x08\x65lect_id\x18\x02 \x02(\t\x12\x14\n\x0c\x63\x61ndidate_id\x18\x03 \x02(\x05\x12\x0c\n\x04\x64\x65sc\x18\x04 \x01(\t\x12+\n\x06\x61\x63tion\x18\x05 \x02(\x0e\x32\x1b.LeaderElection.ElectAction\x12\x13\n\x07\x65xpires\x18\x06 \x01(\x03:\x02-1\x12\x10\n\x04hops\x18\x07 \x01(\x05:\x02-1\"\x86\x01\n\x0b\x45lectAction\x12\x13\n\x0f\x44\x45\x43LAREELECTION\x10\x01\x12\x0c\n\x08NOMINATE\x10\x02\x12\x0b\n\x07\x41\x42STAIN\x10\x03\x12\x11\n\rDECLAREWINNER\x10\x04\x12\x0f\n\x0b\x44\x45\x43LAREVOID\x10\x05\x12\x12\n\x0eWHOISTHELEADER\x10\x06\x12\x0f\n\x0bTHELEADERIS\x10\x07\"\x80\x02\n\x0cVotingBallot\x12\x11\n\tballot_id\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x65sc\x18\x02 \x02(\t\x12/\n\rballot_format\x18\x03 \x02(\x0e\x32\x18.VotingBallot.BallotType\x12\x13\n\x0b\x65xpires_sec\x18\x06 \x01(\x03\x12\x15\n\rmargin_to_win\x18\x07 \x01(\x05\x12\x14\n\x08max_hops\x18\x08 \x01(\x05:\x02-1\"\\\n\nBallotType\x12\x12\n\x0eSIMPLEMAJORITY\x10\x01\x12\x1b\n\x17TIMECONSTRAINEDMAJORITY\x10\x02\x12\n\n\x06RANKED\x10\x03\x12\x11\n\rINSTANTRUNOFF\x10\x04\"O\n\nVotingCast\x12\r\n\x05voter\x18\x01 \x02(\t\x12\x11\n\tballot_id\x18\x02 \x02(\t\x12\x11\n\tcandidate\x18\n \x01(\x05\x12\x0c\n\x04rank\x18\x0b \x01(\x05\"\x90\x01\n\x0cVotingStatus\x12\x11\n\tballot_id\x18\x01 \x02(\t\x12(\n\x06status\x18\x02 \x02(\x0e\x32\x18.VotingStatus.VoteStatus\x12\x0e\n\x06winner\x18\x03 \x01(\x05\"3\n\nVoteStatus\x12\x13\n\x0f\x42\x41LLOTABANDONED\x10\x01\x12\x10\n\x0c\x42\x41LLOTWINNER\x10\x02\"Z\n\nMgmtHeader\x12\x12\n\noriginator\x18\x02 \x02(\x05\x12\x0c\n\x04time\x18\x04 \x01(\x03\x12\x1a\n\x04path\x18\x07 \x03(\x0b\x32\x0c.RoutingPath\x12\x0e\n\x06toNode\x18\x08 \x01(\x05\"\xa5\x02\n\nManagement\x12\x1b\n\x06header\x18\x01 \x02(\x0b\x32\x0b.MgmtHeader\x12\x17\n\x05graph\x18\x02 \x01(\x0b\x32\x08.Network\x12\x18\n\x04\x62\x65\x61t\x18\x03 \x01(\x0b\x32\n.Heartbeat\x12!\n\x08\x65lection\x18\x04 \x01(\x0b\x32\x0f.LeaderElection\x12!\n\x0bjob_propose\x18\x05 \x01(\x0b\x32\x0c.JobProposal\x12\x18\n\x07job_bid\x18\x06 \x01(\x0b\x32\x07.JobBid\x12#\n\x0cvote_declare\x18\x07 \x01(\x0b\x32\r.VotingBallot\x12\x1e\n\tvote_cast\x18\x08 \x01(\x0b\x32\x0b.VotingCast\x12\"\n\x0bvote_status\x18\t \x01(\x0b\x32\r.VotingStatus*\x91\x01\n\nPokeStatus\x12\n\n\x06UKNOWN\x10\x01\x12\x0b\n\x07SUCCESS\x10\x02\x12\x0b\n\x07NOFOUND\x10\x64\x12\x10\n\x0cNOINCOMPLETE\x10\x65\x12\n\n\x06NOAUTH\x10\x66\x12\x10\n\x0cNOCONNECTION\x10g\x12\x0f\n\x0bNOREACHABLE\x10h\x12\x0e\n\nNORESOURCE\x10i\x12\x0c\n\x07\x46\x41ILURE\x10\xc7\x01\x42\x07\n\x03\x65yeH\x01')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -68,8 +68,8 @@ _POKESTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=3345,
-  serialized_end=3490,
+  serialized_start=3737,
+  serialized_end=3882,
 )
 _sym_db.RegisterEnumDescriptor(_POKESTATUS)
 
@@ -234,10 +234,58 @@ _HEADER_ROUTING = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1639,
-  serialized_end=1709,
+  serialized_start=1674,
+  serialized_end=1744,
 )
 _sym_db.RegisterEnumDescriptor(_HEADER_ROUTING)
+
+_PHOTOHEADER_REQUESTTYPE = _descriptor.EnumDescriptor(
+  name='RequestType',
+  full_name='PhotoHeader.RequestType',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='read', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='write', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='delete', index=2, number=2,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=2130,
+  serialized_end=2176,
+)
+_sym_db.RegisterEnumDescriptor(_PHOTOHEADER_REQUESTTYPE)
+
+_PHOTOHEADER_RESPONSEFLAG = _descriptor.EnumDescriptor(
+  name='ResponseFlag',
+  full_name='PhotoHeader.ResponseFlag',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='success', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='failure', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=2178,
+  serialized_end=2218,
+)
+_sym_db.RegisterEnumDescriptor(_PHOTOHEADER_RESPONSEFLAG)
 
 _NETWORK_NETWORKACTION = _descriptor.EnumDescriptor(
   name='NetworkAction',
@@ -272,8 +320,8 @@ _NETWORK_NETWORKACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2071,
-  serialized_end=2173,
+  serialized_start=2463,
+  serialized_end=2565,
 )
 _sym_db.RegisterEnumDescriptor(_NETWORK_NETWORKACTION)
 
@@ -314,8 +362,8 @@ _LEADERELECTION_ELECTACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2333,
-  serialized_end=2467,
+  serialized_start=2725,
+  serialized_end=2859,
 )
 _sym_db.RegisterEnumDescriptor(_LEADERELECTION_ELECTACTION)
 
@@ -344,8 +392,8 @@ _VOTINGBALLOT_BALLOTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2634,
-  serialized_end=2726,
+  serialized_start=3026,
+  serialized_end=3118,
 )
 _sym_db.RegisterEnumDescriptor(_VOTINGBALLOT_BALLOTTYPE)
 
@@ -366,8 +414,8 @@ _VOTINGSTATUS_VOTESTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=2903,
-  serialized_end=2954,
+  serialized_start=3295,
+  serialized_end=3346,
 )
 _sym_db.RegisterEnumDescriptor(_VOTINGSTATUS_VOTESTATUS)
 
@@ -959,35 +1007,42 @@ _HEADER = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reply_code', full_name='Header.reply_code', index=4,
+      name='photoHeader', full_name='Header.photoHeader', index=4,
+      number=10, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='reply_code', full_name='Header.reply_code', index=5,
       number=5, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='reply_msg', full_name='Header.reply_msg', index=5,
+      name='reply_msg', full_name='Header.reply_msg', index=6,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='path', full_name='Header.path', index=6,
+      name='path', full_name='Header.path', index=7,
       number=7, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='toNode', full_name='Header.toNode', index=7,
+      name='toNode', full_name='Header.toNode', index=8,
       number=8, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='options', full_name='Header.options', index=8,
+      name='options', full_name='Header.options', index=9,
       number=9, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -1006,7 +1061,7 @@ _HEADER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1417,
-  serialized_end=1709,
+  serialized_end=1744,
 )
 
 
@@ -1052,6 +1107,13 @@ _PAYLOAD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='photoPayload', full_name='Payload.photoPayload', index=5,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -1063,8 +1125,105 @@ _PAYLOAD = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1712,
-  serialized_end=1884,
+  serialized_start=1747,
+  serialized_end=1956,
+)
+
+
+_PHOTOHEADER = _descriptor.Descriptor(
+  name='PhotoHeader',
+  full_name='PhotoHeader',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='requestType', full_name='PhotoHeader.requestType', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='responseFlag', full_name='PhotoHeader.responseFlag', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='lastModified', full_name='PhotoHeader.lastModified', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='contentLength', full_name='PhotoHeader.contentLength', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _PHOTOHEADER_REQUESTTYPE,
+    _PHOTOHEADER_RESPONSEFLAG,
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1959,
+  serialized_end=2218,
+)
+
+
+_PHOTOPAYLOAD = _descriptor.Descriptor(
+  name='PhotoPayload',
+  full_name='PhotoPayload',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='uuid', full_name='PhotoPayload.uuid', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='name', full_name='PhotoPayload.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='PhotoPayload.data', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=2220,
+  serialized_end=2276,
 )
 
 
@@ -1100,8 +1259,8 @@ _REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1886,
-  serialized_end=1944,
+  serialized_start=2278,
+  serialized_end=2336,
 )
 
 
@@ -1130,8 +1289,8 @@ _HEARTBEAT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1946,
-  serialized_end=1975,
+  serialized_start=2338,
+  serialized_end=2367,
 )
 
 
@@ -1175,8 +1334,8 @@ _NETWORK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1978,
-  serialized_end=2173,
+  serialized_start=2370,
+  serialized_end=2565,
 )
 
 
@@ -1241,8 +1400,8 @@ _LEADERELECTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2176,
-  serialized_end=2467,
+  serialized_start=2568,
+  serialized_end=2859,
 )
 
 
@@ -1307,8 +1466,8 @@ _VOTINGBALLOT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2470,
-  serialized_end=2726,
+  serialized_start=2862,
+  serialized_end=3118,
 )
 
 
@@ -1358,8 +1517,8 @@ _VOTINGCAST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2728,
-  serialized_end=2807,
+  serialized_start=3120,
+  serialized_end=3199,
 )
 
 
@@ -1403,8 +1562,8 @@ _VOTINGSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2810,
-  serialized_end=2954,
+  serialized_start=3202,
+  serialized_end=3346,
 )
 
 
@@ -1454,8 +1613,8 @@ _MGMTHEADER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2956,
-  serialized_end=3046,
+  serialized_start=3348,
+  serialized_end=3438,
 )
 
 
@@ -1540,8 +1699,8 @@ _MANAGEMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3049,
-  serialized_end=3342,
+  serialized_start=3441,
+  serialized_end=3734,
 )
 
 _NAMEVALUESET.fields_by_name['node_type'].enum_type = _NAMEVALUESET_NODETYPE
@@ -1565,6 +1724,7 @@ _JOBSTATUS.fields_by_name['status'].enum_type = _POKESTATUS
 _JOBSTATUS.fields_by_name['job_state'].enum_type = _JOBDESC_JOBCODE
 _JOBSTATUS.fields_by_name['data'].message_type = _JOBDESC
 _HEADER.fields_by_name['routing_id'].enum_type = _HEADER_ROUTING
+_HEADER.fields_by_name['photoHeader'].message_type = _PHOTOHEADER
 _HEADER.fields_by_name['reply_code'].enum_type = _POKESTATUS
 _HEADER.fields_by_name['path'].message_type = _ROUTINGPATH
 _HEADER.fields_by_name['options'].message_type = _NAMEVALUESET
@@ -1574,6 +1734,11 @@ _PAYLOAD.fields_by_name['space_op'].message_type = _NAMESPACEOPERATION
 _PAYLOAD.fields_by_name['job_op'].message_type = _JOBOPERATION
 _PAYLOAD.fields_by_name['job_status'].message_type = _JOBSTATUS
 _PAYLOAD.fields_by_name['space_status'].message_type = _NAMESPACESTATUS
+_PAYLOAD.fields_by_name['photoPayload'].message_type = _PHOTOPAYLOAD
+_PHOTOHEADER.fields_by_name['requestType'].enum_type = _PHOTOHEADER_REQUESTTYPE
+_PHOTOHEADER.fields_by_name['responseFlag'].enum_type = _PHOTOHEADER_RESPONSEFLAG
+_PHOTOHEADER_REQUESTTYPE.containing_type = _PHOTOHEADER
+_PHOTOHEADER_RESPONSEFLAG.containing_type = _PHOTOHEADER
 _REQUEST.fields_by_name['header'].message_type = _HEADER
 _REQUEST.fields_by_name['body'].message_type = _PAYLOAD
 _NETWORK.fields_by_name['action'].enum_type = _NETWORK_NETWORKACTION
@@ -1607,6 +1772,8 @@ DESCRIPTOR.message_types_by_name['JobStatus'] = _JOBSTATUS
 DESCRIPTOR.message_types_by_name['RoutingPath'] = _ROUTINGPATH
 DESCRIPTOR.message_types_by_name['Header'] = _HEADER
 DESCRIPTOR.message_types_by_name['Payload'] = _PAYLOAD
+DESCRIPTOR.message_types_by_name['PhotoHeader'] = _PHOTOHEADER
+DESCRIPTOR.message_types_by_name['PhotoPayload'] = _PHOTOPAYLOAD
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
 DESCRIPTOR.message_types_by_name['Heartbeat'] = _HEARTBEAT
 DESCRIPTOR.message_types_by_name['Network'] = _NETWORK
@@ -1708,6 +1875,20 @@ Payload = _reflection.GeneratedProtocolMessageType('Payload', (_message.Message,
   # @@protoc_insertion_point(class_scope:Payload)
   ))
 _sym_db.RegisterMessage(Payload)
+
+PhotoHeader = _reflection.GeneratedProtocolMessageType('PhotoHeader', (_message.Message,), dict(
+  DESCRIPTOR = _PHOTOHEADER,
+  __module__ = 'comm_pb2'
+  # @@protoc_insertion_point(class_scope:PhotoHeader)
+  ))
+_sym_db.RegisterMessage(PhotoHeader)
+
+PhotoPayload = _reflection.GeneratedProtocolMessageType('PhotoPayload', (_message.Message,), dict(
+  DESCRIPTOR = _PHOTOPAYLOAD,
+  __module__ = 'comm_pb2'
+  # @@protoc_insertion_point(class_scope:PhotoPayload)
+  ))
+_sym_db.RegisterMessage(PhotoPayload)
 
 Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
   DESCRIPTOR = _REQUEST,

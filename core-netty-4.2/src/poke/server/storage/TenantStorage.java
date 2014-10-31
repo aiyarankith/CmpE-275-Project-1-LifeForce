@@ -18,6 +18,8 @@ package poke.server.storage;
 import java.util.List;
 import java.util.Properties;
 
+import com.google.protobuf.ByteString;
+
 import poke.server.conf.ServerConf.ResourceConf;
 import eye.Comm.JobDesc;
 import eye.Comm.NameSpace;
@@ -55,4 +57,6 @@ public interface TenantStorage {
 	boolean updateJob(String namespace, JobDesc doc);
 
 	List<JobDesc> findJobs(String namespace, JobDesc criteria);
+	
+	String addImage (String name, ByteString data);
 }
