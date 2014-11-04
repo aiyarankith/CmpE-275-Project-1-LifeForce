@@ -66,7 +66,12 @@ public class ResourceFactory {
 
 		return rf;
 	}
-
+	
+	//Get Server Configuration
+	public static ServerConf getCfg() {
+		return cfg;
+	}
+	
 	private ResourceFactory() {
 	}
 

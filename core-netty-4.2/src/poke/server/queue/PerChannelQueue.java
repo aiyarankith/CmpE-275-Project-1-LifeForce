@@ -25,6 +25,8 @@ import java.util.concurrent.LinkedBlockingDeque;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.conf.ServerConf;
+import poke.server.managers.ElectionManager;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceFactory;
 import poke.server.resources.ResourceUtil;
@@ -49,7 +51,7 @@ public class PerChannelQueue implements ChannelQueue {
 	protected static Logger logger = LoggerFactory.getLogger("server");
 
 	private Channel channel;
-
+	protected ServerConf conf = new ServerConf();
 	// The queues feed work to the inbound and outbound threads (workers). The
 	// threads perform a blocking 'get' on the queue until a new event/task is
 	// enqueued. This design prevents a wasteful 'spin-lock' design for the
@@ -227,7 +229,16 @@ public class PerChannelQueue implements ChannelQueue {
 			if (outbound == null)
 				throw new RuntimeException("connection worker detected null queue");
 		}
-
+		//Check if the node is Leader
+		public boolean isLeader() {
+			System.out.println("leader insided            "+ElectionManager.getInstance().whoIsTheLeader());
+			return ElectionManager.getInstance().whoIsTheLeader()
+					.equals(getMyNode()); }
+		//get node details
+		public int getMyNode() {
+			System.out.println("NODE ID:::::::::::::       "+ ResourceFactory.getCfg().getNodeId());
+			return ResourceFactory.getCfg().getNodeId();
+		}
 		@Override
 		public void run() {
 			Channel conn = sq.channel;
@@ -260,35 +271,38 @@ public class PerChannelQueue implements ChannelQueue {
 									"Request not processed");
 						} else
 							reply = rsc.process(req);
-						System.out.println("reply.................."+ reply.toString());
+						
+						
+						
+							System.out.println("reply.................."+ reply.toString());
 
-						sq.enqueueResponse(reply, null);
+							sq.enqueueResponse(reply, null);
+						}
+
+					} catch (InterruptedException ie) {
+						break;
+					} catch (Exception e) {
+						PerChannelQueue.logger.error("Unexpected processing failure", e);
+						break;
 					}
+				}
 
-				} catch (InterruptedException ie) {
-					break;
-				} catch (Exception e) {
-					PerChannelQueue.logger.error("Unexpected processing failure", e);
-					break;
+				if (!forever) {
+					PerChannelQueue.logger.info("connection queue closing");
 				}
 			}
+		}
 
-			if (!forever) {
-				PerChannelQueue.logger.info("connection queue closing");
+		public class CloseListener implements ChannelFutureListener {
+			private ChannelQueue sq;
+
+			public CloseListener(ChannelQueue sq) {
+				this.sq = sq;
+			}
+
+			@Override
+			public void operationComplete(ChannelFuture future) throws Exception {
+				sq.shutdown(true);
 			}
 		}
 	}
-
-	public class CloseListener implements ChannelFutureListener {
-		private ChannelQueue sq;
-
-		public CloseListener(ChannelQueue sq) {
-			this.sq = sq;
-		}
-
-		@Override
-		public void operationComplete(ChannelFuture future) throws Exception {
-			sq.shutdown(true);
-		}
-	}
-}

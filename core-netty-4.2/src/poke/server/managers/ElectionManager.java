@@ -324,4 +324,5 @@ public class ElectionManager implements ElectionListener {
 		return election;
 
 	}
+
 }

@@ -49,7 +49,10 @@ public class ServerConf {
 	private int port = 5570;
 	/** internal node-to-node communication (default is 5571) */
 	private int mgmtPort = 5571;
-
+	//Added
+	private GeneralConf server;
+	private NodeConf description;
+	
 	private StorageConf storage;
 	private AdjacentConf adjacent;
 	private List<ResourceConf> routing;
@@ -177,7 +180,29 @@ public class ServerConf {
 	public void setRouting(List<ResourceConf> conf) {
 		this.routing = conf;
 	}
+	
+	//Added
+	public GeneralConf getServer() {
+		return server;
+	}
+	//Added
+	public void setServer(GeneralConf server) {
+		// TODO should be a deep copy
+		this.server = server;
+	}
+	public void addGeneral(String name, String value) {
+		if (server == null)
+			server = new GeneralConf();
 
+		server.add(name, value);
+	}
+	
+	public void addNode(String name, String value) {
+		if (description == null)
+			description = new NodeConf();
+
+		description.add(name, value);
+	}
 	@XmlRootElement(name = "storage")
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public static final class StorageConf {
@@ -296,6 +321,61 @@ public class ServerConf {
 
 		public void setEnabled(boolean enabled) {
 			this.enabled = enabled;
+		}
+	}
+	
+	//Added -- Ankith
+	@XmlRootElement(name = "general")
+	@XmlAccessorType(XmlAccessType.FIELD)
+	public static final class GeneralConf {
+		private TreeMap<String, String> general;
+
+		public String getProperty(String name) {
+			return general.get(name);
+		}
+
+		public void add(String name, String value) {
+			if (name == null)
+				return;
+			else if (general == null)
+				general = new TreeMap<String, String>();
+
+			general.put(name, value);
+		}
+
+		public TreeMap<String, String> getGeneral() {
+			return general;
+		}
+
+		public void setGeneral(TreeMap<String, String> general) {
+			this.general = general;
+		}
+	}
+	
+	@XmlRootElement(name = "node")
+	@XmlAccessorType(XmlAccessType.FIELD)
+	public static final class NodeConf {
+		private TreeMap<String, String> node;
+
+		public String getProperty(String name) {
+			return node.get(name);
+		}
+
+		public void add(String name, String value) {
+			if (name == null)
+				return;
+			else if (node == null)
+				node = new TreeMap<String, String>();
+
+			node.put(name, value);
+		}
+
+		public TreeMap<String, String> getNode() {
+			return node;
+		}
+
+		public void setNode(TreeMap<String, String> node) {
+			this.node = node;
 		}
 	}
 }
