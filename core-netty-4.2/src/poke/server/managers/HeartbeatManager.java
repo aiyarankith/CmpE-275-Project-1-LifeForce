@@ -91,6 +91,10 @@ public class HeartbeatManager extends Thread {
 	protected HeartbeatManager() {
 	}
 
+	public ConcurrentHashMap<Channel, HeartbeatData> getOutgoingHB(){
+		return outgoingHB;
+	}
+	
 	/**
 	 * create/register expected connections that this node will make. These
 	 * edges are connections this node is responsible for monitoring.

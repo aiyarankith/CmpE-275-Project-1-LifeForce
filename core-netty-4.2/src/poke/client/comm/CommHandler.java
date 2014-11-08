@@ -26,8 +26,12 @@ import java.util.concurrent.ConcurrentMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.managers.RoutedJobManager;
+import poke.server.queue.PerChannelQueue;
 
 import com.google.protobuf.GeneratedMessage;
+
+import eye.Comm.Request;
 
 public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	protected static Logger logger = LoggerFactory.getLogger("connect");
@@ -39,21 +43,28 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 
 	/**
 	 * messages pass through this method. We use a blackbox design as much as
+
 	 * possible to ensure we can replace the underlining communication without
 	 * affecting behavior.
 	 * 
 	 * @param msg
 	 * @return
+	 * @throws InterruptedException 
 	 */
-	public boolean send(GeneratedMessage msg) {
+	public boolean send(GeneratedMessage msg, Channel ch ) throws InterruptedException {
 		// TODO a queue is needed to prevent overloading of the socket
-		// connection. For the demonstration, we don't need it
-		ChannelFuture cf = channel.write(msg);
+		// connection. For the demonstration, we don't need it 
+
+		logger.info("request message "+msg);
+		
+		ChannelFuture cf = ch.writeAndFlush((Request)msg);
+		
+		cf.awaitUninterruptibly();
+		logger.info(" "+cf.cause());
 		if (cf.isDone() && !cf.isSuccess()) {
 			logger.error("failed to poke!");
 			return false;
 		}
-
 		return true;
 	}
 
@@ -86,12 +97,34 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	 */
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, eye.Comm.Request msg) throws Exception {
-		for (String id : listeners.keySet()) {
-			CommListener cl = listeners.get(id);
-
-			// TODO this may need to be delegated to a thread pool to allow
-			// async processing of replies
-			cl.onMessage(msg);
+		
+		logger.info("reply message "+msg);
+		String uuid = msg.getHeader().getUniqueJobId();
+		ConcurrentHashMap<String, PerChannelQueue> outgoingJOBs = RoutedJobManager.getInstance().getJobMap();
+		for(String uuidsample : outgoingJOBs.keySet()){
+			if(uuidsample.equals(uuid)){
+				PerChannelQueue pq = outgoingJOBs.get(uuid);
+				logger.info(" selected perchannelqueue instance "+pq.toString());
+				if(pq.channel != null){
+					pq.enqueueResponse(msg, pq.channel);
+				}else{
+					logger.error("could not find channel for current reply");
+				}
+				outgoingJOBs.remove(uuid);
+				RoutedJobManager.getInstance().setJobMap(outgoingJOBs);
+			}
 		}
+	}
+	
+	@Override
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		
+	}
+	
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		logger.error("Unexpected exception occureed", cause);
+		ctx.close();
 	}
 }

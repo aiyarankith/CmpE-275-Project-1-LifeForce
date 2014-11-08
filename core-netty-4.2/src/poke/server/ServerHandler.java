@@ -57,6 +57,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<eye.Comm.Request>
 	public void channelRead0(ChannelHandlerContext ctx, eye.Comm.Request req) throws Exception {
 		// processing is deferred to the worker threads
 		//logger.info("---> server got a message from " + req.getHeader().getOriginator());
+		logger.info("-----instantiate only when client makes a connection------");
 		queueInstance(ctx.channel()).enqueueRequest(req, ctx.channel());
 	}
 
@@ -108,7 +109,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<eye.Comm.Request>
 			// them into a separate bucket for possible client re-connection
 			// otherwise discard after some set period. This is a weakness of a
 			// connection-required communication design.
-
+			
+			logger.info("closing client channel queues");
 			if (sq != null)
 				sq.shutdown(true);
 			sq = null;

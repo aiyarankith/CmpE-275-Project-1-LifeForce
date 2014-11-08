@@ -38,7 +38,7 @@ public class MonitorInitializer extends ChannelInitializer<SocketChannel> {
 		 * 4 bytes
 		 */
 		//Modified length 67108864
-		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(1095586132, 0, 4, 0, 4));
+		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(1751474536, 0, 4, 0, 4));
 
 		// pipeline.addLast("frameDecoder", new
 		// DebugFrameDecoder(67108864, 0, 4, 0, 4));

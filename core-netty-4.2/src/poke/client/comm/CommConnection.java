@@ -29,11 +29,8 @@ import java.util.concurrent.LinkedBlockingDeque;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import poke.server.management.ManagementHandler;
-
 import com.google.protobuf.GeneratedMessage;
 
-import eye.Comm.Management;
 import eye.Comm.Request;
 
 /**
@@ -119,25 +116,33 @@ public class CommConnection {
 		group = new NioEventLoopGroup();
 		try {
 			handler = new CommHandler();
+			CommInitializer ci = new CommInitializer(handler);
+			
 			Bootstrap b = new Bootstrap();
-			b.group(group).channel(NioSocketChannel.class).handler(handler);
+			b.group(group).channel(NioSocketChannel.class).handler(ci);
 			b.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000);
 			b.option(ChannelOption.TCP_NODELAY, true);
 			b.option(ChannelOption.SO_KEEPALIVE, true);
-
+			
+			logger.info( host+" "+port);
 			// Make the connection attempt.
 			channel = b.connect(host, port).syncUninterruptibly();
-
+			channel.awaitUninterruptibly(5000l);
+		
 			// want to monitor the connection to the server s.t. if we loose the
 			// connection, we can try to re-establish it.
 			ClientClosedListener ccl = new ClientClosedListener(this);
 			channel.channel().closeFuture().addListener(ccl);
-
+			
 		} catch (Exception ex) {
 			logger.error("failed to initialize the client connection", ex);
 
 		}
-
+		
+		if (channel != null && channel.isDone() && channel.isSuccess())
+			logger.info("connection created successfully");
+		else
+			logger.info("connection failed");
 		// start outbound message processor
 		worker = new OutboundWorker(this);
 		worker.start();
@@ -168,12 +173,13 @@ public class CommConnection {
 	 * 
 	 */
 	protected class OutboundWorker extends Thread {
+		
 		CommConnection conn;
 		boolean forever = true;
 
 		public OutboundWorker(CommConnection conn) {
 			this.conn = conn;
-
+			logger.info("outbound worker started!!!");
 			if (conn.outbound == null)
 				throw new RuntimeException("connection worker detected null queue");
 		}
@@ -193,14 +199,15 @@ public class CommConnection {
 				try {
 					// block until a message is enqueued
 					GeneratedMessage msg = conn.outbound.take();
+					
 					if (ch.isWritable()) {
 						CommHandler handler = conn.connect().pipeline().get(CommHandler.class);
-
-						if (!handler.send(msg))
-							conn.outbound.putFirst(msg);
-
-					} else
+						if (!handler.send(msg, ch)){
+//							conn.outbound.putFirst(msg);
+						}
+					} else{
 						conn.outbound.putFirst(msg);
+					}
 				} catch (InterruptedException ie) {
 					break;
 				} catch (Exception e) {
@@ -235,7 +242,7 @@ public class CommConnection {
 		@Override
 		public void operationComplete(ChannelFuture future) throws Exception {
 			// we lost the connection or have shutdown.
-
+			logger.info("--------------------------------------------------------netsta");
 			// @TODO if lost, try to re-establish the connection
 		}
 	}

@@ -46,6 +46,8 @@ import poke.server.managers.HeartbeatData;
 import poke.server.managers.HeartbeatManager;
 import poke.server.managers.JobManager;
 import poke.server.managers.NetworkManager;
+import poke.server.managers.RoutedJobManager;
+import poke.server.managers.RoutingInitializer;
 import poke.server.resources.ResourceFactory;
 import poke.server.storage.jdbc.DatabaseStorage;
 
@@ -70,6 +72,8 @@ public class Server {
 
 	protected JobManager jobMgr;
 	protected NetworkManager networkMgr;
+	protected RoutedJobManager routedJobManager;
+	protected RoutingInitializer routingInitializer;
 	protected HeartbeatManager heartbeatMgr;
 	protected ElectionManager electionMgr;
 	//Database
@@ -285,7 +289,13 @@ public class Server {
 
 		// create manager for accepting jobs
 		jobMgr = JobManager.initManager(conf);
-
+		
+		//create manager for routed jobs
+		routedJobManager = RoutedJobManager.initManager();
+		
+		//initialize load balancer map
+		routingInitializer = RoutingInitializer.initManager();
+		
 		// establish nearest nodes and start sending heartbeats
 		heartbeatMgr = HeartbeatManager.initManager(conf);
 		for (NodeDesc nn : conf.getAdjacent().getAdjacentNodes().values()) {

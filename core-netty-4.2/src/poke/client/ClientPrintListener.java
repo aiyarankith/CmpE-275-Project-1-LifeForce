@@ -44,6 +44,7 @@ public class ClientPrintListener implements CommListener {
 
 	@Override
 	public void onMessage(eye.Comm.Request msg) {
+		logger.info("print..........................");
 		if (logger.isDebugEnabled())
 			ClientUtil.printHeader(msg.getHeader());
 

@@ -15,6 +15,7 @@
  */
 package poke.server.managers;
 
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -66,7 +67,11 @@ public class HeartbeatPusher extends Thread {
 		// health-status from usage.
 		HeartMonitor hm = new HeartMonitor(iamNode, node.getHost(), node.getMgmtport(), node.getNodeId());
 		monitors.add(hm);
-
+		
+		//add this node to load balancer map
+		ConcurrentHashMap<Integer, RoundRobinInitilizers> loadbalancer = RoutingInitializer.getInstance().getBalancer();
+		loadbalancer.put(node.getNodeId(), RoundRobinInitilizers.getInstance());
+		
 		// artifact of the client-side listener - processing is done in the
 		// inbound mgmt worker
 		HeartbeatStubListener notused = new HeartbeatStubListener(node);

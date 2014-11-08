@@ -156,7 +156,10 @@ message RoutingPath {
     required int64 time = 2;
 }
 
-message Header {  
+message Header {
+	
+	optional string leader_id = 11;
+	optional string unique_job_id = 12;
     required Routing routing_id = 1;
     required int32 originator = 2;
     optional string tag = 3;

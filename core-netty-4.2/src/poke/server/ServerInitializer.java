@@ -35,7 +35,7 @@ public class ServerInitializer extends ChannelInitializer<SocketChannel> {
 		 * 4 bytes
 		 */
 		//Modified
-		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(67108864, 0, 4, 0, 4));
+		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(1751474536, 0, 4, 0, 4));
 
 		// pipeline.addLast("frameDecoder", new
 		// DebugFrameDecoder(67108864, 0, 4, 0, 4));

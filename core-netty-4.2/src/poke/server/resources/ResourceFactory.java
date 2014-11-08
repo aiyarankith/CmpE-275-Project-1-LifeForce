@@ -23,8 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import poke.server.conf.ServerConf;
 import poke.server.conf.ServerConf.ResourceConf;
-import poke.server.storage.TenantStorage;
-import poke.server.storage.TenantStorage;
 import eye.Comm.Header;
 
 /**
@@ -45,7 +43,7 @@ import eye.Comm.Header;
  * 
  */
 public class ResourceFactory {
-	protected static Logger logger = LoggerFactory.getLogger("server");
+	protected static Logger logger = LoggerFactory.getLogger("server-resourcefactory");
 
 	private static ServerConf cfg;
 	private static AtomicReference<ResourceFactory> factory = new AtomicReference<ResourceFactory>();
@@ -91,9 +89,9 @@ public class ResourceFactory {
 			}
 		}
 		
-System.out.println("Header 1111111111111111111111111111111111111111111!!:::::::::::"+header.toString());
+		logger.info("Header :: "+header.toString());
 		ResourceConf rc = cfg.findById(header.getRoutingId().getNumber());
-		System.out.println("Number JOB:::::::::::::::::::::: "+header.getRoutingId().getNumber());
+		logger.info("JOB Number :: "+header.getRoutingId().getNumber());
 		if (rc == null)
 			return null;
 

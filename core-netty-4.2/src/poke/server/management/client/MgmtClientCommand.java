@@ -18,16 +18,10 @@ package poke.server.management.client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import poke.client.comm.CommConnection;
-import poke.client.comm.CommListener;
-import eye.Comm.Header;
 import eye.Comm.LeaderElection;
+import eye.Comm.LeaderElection.ElectAction;
 import eye.Comm.Management;
 import eye.Comm.MgmtHeader;
-import eye.Comm.Payload;
-import eye.Comm.Ping;
-import eye.Comm.Request;
-import eye.Comm.LeaderElection.ElectAction;
 
 /**
  * Similar to the ClientCommand, the Management Client provides a external API

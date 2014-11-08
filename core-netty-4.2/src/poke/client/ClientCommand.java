@@ -56,6 +56,9 @@ public class ClientCommand {
 		comm = new CommConnection(host, port);
 	}
 
+	public CommConnection getComm(){
+		return comm;
+	}
 	/**
 	 * add an application-level listener to receive messages from the server (as
 	 * in replies to requests).
@@ -66,6 +69,18 @@ public class ClientCommand {
 		comm.addListener(listener);
 	}
 
+	/**
+	 * Forward task to other node of the cluster
+	 * 
+	 * @param req 
+	 */
+	public void forwardMsg(Request req){
+		try {
+			comm.sendMessage(req);
+		} catch (Exception e) {
+			logger.warn("Unable to deliver message, queuing");
+		}
+	}
 	/**
 	 * Our network's equivalent to ping
 	 * 

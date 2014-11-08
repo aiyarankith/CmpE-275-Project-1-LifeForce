@@ -35,7 +35,7 @@ public class ManagementInitializer extends ChannelInitializer<SocketChannel> {
 		 * 4 bytes
 		 */
 		//Modified length 67108864
-		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(67108864, 0, 4, 0, 4));
+		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(1751474536, 0, 4, 0, 4));
 
 		// decoder must be first
 		pipeline.addLast("protobufDecoder", new ProtobufDecoder(eye.Comm.Management.getDefaultInstance()));

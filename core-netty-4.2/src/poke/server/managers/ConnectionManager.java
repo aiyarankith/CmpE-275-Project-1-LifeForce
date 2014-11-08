@@ -115,4 +115,8 @@ public class ConnectionManager {
 	public static int getNumMgmtConnections() {
 		return mgmtConnections.size();
 	}
+	
+	public static int getNumConnections() {
+		return connections.size();
+	}
 }

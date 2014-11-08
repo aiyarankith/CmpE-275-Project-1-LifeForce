@@ -156,7 +156,9 @@ message RoutingPath {
     required int64 time = 2;
 }
 
-message Header {  
+message Header { 
+	optional int64 leader_id =11;
+	optional string unique_job_id = 12;
     required Routing routing_id = 1;
     required int32 originator = 2;
     optional string tag = 3;
@@ -370,7 +372,6 @@ message Management {
    // TODO should this be here or in the request?
    optional JobProposal job_propose = 5;
    optional JobBid job_bid = 6;
-   
    // voting management
    optional VotingBallot vote_declare = 7;
    optional VotingCast vote_cast = 8;

@@ -158,10 +158,10 @@ public final class Comm {
     // @@protoc_insertion_point(enum_scope:PokeStatus)
   }
 
-  public interface NameValueSetOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:NameValueSet)
-      com.google.protobuf.MessageOrBuilder {
+  public interface NameValueSetOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required .NameValueSet.NodeType node_type = 1;
     /**
      * <code>required .NameValueSet.NodeType node_type = 1;</code>
      *
@@ -179,6 +179,7 @@ public final class Comm {
      */
     eye.Comm.NameValueSet.NodeType getNodeType();
 
+    // optional string name = 2;
     /**
      * <code>optional string name = 2;</code>
      */
@@ -193,6 +194,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getNameBytes();
 
+    // optional string value = 3;
     /**
      * <code>optional string value = 3;</code>
      */
@@ -207,6 +209,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getValueBytes();
 
+    // repeated .NameValueSet node = 4;
     /**
      * <code>repeated .NameValueSet node = 4;</code>
      *
@@ -259,9 +262,8 @@ public final class Comm {
    * </pre>
    */
   public static final class NameValueSet extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:NameValueSet)
-      NameValueSetOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements NameValueSetOrBuilder {
     // Use NameValueSet.newBuilder() to construct.
     private NameValueSet(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -319,15 +321,13 @@ public final class Comm {
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              name_ = bs;
+              name_ = input.readBytes();
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              value_ = bs;
+              value_ = input.readBytes();
               break;
             }
             case 34: {
@@ -463,6 +463,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required .NameValueSet.NodeType node_type = 1;
     public static final int NODE_TYPE_FIELD_NUMBER = 1;
     private eye.Comm.NameValueSet.NodeType nodeType_;
     /**
@@ -486,6 +487,7 @@ public final class Comm {
       return nodeType_;
     }
 
+    // optional string name = 2;
     public static final int NAME_FIELD_NUMBER = 2;
     private java.lang.Object name_;
     /**
@@ -528,6 +530,7 @@ public final class Comm {
       }
     }
 
+    // optional string value = 3;
     public static final int VALUE_FIELD_NUMBER = 3;
     private java.lang.Object value_;
     /**
@@ -570,6 +573,7 @@ public final class Comm {
       }
     }
 
+    // repeated .NameValueSet node = 4;
     public static final int NODE_FIELD_NUMBER = 4;
     private java.util.List<eye.Comm.NameValueSet> node_;
     /**
@@ -634,8 +638,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNodeType()) {
         memoizedIsInitialized = 0;
@@ -777,9 +780,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:NameValueSet)
-        eye.Comm.NameValueSetOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.NameValueSetOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_NameValueSet_descriptor;
@@ -966,6 +968,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required .NameValueSet.NodeType node_type = 1;
       private eye.Comm.NameValueSet.NodeType nodeType_ = eye.Comm.NameValueSet.NodeType.NODE;
       /**
        * <code>required .NameValueSet.NodeType node_type = 1;</code>
@@ -1017,6 +1020,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string name = 2;
       private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 2;</code>
@@ -1030,12 +1034,9 @@ public final class Comm {
       public java.lang.String getName() {
         java.lang.Object ref = name_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            name_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          name_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -1093,6 +1094,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string value = 3;
       private java.lang.Object value_ = "";
       /**
        * <code>optional string value = 3;</code>
@@ -1106,12 +1108,9 @@ public final class Comm {
       public java.lang.String getValue() {
         java.lang.Object ref = value_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            value_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          value_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -1169,6 +1168,7 @@ public final class Comm {
         return this;
       }
 
+      // repeated .NameValueSet node = 4;
       private java.util.List<eye.Comm.NameValueSet> node_ =
         java.util.Collections.emptyList();
       private void ensureNodeIsMutable() {
@@ -1350,8 +1350,7 @@ public final class Comm {
           java.lang.Iterable<? extends eye.Comm.NameValueSet> values) {
         if (nodeBuilder_ == null) {
           ensureNodeIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, node_);
+          super.addAll(values, node_);
           onChanged();
         } else {
           nodeBuilder_.addAllMessages(values);
@@ -1492,10 +1491,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:NameValueSet)
   }
 
-  public interface NameSpaceOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:NameSpace)
-      com.google.protobuf.MessageOrBuilder {
+  public interface NameSpaceOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required int64 ns_id = 2 [default = -1];
     /**
      * <code>required int64 ns_id = 2 [default = -1];</code>
      *
@@ -1513,6 +1512,7 @@ public final class Comm {
      */
     long getNsId();
 
+    // optional string name = 3;
     /**
      * <code>optional string name = 3;</code>
      */
@@ -1527,6 +1527,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getNameBytes();
 
+    // optional string desc = 4;
     /**
      * <code>optional string desc = 4;</code>
      */
@@ -1541,6 +1542,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getDescBytes();
 
+    // optional int64 created = 5;
     /**
      * <code>optional int64 created = 5;</code>
      */
@@ -1550,6 +1552,7 @@ public final class Comm {
      */
     long getCreated();
 
+    // optional int64 last_modified = 6;
     /**
      * <code>optional int64 last_modified = 6;</code>
      */
@@ -1559,6 +1562,7 @@ public final class Comm {
      */
     long getLastModified();
 
+    // optional string owner = 7;
     /**
      * <code>optional string owner = 7;</code>
      */
@@ -1573,6 +1577,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getOwnerBytes();
 
+    // optional .NameValueSet properties = 8;
     /**
      * <code>optional .NameValueSet properties = 8;</code>
      *
@@ -1606,9 +1611,8 @@ public final class Comm {
    * </pre>
    */
   public static final class NameSpace extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:NameSpace)
-      NameSpaceOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements NameSpaceOrBuilder {
     // Use NameSpace.newBuilder() to construct.
     private NameSpace(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -1660,15 +1664,13 @@ public final class Comm {
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              name_ = bs;
+              name_ = input.readBytes();
               break;
             }
             case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              desc_ = bs;
+              desc_ = input.readBytes();
               break;
             }
             case 40: {
@@ -1682,9 +1684,8 @@ public final class Comm {
               break;
             }
             case 58: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000020;
-              owner_ = bs;
+              owner_ = input.readBytes();
               break;
             }
             case 66: {
@@ -1740,6 +1741,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required int64 ns_id = 2 [default = -1];
     public static final int NS_ID_FIELD_NUMBER = 2;
     private long nsId_;
     /**
@@ -1763,6 +1765,7 @@ public final class Comm {
       return nsId_;
     }
 
+    // optional string name = 3;
     public static final int NAME_FIELD_NUMBER = 3;
     private java.lang.Object name_;
     /**
@@ -1805,6 +1808,7 @@ public final class Comm {
       }
     }
 
+    // optional string desc = 4;
     public static final int DESC_FIELD_NUMBER = 4;
     private java.lang.Object desc_;
     /**
@@ -1847,6 +1851,7 @@ public final class Comm {
       }
     }
 
+    // optional int64 created = 5;
     public static final int CREATED_FIELD_NUMBER = 5;
     private long created_;
     /**
@@ -1862,6 +1867,7 @@ public final class Comm {
       return created_;
     }
 
+    // optional int64 last_modified = 6;
     public static final int LAST_MODIFIED_FIELD_NUMBER = 6;
     private long lastModified_;
     /**
@@ -1877,6 +1883,7 @@ public final class Comm {
       return lastModified_;
     }
 
+    // optional string owner = 7;
     public static final int OWNER_FIELD_NUMBER = 7;
     private java.lang.Object owner_;
     /**
@@ -1919,6 +1926,7 @@ public final class Comm {
       }
     }
 
+    // optional .NameValueSet properties = 8;
     public static final int PROPERTIES_FIELD_NUMBER = 8;
     private eye.Comm.NameValueSet properties_;
     /**
@@ -1964,8 +1972,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNsId()) {
         memoizedIsInitialized = 0;
@@ -2128,9 +2135,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:NameSpace)
-        eye.Comm.NameSpaceOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.NameSpaceOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_NameSpace_descriptor;
@@ -2322,6 +2328,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required int64 ns_id = 2 [default = -1];
       private long nsId_ = -1L;
       /**
        * <code>required int64 ns_id = 2 [default = -1];</code>
@@ -2370,6 +2377,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string name = 3;
       private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 3;</code>
@@ -2383,12 +2391,9 @@ public final class Comm {
       public java.lang.String getName() {
         java.lang.Object ref = name_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            name_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          name_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -2446,6 +2451,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string desc = 4;
       private java.lang.Object desc_ = "";
       /**
        * <code>optional string desc = 4;</code>
@@ -2459,12 +2465,9 @@ public final class Comm {
       public java.lang.String getDesc() {
         java.lang.Object ref = desc_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            desc_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          desc_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -2522,6 +2525,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 created = 5;
       private long created_ ;
       /**
        * <code>optional int64 created = 5;</code>
@@ -2554,6 +2558,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 last_modified = 6;
       private long lastModified_ ;
       /**
        * <code>optional int64 last_modified = 6;</code>
@@ -2586,6 +2591,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string owner = 7;
       private java.lang.Object owner_ = "";
       /**
        * <code>optional string owner = 7;</code>
@@ -2599,12 +2605,9 @@ public final class Comm {
       public java.lang.String getOwner() {
         java.lang.Object ref = owner_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            owner_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          owner_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -2662,6 +2665,7 @@ public final class Comm {
         return this;
       }
 
+      // optional .NameValueSet properties = 8;
       private eye.Comm.NameValueSet properties_ = eye.Comm.NameValueSet.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder> propertiesBuilder_;
@@ -2806,7 +2810,7 @@ public final class Comm {
         if (propertiesBuilder_ == null) {
           propertiesBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder>(
-                  getProperties(),
+                  properties_,
                   getParentForChildren(),
                   isClean());
           properties_ = null;
@@ -2825,10 +2829,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:NameSpace)
   }
 
-  public interface JobDescOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:JobDesc)
-      com.google.protobuf.MessageOrBuilder {
+  public interface JobDescOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string name_space = 1;
     /**
      * <code>required string name_space = 1;</code>
      */
@@ -2843,6 +2847,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getNameSpaceBytes();
 
+    // required int64 owner_id = 2;
     /**
      * <code>required int64 owner_id = 2;</code>
      */
@@ -2852,6 +2857,7 @@ public final class Comm {
      */
     long getOwnerId();
 
+    // required string job_id = 3;
     /**
      * <code>required string job_id = 3;</code>
      */
@@ -2866,6 +2872,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getJobIdBytes();
 
+    // required .JobDesc.JobCode status = 4;
     /**
      * <code>required .JobDesc.JobCode status = 4;</code>
      */
@@ -2875,6 +2882,7 @@ public final class Comm {
      */
     eye.Comm.JobDesc.JobCode getStatus();
 
+    // optional .NameValueSet options = 5;
     /**
      * <code>optional .NameValueSet options = 5;</code>
      */
@@ -2896,9 +2904,8 @@ public final class Comm {
    * </pre>
    */
   public static final class JobDesc extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:JobDesc)
-      JobDescOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements JobDescOrBuilder {
     // Use JobDesc.newBuilder() to construct.
     private JobDesc(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -2945,9 +2952,8 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              nameSpace_ = bs;
+              nameSpace_ = input.readBytes();
               break;
             }
             case 16: {
@@ -2956,9 +2962,8 @@ public final class Comm {
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              jobId_ = bs;
+              jobId_ = input.readBytes();
               break;
             }
             case 32: {
@@ -3143,6 +3148,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string name_space = 1;
     public static final int NAME_SPACE_FIELD_NUMBER = 1;
     private java.lang.Object nameSpace_;
     /**
@@ -3185,6 +3191,7 @@ public final class Comm {
       }
     }
 
+    // required int64 owner_id = 2;
     public static final int OWNER_ID_FIELD_NUMBER = 2;
     private long ownerId_;
     /**
@@ -3200,6 +3207,7 @@ public final class Comm {
       return ownerId_;
     }
 
+    // required string job_id = 3;
     public static final int JOB_ID_FIELD_NUMBER = 3;
     private java.lang.Object jobId_;
     /**
@@ -3242,6 +3250,7 @@ public final class Comm {
       }
     }
 
+    // required .JobDesc.JobCode status = 4;
     public static final int STATUS_FIELD_NUMBER = 4;
     private eye.Comm.JobDesc.JobCode status_;
     /**
@@ -3257,6 +3266,7 @@ public final class Comm {
       return status_;
     }
 
+    // optional .NameValueSet options = 5;
     public static final int OPTIONS_FIELD_NUMBER = 5;
     private eye.Comm.NameValueSet options_;
     /**
@@ -3288,8 +3298,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNameSpace()) {
         memoizedIsInitialized = 0;
@@ -3450,9 +3459,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:JobDesc)
-        eye.Comm.JobDescOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.JobDescOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_JobDesc_descriptor;
@@ -3636,6 +3644,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string name_space = 1;
       private java.lang.Object nameSpace_ = "";
       /**
        * <code>required string name_space = 1;</code>
@@ -3649,12 +3658,9 @@ public final class Comm {
       public java.lang.String getNameSpace() {
         java.lang.Object ref = nameSpace_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            nameSpace_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          nameSpace_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3712,6 +3718,7 @@ public final class Comm {
         return this;
       }
 
+      // required int64 owner_id = 2;
       private long ownerId_ ;
       /**
        * <code>required int64 owner_id = 2;</code>
@@ -3744,6 +3751,7 @@ public final class Comm {
         return this;
       }
 
+      // required string job_id = 3;
       private java.lang.Object jobId_ = "";
       /**
        * <code>required string job_id = 3;</code>
@@ -3757,12 +3765,9 @@ public final class Comm {
       public java.lang.String getJobId() {
         java.lang.Object ref = jobId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            jobId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          jobId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -3820,6 +3825,7 @@ public final class Comm {
         return this;
       }
 
+      // required .JobDesc.JobCode status = 4;
       private eye.Comm.JobDesc.JobCode status_ = eye.Comm.JobDesc.JobCode.JOBUNKNOWN;
       /**
        * <code>required .JobDesc.JobCode status = 4;</code>
@@ -3855,6 +3861,7 @@ public final class Comm {
         return this;
       }
 
+      // optional .NameValueSet options = 5;
       private eye.Comm.NameValueSet options_ = eye.Comm.NameValueSet.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder> optionsBuilder_;
@@ -3963,7 +3970,7 @@ public final class Comm {
         if (optionsBuilder_ == null) {
           optionsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder>(
-                  getOptions(),
+                  options_,
                   getParentForChildren(),
                   isClean());
           options_ = null;
@@ -3982,10 +3989,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:JobDesc)
   }
 
-  public interface PingOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Ping)
-      com.google.protobuf.MessageOrBuilder {
+  public interface PingOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required int32 number = 1;
     /**
      * <code>required int32 number = 1;</code>
      */
@@ -3995,6 +4002,7 @@ public final class Comm {
      */
     int getNumber();
 
+    // required string tag = 2;
     /**
      * <code>required string tag = 2;</code>
      */
@@ -4017,9 +4025,8 @@ public final class Comm {
    * </pre>
    */
   public static final class Ping extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Ping)
-      PingOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements PingOrBuilder {
     // Use Ping.newBuilder() to construct.
     private Ping(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -4071,9 +4078,8 @@ public final class Comm {
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              tag_ = bs;
+              tag_ = input.readBytes();
               break;
             }
           }
@@ -4116,6 +4122,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required int32 number = 1;
     public static final int NUMBER_FIELD_NUMBER = 1;
     private int number_;
     /**
@@ -4131,6 +4138,7 @@ public final class Comm {
       return number_;
     }
 
+    // required string tag = 2;
     public static final int TAG_FIELD_NUMBER = 2;
     private java.lang.Object tag_;
     /**
@@ -4180,8 +4188,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNumber()) {
         memoizedIsInitialized = 0;
@@ -4307,9 +4314,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Ping)
-        eye.Comm.PingOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.PingOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Ping_descriptor;
@@ -4441,6 +4447,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required int32 number = 1;
       private int number_ ;
       /**
        * <code>required int32 number = 1;</code>
@@ -4473,6 +4480,7 @@ public final class Comm {
         return this;
       }
 
+      // required string tag = 2;
       private java.lang.Object tag_ = "";
       /**
        * <code>required string tag = 2;</code>
@@ -4486,12 +4494,9 @@ public final class Comm {
       public java.lang.String getTag() {
         java.lang.Object ref = tag_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            tag_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          tag_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -4560,10 +4565,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Ping)
   }
 
-  public interface NameSpaceOperationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:NameSpaceOperation)
-      com.google.protobuf.MessageOrBuilder {
+  public interface NameSpaceOperationOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required .NameSpaceOperation.SpaceAction action = 1;
     /**
      * <code>required .NameSpaceOperation.SpaceAction action = 1;</code>
      */
@@ -4573,6 +4578,7 @@ public final class Comm {
      */
     eye.Comm.NameSpaceOperation.SpaceAction getAction();
 
+    // optional int64 ns_id = 2 [default = -1];
     /**
      * <code>optional int64 ns_id = 2 [default = -1];</code>
      */
@@ -4582,6 +4588,7 @@ public final class Comm {
      */
     long getNsId();
 
+    // optional .NameSpace data = 3;
     /**
      * <code>optional .NameSpace data = 3;</code>
      */
@@ -4595,6 +4602,7 @@ public final class Comm {
      */
     eye.Comm.NameSpaceOrBuilder getDataOrBuilder();
 
+    // optional .NameValueSet options = 4;
     /**
      * <code>optional .NameValueSet options = 4;</code>
      *
@@ -4628,9 +4636,8 @@ public final class Comm {
    * </pre>
    */
   public static final class NameSpaceOperation extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:NameSpaceOperation)
-      NameSpaceOperationOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements NameSpaceOperationOrBuilder {
     // Use NameSpaceOperation.newBuilder() to construct.
     private NameSpaceOperation(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -4858,6 +4865,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required .NameSpaceOperation.SpaceAction action = 1;
     public static final int ACTION_FIELD_NUMBER = 1;
     private eye.Comm.NameSpaceOperation.SpaceAction action_;
     /**
@@ -4873,6 +4881,7 @@ public final class Comm {
       return action_;
     }
 
+    // optional int64 ns_id = 2 [default = -1];
     public static final int NS_ID_FIELD_NUMBER = 2;
     private long nsId_;
     /**
@@ -4888,6 +4897,7 @@ public final class Comm {
       return nsId_;
     }
 
+    // optional .NameSpace data = 3;
     public static final int DATA_FIELD_NUMBER = 3;
     private eye.Comm.NameSpace data_;
     /**
@@ -4909,6 +4919,7 @@ public final class Comm {
       return data_;
     }
 
+    // optional .NameValueSet options = 4;
     public static final int OPTIONS_FIELD_NUMBER = 4;
     private eye.Comm.NameValueSet options_;
     /**
@@ -4951,8 +4962,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasAction()) {
         memoizedIsInitialized = 0;
@@ -5100,9 +5110,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:NameSpaceOperation)
-        eye.Comm.NameSpaceOperationOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.NameSpaceOperationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_NameSpaceOperation_descriptor;
@@ -5276,6 +5285,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required .NameSpaceOperation.SpaceAction action = 1;
       private eye.Comm.NameSpaceOperation.SpaceAction action_ = eye.Comm.NameSpaceOperation.SpaceAction.ADDSPACE;
       /**
        * <code>required .NameSpaceOperation.SpaceAction action = 1;</code>
@@ -5311,6 +5321,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 ns_id = 2 [default = -1];
       private long nsId_ = -1L;
       /**
        * <code>optional int64 ns_id = 2 [default = -1];</code>
@@ -5343,6 +5354,7 @@ public final class Comm {
         return this;
       }
 
+      // optional .NameSpace data = 3;
       private eye.Comm.NameSpace data_ = eye.Comm.NameSpace.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameSpace, eye.Comm.NameSpace.Builder, eye.Comm.NameSpaceOrBuilder> dataBuilder_;
@@ -5451,7 +5463,7 @@ public final class Comm {
         if (dataBuilder_ == null) {
           dataBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameSpace, eye.Comm.NameSpace.Builder, eye.Comm.NameSpaceOrBuilder>(
-                  getData(),
+                  data_,
                   getParentForChildren(),
                   isClean());
           data_ = null;
@@ -5459,6 +5471,7 @@ public final class Comm {
         return dataBuilder_;
       }
 
+      // optional .NameValueSet options = 4;
       private eye.Comm.NameValueSet options_ = eye.Comm.NameValueSet.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder> optionsBuilder_;
@@ -5603,7 +5616,7 @@ public final class Comm {
         if (optionsBuilder_ == null) {
           optionsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder>(
-                  getOptions(),
+                  options_,
                   getParentForChildren(),
                   isClean());
           options_ = null;
@@ -5622,10 +5635,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:NameSpaceOperation)
   }
 
-  public interface NameSpaceStatusOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:NameSpaceStatus)
-      com.google.protobuf.MessageOrBuilder {
+  public interface NameSpaceStatusOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required .PokeStatus status = 1;
     /**
      * <code>required .PokeStatus status = 1;</code>
      */
@@ -5635,6 +5648,7 @@ public final class Comm {
      */
     eye.Comm.PokeStatus getStatus();
 
+    // repeated .NameSpace data = 2;
     /**
      * <code>repeated .NameSpace data = 2;</code>
      *
@@ -5687,9 +5701,8 @@ public final class Comm {
    * </pre>
    */
   public static final class NameSpaceStatus extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:NameSpaceStatus)
-      NameSpaceStatusOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements NameSpaceStatusOrBuilder {
     // Use NameSpaceStatus.newBuilder() to construct.
     private NameSpaceStatus(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -5797,6 +5810,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required .PokeStatus status = 1;
     public static final int STATUS_FIELD_NUMBER = 1;
     private eye.Comm.PokeStatus status_;
     /**
@@ -5812,6 +5826,7 @@ public final class Comm {
       return status_;
     }
 
+    // repeated .NameSpace data = 2;
     public static final int DATA_FIELD_NUMBER = 2;
     private java.util.List<eye.Comm.NameSpace> data_;
     /**
@@ -5874,8 +5889,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasStatus()) {
         memoizedIsInitialized = 0;
@@ -6003,9 +6017,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:NameSpaceStatus)
-        eye.Comm.NameSpaceStatusOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.NameSpaceStatusOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_NameSpaceStatus_descriptor;
@@ -6170,6 +6183,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required .PokeStatus status = 1;
       private eye.Comm.PokeStatus status_ = eye.Comm.PokeStatus.UKNOWN;
       /**
        * <code>required .PokeStatus status = 1;</code>
@@ -6205,6 +6219,7 @@ public final class Comm {
         return this;
       }
 
+      // repeated .NameSpace data = 2;
       private java.util.List<eye.Comm.NameSpace> data_ =
         java.util.Collections.emptyList();
       private void ensureDataIsMutable() {
@@ -6386,8 +6401,7 @@ public final class Comm {
           java.lang.Iterable<? extends eye.Comm.NameSpace> values) {
         if (dataBuilder_ == null) {
           ensureDataIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, data_);
+          super.addAll(values, data_);
           onChanged();
         } else {
           dataBuilder_.addAllMessages(values);
@@ -6528,10 +6542,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:NameSpaceStatus)
   }
 
-  public interface JobOperationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:JobOperation)
-      com.google.protobuf.MessageOrBuilder {
+  public interface JobOperationOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required .JobOperation.JobAction action = 1;
     /**
      * <code>required .JobOperation.JobAction action = 1;</code>
      */
@@ -6541,6 +6555,7 @@ public final class Comm {
      */
     eye.Comm.JobOperation.JobAction getAction();
 
+    // optional string job_id = 2;
     /**
      * <code>optional string job_id = 2;</code>
      *
@@ -6567,6 +6582,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getJobIdBytes();
 
+    // optional .JobDesc data = 3;
     /**
      * <code>optional .JobDesc data = 3;</code>
      *
@@ -6600,9 +6616,8 @@ public final class Comm {
    * </pre>
    */
   public static final class JobOperation extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:JobOperation)
-      JobOperationOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements JobOperationOrBuilder {
     // Use JobOperation.newBuilder() to construct.
     private JobOperation(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -6660,9 +6675,8 @@ public final class Comm {
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              jobId_ = bs;
+              jobId_ = input.readBytes();
               break;
             }
             case 26: {
@@ -6818,6 +6832,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required .JobOperation.JobAction action = 1;
     public static final int ACTION_FIELD_NUMBER = 1;
     private eye.Comm.JobOperation.JobAction action_;
     /**
@@ -6833,6 +6848,7 @@ public final class Comm {
       return action_;
     }
 
+    // optional string job_id = 2;
     public static final int JOB_ID_FIELD_NUMBER = 2;
     private java.lang.Object jobId_;
     /**
@@ -6887,6 +6903,7 @@ public final class Comm {
       }
     }
 
+    // optional .JobDesc data = 3;
     public static final int DATA_FIELD_NUMBER = 3;
     private eye.Comm.JobDesc data_;
     /**
@@ -6928,8 +6945,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasAction()) {
         memoizedIsInitialized = 0;
@@ -7064,9 +7080,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:JobOperation)
-        eye.Comm.JobOperationOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.JobOperationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_JobOperation_descriptor;
@@ -7218,6 +7233,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required .JobOperation.JobAction action = 1;
       private eye.Comm.JobOperation.JobAction action_ = eye.Comm.JobOperation.JobAction.ADDJOB;
       /**
        * <code>required .JobOperation.JobAction action = 1;</code>
@@ -7253,6 +7269,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string job_id = 2;
       private java.lang.Object jobId_ = "";
       /**
        * <code>optional string job_id = 2;</code>
@@ -7274,12 +7291,9 @@ public final class Comm {
       public java.lang.String getJobId() {
         java.lang.Object ref = jobId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            jobId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          jobId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -7353,6 +7367,7 @@ public final class Comm {
         return this;
       }
 
+      // optional .JobDesc data = 3;
       private eye.Comm.JobDesc data_ = eye.Comm.JobDesc.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.JobDesc, eye.Comm.JobDesc.Builder, eye.Comm.JobDescOrBuilder> dataBuilder_;
@@ -7497,7 +7512,7 @@ public final class Comm {
         if (dataBuilder_ == null) {
           dataBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.JobDesc, eye.Comm.JobDesc.Builder, eye.Comm.JobDescOrBuilder>(
-                  getData(),
+                  data_,
                   getParentForChildren(),
                   isClean());
           data_ = null;
@@ -7516,10 +7531,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:JobOperation)
   }
 
-  public interface JobProposalOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:JobProposal)
-      com.google.protobuf.MessageOrBuilder {
+  public interface JobProposalOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string name_space = 1;
     /**
      * <code>required string name_space = 1;</code>
      */
@@ -7534,6 +7549,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getNameSpaceBytes();
 
+    // required int64 owner_id = 2;
     /**
      * <code>required int64 owner_id = 2;</code>
      */
@@ -7543,6 +7559,7 @@ public final class Comm {
      */
     long getOwnerId();
 
+    // required string job_id = 3;
     /**
      * <code>required string job_id = 3;</code>
      */
@@ -7557,6 +7574,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getJobIdBytes();
 
+    // required int32 weight = 4;
     /**
      * <code>required int32 weight = 4;</code>
      *
@@ -7576,6 +7594,7 @@ public final class Comm {
      */
     int getWeight();
 
+    // optional .NameValueSet options = 5;
     /**
      * <code>optional .NameValueSet options = 5;</code>
      *
@@ -7609,9 +7628,8 @@ public final class Comm {
    * </pre>
    */
   public static final class JobProposal extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:JobProposal)
-      JobProposalOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements JobProposalOrBuilder {
     // Use JobProposal.newBuilder() to construct.
     private JobProposal(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -7658,9 +7676,8 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              nameSpace_ = bs;
+              nameSpace_ = input.readBytes();
               break;
             }
             case 16: {
@@ -7669,9 +7686,8 @@ public final class Comm {
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              jobId_ = bs;
+              jobId_ = input.readBytes();
               break;
             }
             case 32: {
@@ -7732,6 +7748,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string name_space = 1;
     public static final int NAME_SPACE_FIELD_NUMBER = 1;
     private java.lang.Object nameSpace_;
     /**
@@ -7774,6 +7791,7 @@ public final class Comm {
       }
     }
 
+    // required int64 owner_id = 2;
     public static final int OWNER_ID_FIELD_NUMBER = 2;
     private long ownerId_;
     /**
@@ -7789,6 +7807,7 @@ public final class Comm {
       return ownerId_;
     }
 
+    // required string job_id = 3;
     public static final int JOB_ID_FIELD_NUMBER = 3;
     private java.lang.Object jobId_;
     /**
@@ -7831,6 +7850,7 @@ public final class Comm {
       }
     }
 
+    // required int32 weight = 4;
     public static final int WEIGHT_FIELD_NUMBER = 4;
     private int weight_;
     /**
@@ -7856,6 +7876,7 @@ public final class Comm {
       return weight_;
     }
 
+    // optional .NameValueSet options = 5;
     public static final int OPTIONS_FIELD_NUMBER = 5;
     private eye.Comm.NameValueSet options_;
     /**
@@ -7899,8 +7920,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNameSpace()) {
         memoizedIsInitialized = 0;
@@ -8061,9 +8081,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:JobProposal)
-        eye.Comm.JobProposalOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.JobProposalOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_JobProposal_descriptor;
@@ -8247,6 +8266,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string name_space = 1;
       private java.lang.Object nameSpace_ = "";
       /**
        * <code>required string name_space = 1;</code>
@@ -8260,12 +8280,9 @@ public final class Comm {
       public java.lang.String getNameSpace() {
         java.lang.Object ref = nameSpace_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            nameSpace_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          nameSpace_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -8323,6 +8340,7 @@ public final class Comm {
         return this;
       }
 
+      // required int64 owner_id = 2;
       private long ownerId_ ;
       /**
        * <code>required int64 owner_id = 2;</code>
@@ -8355,6 +8373,7 @@ public final class Comm {
         return this;
       }
 
+      // required string job_id = 3;
       private java.lang.Object jobId_ = "";
       /**
        * <code>required string job_id = 3;</code>
@@ -8368,12 +8387,9 @@ public final class Comm {
       public java.lang.String getJobId() {
         java.lang.Object ref = jobId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            jobId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          jobId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -8431,6 +8447,7 @@ public final class Comm {
         return this;
       }
 
+      // required int32 weight = 4;
       private int weight_ ;
       /**
        * <code>required int32 weight = 4;</code>
@@ -8483,6 +8500,7 @@ public final class Comm {
         return this;
       }
 
+      // optional .NameValueSet options = 5;
       private eye.Comm.NameValueSet options_ = eye.Comm.NameValueSet.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder> optionsBuilder_;
@@ -8627,7 +8645,7 @@ public final class Comm {
         if (optionsBuilder_ == null) {
           optionsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder>(
-                  getOptions(),
+                  options_,
                   getParentForChildren(),
                   isClean());
           options_ = null;
@@ -8646,10 +8664,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:JobProposal)
   }
 
-  public interface JobBidOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:JobBid)
-      com.google.protobuf.MessageOrBuilder {
+  public interface JobBidOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string name_space = 1;
     /**
      * <code>required string name_space = 1;</code>
      */
@@ -8664,6 +8682,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getNameSpaceBytes();
 
+    // required int64 owner_id = 2;
     /**
      * <code>required int64 owner_id = 2;</code>
      */
@@ -8673,6 +8692,7 @@ public final class Comm {
      */
     long getOwnerId();
 
+    // required string job_id = 3;
     /**
      * <code>required string job_id = 3;</code>
      */
@@ -8687,6 +8707,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getJobIdBytes();
 
+    // required int32 bid = 4;
     /**
      * <code>required int32 bid = 4;</code>
      *
@@ -8714,9 +8735,8 @@ public final class Comm {
    * </pre>
    */
   public static final class JobBid extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:JobBid)
-      JobBidOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements JobBidOrBuilder {
     // Use JobBid.newBuilder() to construct.
     private JobBid(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -8763,9 +8783,8 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              nameSpace_ = bs;
+              nameSpace_ = input.readBytes();
               break;
             }
             case 16: {
@@ -8774,9 +8793,8 @@ public final class Comm {
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              jobId_ = bs;
+              jobId_ = input.readBytes();
               break;
             }
             case 32: {
@@ -8824,6 +8842,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string name_space = 1;
     public static final int NAME_SPACE_FIELD_NUMBER = 1;
     private java.lang.Object nameSpace_;
     /**
@@ -8866,6 +8885,7 @@ public final class Comm {
       }
     }
 
+    // required int64 owner_id = 2;
     public static final int OWNER_ID_FIELD_NUMBER = 2;
     private long ownerId_;
     /**
@@ -8881,6 +8901,7 @@ public final class Comm {
       return ownerId_;
     }
 
+    // required string job_id = 3;
     public static final int JOB_ID_FIELD_NUMBER = 3;
     private java.lang.Object jobId_;
     /**
@@ -8923,6 +8944,7 @@ public final class Comm {
       }
     }
 
+    // required int32 bid = 4;
     public static final int BID_FIELD_NUMBER = 4;
     private int bid_;
     /**
@@ -8957,8 +8979,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNameSpace()) {
         memoizedIsInitialized = 0;
@@ -9106,9 +9127,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:JobBid)
-        eye.Comm.JobBidOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.JobBidOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_JobBid_descriptor;
@@ -9268,6 +9288,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string name_space = 1;
       private java.lang.Object nameSpace_ = "";
       /**
        * <code>required string name_space = 1;</code>
@@ -9281,12 +9302,9 @@ public final class Comm {
       public java.lang.String getNameSpace() {
         java.lang.Object ref = nameSpace_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            nameSpace_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          nameSpace_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -9344,6 +9362,7 @@ public final class Comm {
         return this;
       }
 
+      // required int64 owner_id = 2;
       private long ownerId_ ;
       /**
        * <code>required int64 owner_id = 2;</code>
@@ -9376,6 +9395,7 @@ public final class Comm {
         return this;
       }
 
+      // required string job_id = 3;
       private java.lang.Object jobId_ = "";
       /**
        * <code>required string job_id = 3;</code>
@@ -9389,12 +9409,9 @@ public final class Comm {
       public java.lang.String getJobId() {
         java.lang.Object ref = jobId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            jobId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          jobId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -9452,6 +9469,7 @@ public final class Comm {
         return this;
       }
 
+      // required int32 bid = 4;
       private int bid_ ;
       /**
        * <code>required int32 bid = 4;</code>
@@ -9515,10 +9533,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:JobBid)
   }
 
-  public interface JobStatusOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:JobStatus)
-      com.google.protobuf.MessageOrBuilder {
+  public interface JobStatusOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string job_id = 1;
     /**
      * <code>required string job_id = 1;</code>
      */
@@ -9533,6 +9551,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getJobIdBytes();
 
+    // required .PokeStatus status = 2;
     /**
      * <code>required .PokeStatus status = 2;</code>
      */
@@ -9542,6 +9561,7 @@ public final class Comm {
      */
     eye.Comm.PokeStatus getStatus();
 
+    // required .JobDesc.JobCode job_state = 3;
     /**
      * <code>required .JobDesc.JobCode job_state = 3;</code>
      */
@@ -9551,6 +9571,7 @@ public final class Comm {
      */
     eye.Comm.JobDesc.JobCode getJobState();
 
+    // repeated .JobDesc data = 4;
     /**
      * <code>repeated .JobDesc data = 4;</code>
      *
@@ -9603,9 +9624,8 @@ public final class Comm {
    * </pre>
    */
   public static final class JobStatus extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:JobStatus)
-      JobStatusOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements JobStatusOrBuilder {
     // Use JobStatus.newBuilder() to construct.
     private JobStatus(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -9652,9 +9672,8 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              jobId_ = bs;
+              jobId_ = input.readBytes();
               break;
             }
             case 16: {
@@ -9730,6 +9749,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string job_id = 1;
     public static final int JOB_ID_FIELD_NUMBER = 1;
     private java.lang.Object jobId_;
     /**
@@ -9772,6 +9792,7 @@ public final class Comm {
       }
     }
 
+    // required .PokeStatus status = 2;
     public static final int STATUS_FIELD_NUMBER = 2;
     private eye.Comm.PokeStatus status_;
     /**
@@ -9787,6 +9808,7 @@ public final class Comm {
       return status_;
     }
 
+    // required .JobDesc.JobCode job_state = 3;
     public static final int JOB_STATE_FIELD_NUMBER = 3;
     private eye.Comm.JobDesc.JobCode jobState_;
     /**
@@ -9802,6 +9824,7 @@ public final class Comm {
       return jobState_;
     }
 
+    // repeated .JobDesc data = 4;
     public static final int DATA_FIELD_NUMBER = 4;
     private java.util.List<eye.Comm.JobDesc> data_;
     /**
@@ -9866,8 +9889,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasJobId()) {
         memoizedIsInitialized = 0;
@@ -10017,9 +10039,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:JobStatus)
-        eye.Comm.JobStatusOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.JobStatusOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_JobStatus_descriptor;
@@ -10212,6 +10233,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string job_id = 1;
       private java.lang.Object jobId_ = "";
       /**
        * <code>required string job_id = 1;</code>
@@ -10225,12 +10247,9 @@ public final class Comm {
       public java.lang.String getJobId() {
         java.lang.Object ref = jobId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            jobId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          jobId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -10288,6 +10307,7 @@ public final class Comm {
         return this;
       }
 
+      // required .PokeStatus status = 2;
       private eye.Comm.PokeStatus status_ = eye.Comm.PokeStatus.UKNOWN;
       /**
        * <code>required .PokeStatus status = 2;</code>
@@ -10323,6 +10343,7 @@ public final class Comm {
         return this;
       }
 
+      // required .JobDesc.JobCode job_state = 3;
       private eye.Comm.JobDesc.JobCode jobState_ = eye.Comm.JobDesc.JobCode.JOBUNKNOWN;
       /**
        * <code>required .JobDesc.JobCode job_state = 3;</code>
@@ -10358,6 +10379,7 @@ public final class Comm {
         return this;
       }
 
+      // repeated .JobDesc data = 4;
       private java.util.List<eye.Comm.JobDesc> data_ =
         java.util.Collections.emptyList();
       private void ensureDataIsMutable() {
@@ -10539,8 +10561,7 @@ public final class Comm {
           java.lang.Iterable<? extends eye.Comm.JobDesc> values) {
         if (dataBuilder_ == null) {
           ensureDataIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, data_);
+          super.addAll(values, data_);
           onChanged();
         } else {
           dataBuilder_.addAllMessages(values);
@@ -10681,10 +10702,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:JobStatus)
   }
 
-  public interface RoutingPathOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:RoutingPath)
-      com.google.protobuf.MessageOrBuilder {
+  public interface RoutingPathOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required int32 node_id = 1;
     /**
      * <code>required int32 node_id = 1;</code>
      */
@@ -10694,6 +10715,7 @@ public final class Comm {
      */
     int getNodeId();
 
+    // required int64 time = 2;
     /**
      * <code>required int64 time = 2;</code>
      */
@@ -10707,9 +10729,8 @@ public final class Comm {
    * Protobuf type {@code RoutingPath}
    */
   public static final class RoutingPath extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:RoutingPath)
-      RoutingPathOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements RoutingPathOrBuilder {
     // Use RoutingPath.newBuilder() to construct.
     private RoutingPath(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -10805,6 +10826,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required int32 node_id = 1;
     public static final int NODE_ID_FIELD_NUMBER = 1;
     private int nodeId_;
     /**
@@ -10820,6 +10842,7 @@ public final class Comm {
       return nodeId_;
     }
 
+    // required int64 time = 2;
     public static final int TIME_FIELD_NUMBER = 2;
     private long time_;
     /**
@@ -10842,8 +10865,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasNodeId()) {
         memoizedIsInitialized = 0;
@@ -10965,9 +10987,8 @@ public final class Comm {
      * Protobuf type {@code RoutingPath}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:RoutingPath)
-        eye.Comm.RoutingPathOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.RoutingPathOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_RoutingPath_descriptor;
@@ -11097,6 +11118,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required int32 node_id = 1;
       private int nodeId_ ;
       /**
        * <code>required int32 node_id = 1;</code>
@@ -11129,6 +11151,7 @@ public final class Comm {
         return this;
       }
 
+      // required int64 time = 2;
       private long time_ ;
       /**
        * <code>required int64 time = 2;</code>
@@ -11172,10 +11195,35 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:RoutingPath)
   }
 
-  public interface HeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Header)
-      com.google.protobuf.MessageOrBuilder {
+  public interface HeaderOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // optional int64 leader_id = 11;
+    /**
+     * <code>optional int64 leader_id = 11;</code>
+     */
+    boolean hasLeaderId();
+    /**
+     * <code>optional int64 leader_id = 11;</code>
+     */
+    long getLeaderId();
+
+    // optional string unique_job_id = 12;
+    /**
+     * <code>optional string unique_job_id = 12;</code>
+     */
+    boolean hasUniqueJobId();
+    /**
+     * <code>optional string unique_job_id = 12;</code>
+     */
+    java.lang.String getUniqueJobId();
+    /**
+     * <code>optional string unique_job_id = 12;</code>
+     */
+    com.google.protobuf.ByteString
+        getUniqueJobIdBytes();
+
+    // required .Header.Routing routing_id = 1;
     /**
      * <code>required .Header.Routing routing_id = 1;</code>
      */
@@ -11185,6 +11233,7 @@ public final class Comm {
      */
     eye.Comm.Header.Routing getRoutingId();
 
+    // required int32 originator = 2;
     /**
      * <code>required int32 originator = 2;</code>
      */
@@ -11194,6 +11243,7 @@ public final class Comm {
      */
     int getOriginator();
 
+    // optional string tag = 3;
     /**
      * <code>optional string tag = 3;</code>
      */
@@ -11208,6 +11258,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getTagBytes();
 
+    // optional int64 time = 4;
     /**
      * <code>optional int64 time = 4;</code>
      */
@@ -11217,6 +11268,7 @@ public final class Comm {
      */
     long getTime();
 
+    // optional .PhotoHeader photoHeader = 10;
     /**
      * <code>optional .PhotoHeader photoHeader = 10;</code>
      *
@@ -11242,6 +11294,7 @@ public final class Comm {
      */
     eye.Comm.PhotoHeaderOrBuilder getPhotoHeaderOrBuilder();
 
+    // optional .PokeStatus reply_code = 5;
     /**
      * <code>optional .PokeStatus reply_code = 5;</code>
      */
@@ -11251,6 +11304,7 @@ public final class Comm {
      */
     eye.Comm.PokeStatus getReplyCode();
 
+    // optional string reply_msg = 6;
     /**
      * <code>optional string reply_msg = 6;</code>
      */
@@ -11265,6 +11319,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getReplyMsgBytes();
 
+    // repeated .RoutingPath path = 7;
     /**
      * <code>repeated .RoutingPath path = 7;</code>
      *
@@ -11309,6 +11364,7 @@ public final class Comm {
     eye.Comm.RoutingPathOrBuilder getPathOrBuilder(
         int index);
 
+    // optional int32 toNode = 8;
     /**
      * <code>optional int32 toNode = 8;</code>
      *
@@ -11326,6 +11382,7 @@ public final class Comm {
      */
     int getToNode();
 
+    // repeated .NameValueSet options = 9;
     /**
      * <code>repeated .NameValueSet options = 9;</code>
      *
@@ -11374,9 +11431,8 @@ public final class Comm {
    * Protobuf type {@code Header}
    */
   public static final class Header extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Header)
-      HeaderOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements HeaderOrBuilder {
     // Use Header.newBuilder() to construct.
     private Header(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -11428,24 +11484,23 @@ public final class Comm {
               if (value == null) {
                 unknownFields.mergeVarintField(1, rawValue);
               } else {
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000004;
                 routingId_ = value;
               }
               break;
             }
             case 16: {
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000008;
               originator_ = input.readInt32();
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              tag_ = bs;
+              bitField0_ |= 0x00000010;
+              tag_ = input.readBytes();
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000020;
               time_ = input.readInt64();
               break;
             }
@@ -11455,41 +11510,40 @@ public final class Comm {
               if (value == null) {
                 unknownFields.mergeVarintField(5, rawValue);
               } else {
-                bitField0_ |= 0x00000020;
+                bitField0_ |= 0x00000080;
                 replyCode_ = value;
               }
               break;
             }
             case 50: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000040;
-              replyMsg_ = bs;
+              bitField0_ |= 0x00000100;
+              replyMsg_ = input.readBytes();
               break;
             }
             case 58: {
-              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+              if (!((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
                 path_ = new java.util.ArrayList<eye.Comm.RoutingPath>();
-                mutable_bitField0_ |= 0x00000080;
+                mutable_bitField0_ |= 0x00000200;
               }
               path_.add(input.readMessage(eye.Comm.RoutingPath.PARSER, extensionRegistry));
               break;
             }
             case 64: {
-              bitField0_ |= 0x00000080;
+              bitField0_ |= 0x00000200;
               toNode_ = input.readInt32();
               break;
             }
             case 74: {
-              if (!((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
+              if (!((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
                 options_ = new java.util.ArrayList<eye.Comm.NameValueSet>();
-                mutable_bitField0_ |= 0x00000200;
+                mutable_bitField0_ |= 0x00000800;
               }
               options_.add(input.readMessage(eye.Comm.NameValueSet.PARSER, extensionRegistry));
               break;
             }
             case 82: {
               eye.Comm.PhotoHeader.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
+              if (((bitField0_ & 0x00000040) == 0x00000040)) {
                 subBuilder = photoHeader_.toBuilder();
               }
               photoHeader_ = input.readMessage(eye.Comm.PhotoHeader.PARSER, extensionRegistry);
@@ -11497,7 +11551,17 @@ public final class Comm {
                 subBuilder.mergeFrom(photoHeader_);
                 photoHeader_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000010;
+              bitField0_ |= 0x00000040;
+              break;
+            }
+            case 88: {
+              bitField0_ |= 0x00000001;
+              leaderId_ = input.readInt64();
+              break;
+            }
+            case 98: {
+              bitField0_ |= 0x00000002;
+              uniqueJobId_ = input.readBytes();
               break;
             }
           }
@@ -11508,10 +11572,10 @@ public final class Comm {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+        if (((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
           path_ = java.util.Collections.unmodifiableList(path_);
         }
-        if (((mutable_bitField0_ & 0x00000200) == 0x00000200)) {
+        if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
           options_ = java.util.Collections.unmodifiableList(options_);
         }
         this.unknownFields = unknownFields.build();
@@ -11655,13 +11719,73 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // optional int64 leader_id = 11;
+    public static final int LEADER_ID_FIELD_NUMBER = 11;
+    private long leaderId_;
+    /**
+     * <code>optional int64 leader_id = 11;</code>
+     */
+    public boolean hasLeaderId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int64 leader_id = 11;</code>
+     */
+    public long getLeaderId() {
+      return leaderId_;
+    }
+
+    // optional string unique_job_id = 12;
+    public static final int UNIQUE_JOB_ID_FIELD_NUMBER = 12;
+    private java.lang.Object uniqueJobId_;
+    /**
+     * <code>optional string unique_job_id = 12;</code>
+     */
+    public boolean hasUniqueJobId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string unique_job_id = 12;</code>
+     */
+    public java.lang.String getUniqueJobId() {
+      java.lang.Object ref = uniqueJobId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          uniqueJobId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string unique_job_id = 12;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUniqueJobIdBytes() {
+      java.lang.Object ref = uniqueJobId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        uniqueJobId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // required .Header.Routing routing_id = 1;
     public static final int ROUTING_ID_FIELD_NUMBER = 1;
     private eye.Comm.Header.Routing routingId_;
     /**
      * <code>required .Header.Routing routing_id = 1;</code>
      */
     public boolean hasRoutingId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>required .Header.Routing routing_id = 1;</code>
@@ -11670,13 +11794,14 @@ public final class Comm {
       return routingId_;
     }
 
+    // required int32 originator = 2;
     public static final int ORIGINATOR_FIELD_NUMBER = 2;
     private int originator_;
     /**
      * <code>required int32 originator = 2;</code>
      */
     public boolean hasOriginator() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
      * <code>required int32 originator = 2;</code>
@@ -11685,13 +11810,14 @@ public final class Comm {
       return originator_;
     }
 
+    // optional string tag = 3;
     public static final int TAG_FIELD_NUMBER = 3;
     private java.lang.Object tag_;
     /**
      * <code>optional string tag = 3;</code>
      */
     public boolean hasTag() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
      * <code>optional string tag = 3;</code>
@@ -11727,13 +11853,14 @@ public final class Comm {
       }
     }
 
+    // optional int64 time = 4;
     public static final int TIME_FIELD_NUMBER = 4;
     private long time_;
     /**
      * <code>optional int64 time = 4;</code>
      */
     public boolean hasTime() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     /**
      * <code>optional int64 time = 4;</code>
@@ -11742,6 +11869,7 @@ public final class Comm {
       return time_;
     }
 
+    // optional .PhotoHeader photoHeader = 10;
     public static final int PHOTOHEADER_FIELD_NUMBER = 10;
     private eye.Comm.PhotoHeader photoHeader_;
     /**
@@ -11752,7 +11880,7 @@ public final class Comm {
      * </pre>
      */
     public boolean hasPhotoHeader() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
      * <code>optional .PhotoHeader photoHeader = 10;</code>
@@ -11775,13 +11903,14 @@ public final class Comm {
       return photoHeader_;
     }
 
+    // optional .PokeStatus reply_code = 5;
     public static final int REPLY_CODE_FIELD_NUMBER = 5;
     private eye.Comm.PokeStatus replyCode_;
     /**
      * <code>optional .PokeStatus reply_code = 5;</code>
      */
     public boolean hasReplyCode() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     /**
      * <code>optional .PokeStatus reply_code = 5;</code>
@@ -11790,13 +11919,14 @@ public final class Comm {
       return replyCode_;
     }
 
+    // optional string reply_msg = 6;
     public static final int REPLY_MSG_FIELD_NUMBER = 6;
     private java.lang.Object replyMsg_;
     /**
      * <code>optional string reply_msg = 6;</code>
      */
     public boolean hasReplyMsg() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
      * <code>optional string reply_msg = 6;</code>
@@ -11832,6 +11962,7 @@ public final class Comm {
       }
     }
 
+    // repeated .RoutingPath path = 7;
     public static final int PATH_FIELD_NUMBER = 7;
     private java.util.List<eye.Comm.RoutingPath> path_;
     /**
@@ -11887,6 +12018,7 @@ public final class Comm {
       return path_.get(index);
     }
 
+    // optional int32 toNode = 8;
     public static final int TONODE_FIELD_NUMBER = 8;
     private int toNode_;
     /**
@@ -11897,7 +12029,7 @@ public final class Comm {
      * </pre>
      */
     public boolean hasToNode() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
      * <code>optional int32 toNode = 8;</code>
@@ -11910,6 +12042,7 @@ public final class Comm {
       return toNode_;
     }
 
+    // repeated .NameValueSet options = 9;
     public static final int OPTIONS_FIELD_NUMBER = 9;
     private java.util.List<eye.Comm.NameValueSet> options_;
     /**
@@ -11966,6 +12099,8 @@ public final class Comm {
     }
 
     private void initFields() {
+      leaderId_ = 0L;
+      uniqueJobId_ = "";
       routingId_ = eye.Comm.Header.Routing.PING;
       originator_ = 0;
       tag_ = "";
@@ -11980,8 +12115,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasRoutingId()) {
         memoizedIsInitialized = 0;
@@ -12010,35 +12144,41 @@ public final class Comm {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(1, routingId_.getNumber());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(2, originator_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(3, getTagBytes());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeInt64(4, time_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeEnum(5, replyCode_.getNumber());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeBytes(6, getReplyMsgBytes());
       }
       for (int i = 0; i < path_.size(); i++) {
         output.writeMessage(7, path_.get(i));
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeInt32(8, toNode_);
       }
       for (int i = 0; i < options_.size(); i++) {
         output.writeMessage(9, options_.get(i));
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeMessage(10, photoHeader_);
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt64(11, leaderId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(12, getUniqueJobIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -12049,27 +12189,27 @@ public final class Comm {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, routingId_.getNumber());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, originator_);
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, getTagBytes());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, time_);
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, replyCode_.getNumber());
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(6, getReplyMsgBytes());
       }
@@ -12077,7 +12217,7 @@ public final class Comm {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, path_.get(i));
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(8, toNode_);
       }
@@ -12085,9 +12225,17 @@ public final class Comm {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, options_.get(i));
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, photoHeader_);
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(11, leaderId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(12, getUniqueJobIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -12171,9 +12319,8 @@ public final class Comm {
      * Protobuf type {@code Header}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Header)
-        eye.Comm.HeaderOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.HeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Header_descriptor;
@@ -12209,35 +12356,39 @@ public final class Comm {
 
       public Builder clear() {
         super.clear();
-        routingId_ = eye.Comm.Header.Routing.PING;
+        leaderId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000001);
-        originator_ = 0;
+        uniqueJobId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        tag_ = "";
+        routingId_ = eye.Comm.Header.Routing.PING;
         bitField0_ = (bitField0_ & ~0x00000004);
-        time_ = 0L;
+        originator_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
+        tag_ = "";
+        bitField0_ = (bitField0_ & ~0x00000010);
+        time_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (photoHeaderBuilder_ == null) {
           photoHeader_ = eye.Comm.PhotoHeader.getDefaultInstance();
         } else {
           photoHeaderBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
-        replyCode_ = eye.Comm.PokeStatus.UKNOWN;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        replyMsg_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
+        replyCode_ = eye.Comm.PokeStatus.UKNOWN;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        replyMsg_ = "";
+        bitField0_ = (bitField0_ & ~0x00000100);
         if (pathBuilder_ == null) {
           path_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000200);
         } else {
           pathBuilder_.clear();
         }
         toNode_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000400);
         if (optionsBuilder_ == null) {
           options_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
+          bitField0_ = (bitField0_ & ~0x00000800);
         } else {
           optionsBuilder_.clear();
         }
@@ -12272,52 +12423,60 @@ public final class Comm {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.routingId_ = routingId_;
+        result.leaderId_ = leaderId_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.originator_ = originator_;
+        result.uniqueJobId_ = uniqueJobId_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.tag_ = tag_;
+        result.routingId_ = routingId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.time_ = time_;
+        result.originator_ = originator_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
+        }
+        result.tag_ = tag_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.time_ = time_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
         }
         if (photoHeaderBuilder_ == null) {
           result.photoHeader_ = photoHeader_;
         } else {
           result.photoHeader_ = photoHeaderBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
         }
         result.replyCode_ = replyCode_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
         }
         result.replyMsg_ = replyMsg_;
         if (pathBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080)) {
+          if (((bitField0_ & 0x00000200) == 0x00000200)) {
             path_ = java.util.Collections.unmodifiableList(path_);
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000200);
           }
           result.path_ = path_;
         } else {
           result.path_ = pathBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000080;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000200;
         }
         result.toNode_ = toNode_;
         if (optionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000200) == 0x00000200)) {
+          if (((bitField0_ & 0x00000800) == 0x00000800)) {
             options_ = java.util.Collections.unmodifiableList(options_);
-            bitField0_ = (bitField0_ & ~0x00000200);
+            bitField0_ = (bitField0_ & ~0x00000800);
           }
           result.options_ = options_;
         } else {
@@ -12339,6 +12498,14 @@ public final class Comm {
 
       public Builder mergeFrom(eye.Comm.Header other) {
         if (other == eye.Comm.Header.getDefaultInstance()) return this;
+        if (other.hasLeaderId()) {
+          setLeaderId(other.getLeaderId());
+        }
+        if (other.hasUniqueJobId()) {
+          bitField0_ |= 0x00000002;
+          uniqueJobId_ = other.uniqueJobId_;
+          onChanged();
+        }
         if (other.hasRoutingId()) {
           setRoutingId(other.getRoutingId());
         }
@@ -12346,7 +12513,7 @@ public final class Comm {
           setOriginator(other.getOriginator());
         }
         if (other.hasTag()) {
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000010;
           tag_ = other.tag_;
           onChanged();
         }
@@ -12360,7 +12527,7 @@ public final class Comm {
           setReplyCode(other.getReplyCode());
         }
         if (other.hasReplyMsg()) {
-          bitField0_ |= 0x00000040;
+          bitField0_ |= 0x00000100;
           replyMsg_ = other.replyMsg_;
           onChanged();
         }
@@ -12368,7 +12535,7 @@ public final class Comm {
           if (!other.path_.isEmpty()) {
             if (path_.isEmpty()) {
               path_ = other.path_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000200);
             } else {
               ensurePathIsMutable();
               path_.addAll(other.path_);
@@ -12381,7 +12548,7 @@ public final class Comm {
               pathBuilder_.dispose();
               pathBuilder_ = null;
               path_ = other.path_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000200);
               pathBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getPathFieldBuilder() : null;
@@ -12397,7 +12564,7 @@ public final class Comm {
           if (!other.options_.isEmpty()) {
             if (options_.isEmpty()) {
               options_ = other.options_;
-              bitField0_ = (bitField0_ & ~0x00000200);
+              bitField0_ = (bitField0_ & ~0x00000800);
             } else {
               ensureOptionsIsMutable();
               options_.addAll(other.options_);
@@ -12410,7 +12577,7 @@ public final class Comm {
               optionsBuilder_.dispose();
               optionsBuilder_ = null;
               options_ = other.options_;
-              bitField0_ = (bitField0_ & ~0x00000200);
+              bitField0_ = (bitField0_ & ~0x00000800);
               optionsBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getOptionsFieldBuilder() : null;
@@ -12466,12 +12633,120 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // optional int64 leader_id = 11;
+      private long leaderId_ ;
+      /**
+       * <code>optional int64 leader_id = 11;</code>
+       */
+      public boolean hasLeaderId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int64 leader_id = 11;</code>
+       */
+      public long getLeaderId() {
+        return leaderId_;
+      }
+      /**
+       * <code>optional int64 leader_id = 11;</code>
+       */
+      public Builder setLeaderId(long value) {
+        bitField0_ |= 0x00000001;
+        leaderId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 leader_id = 11;</code>
+       */
+      public Builder clearLeaderId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        leaderId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional string unique_job_id = 12;
+      private java.lang.Object uniqueJobId_ = "";
+      /**
+       * <code>optional string unique_job_id = 12;</code>
+       */
+      public boolean hasUniqueJobId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string unique_job_id = 12;</code>
+       */
+      public java.lang.String getUniqueJobId() {
+        java.lang.Object ref = uniqueJobId_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          uniqueJobId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string unique_job_id = 12;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUniqueJobIdBytes() {
+        java.lang.Object ref = uniqueJobId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          uniqueJobId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string unique_job_id = 12;</code>
+       */
+      public Builder setUniqueJobId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        uniqueJobId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string unique_job_id = 12;</code>
+       */
+      public Builder clearUniqueJobId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        uniqueJobId_ = getDefaultInstance().getUniqueJobId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string unique_job_id = 12;</code>
+       */
+      public Builder setUniqueJobIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        uniqueJobId_ = value;
+        onChanged();
+        return this;
+      }
+
+      // required .Header.Routing routing_id = 1;
       private eye.Comm.Header.Routing routingId_ = eye.Comm.Header.Routing.PING;
       /**
        * <code>required .Header.Routing routing_id = 1;</code>
        */
       public boolean hasRoutingId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
        * <code>required .Header.Routing routing_id = 1;</code>
@@ -12486,7 +12761,7 @@ public final class Comm {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000004;
         routingId_ = value;
         onChanged();
         return this;
@@ -12495,18 +12770,19 @@ public final class Comm {
        * <code>required .Header.Routing routing_id = 1;</code>
        */
       public Builder clearRoutingId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000004);
         routingId_ = eye.Comm.Header.Routing.PING;
         onChanged();
         return this;
       }
 
+      // required int32 originator = 2;
       private int originator_ ;
       /**
        * <code>required int32 originator = 2;</code>
        */
       public boolean hasOriginator() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
        * <code>required int32 originator = 2;</code>
@@ -12518,7 +12794,7 @@ public final class Comm {
        * <code>required int32 originator = 2;</code>
        */
       public Builder setOriginator(int value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000008;
         originator_ = value;
         onChanged();
         return this;
@@ -12527,18 +12803,19 @@ public final class Comm {
        * <code>required int32 originator = 2;</code>
        */
       public Builder clearOriginator() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000008);
         originator_ = 0;
         onChanged();
         return this;
       }
 
+      // optional string tag = 3;
       private java.lang.Object tag_ = "";
       /**
        * <code>optional string tag = 3;</code>
        */
       public boolean hasTag() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       /**
        * <code>optional string tag = 3;</code>
@@ -12546,12 +12823,9 @@ public final class Comm {
       public java.lang.String getTag() {
         java.lang.Object ref = tag_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            tag_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          tag_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -12581,7 +12855,7 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000010;
         tag_ = value;
         onChanged();
         return this;
@@ -12590,7 +12864,7 @@ public final class Comm {
        * <code>optional string tag = 3;</code>
        */
       public Builder clearTag() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000010);
         tag_ = getDefaultInstance().getTag();
         onChanged();
         return this;
@@ -12603,18 +12877,19 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000010;
         tag_ = value;
         onChanged();
         return this;
       }
 
+      // optional int64 time = 4;
       private long time_ ;
       /**
        * <code>optional int64 time = 4;</code>
        */
       public boolean hasTime() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       /**
        * <code>optional int64 time = 4;</code>
@@ -12626,7 +12901,7 @@ public final class Comm {
        * <code>optional int64 time = 4;</code>
        */
       public Builder setTime(long value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000020;
         time_ = value;
         onChanged();
         return this;
@@ -12635,12 +12910,13 @@ public final class Comm {
        * <code>optional int64 time = 4;</code>
        */
       public Builder clearTime() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000020);
         time_ = 0L;
         onChanged();
         return this;
       }
 
+      // optional .PhotoHeader photoHeader = 10;
       private eye.Comm.PhotoHeader photoHeader_ = eye.Comm.PhotoHeader.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.PhotoHeader, eye.Comm.PhotoHeader.Builder, eye.Comm.PhotoHeaderOrBuilder> photoHeaderBuilder_;
@@ -12652,7 +12928,7 @@ public final class Comm {
        * </pre>
        */
       public boolean hasPhotoHeader() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       /**
        * <code>optional .PhotoHeader photoHeader = 10;</code>
@@ -12685,7 +12961,7 @@ public final class Comm {
         } else {
           photoHeaderBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         return this;
       }
       /**
@@ -12703,7 +12979,7 @@ public final class Comm {
         } else {
           photoHeaderBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         return this;
       }
       /**
@@ -12715,7 +12991,7 @@ public final class Comm {
        */
       public Builder mergePhotoHeader(eye.Comm.PhotoHeader value) {
         if (photoHeaderBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
               photoHeader_ != eye.Comm.PhotoHeader.getDefaultInstance()) {
             photoHeader_ =
               eye.Comm.PhotoHeader.newBuilder(photoHeader_).mergeFrom(value).buildPartial();
@@ -12726,7 +13002,7 @@ public final class Comm {
         } else {
           photoHeaderBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         return this;
       }
       /**
@@ -12743,7 +13019,7 @@ public final class Comm {
         } else {
           photoHeaderBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       /**
@@ -12754,7 +13030,7 @@ public final class Comm {
        * </pre>
        */
       public eye.Comm.PhotoHeader.Builder getPhotoHeaderBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         onChanged();
         return getPhotoHeaderFieldBuilder().getBuilder();
       }
@@ -12785,7 +13061,7 @@ public final class Comm {
         if (photoHeaderBuilder_ == null) {
           photoHeaderBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.PhotoHeader, eye.Comm.PhotoHeader.Builder, eye.Comm.PhotoHeaderOrBuilder>(
-                  getPhotoHeader(),
+                  photoHeader_,
                   getParentForChildren(),
                   isClean());
           photoHeader_ = null;
@@ -12793,12 +13069,13 @@ public final class Comm {
         return photoHeaderBuilder_;
       }
 
+      // optional .PokeStatus reply_code = 5;
       private eye.Comm.PokeStatus replyCode_ = eye.Comm.PokeStatus.UKNOWN;
       /**
        * <code>optional .PokeStatus reply_code = 5;</code>
        */
       public boolean hasReplyCode() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       /**
        * <code>optional .PokeStatus reply_code = 5;</code>
@@ -12813,7 +13090,7 @@ public final class Comm {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000080;
         replyCode_ = value;
         onChanged();
         return this;
@@ -12822,18 +13099,19 @@ public final class Comm {
        * <code>optional .PokeStatus reply_code = 5;</code>
        */
       public Builder clearReplyCode() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000080);
         replyCode_ = eye.Comm.PokeStatus.UKNOWN;
         onChanged();
         return this;
       }
 
+      // optional string reply_msg = 6;
       private java.lang.Object replyMsg_ = "";
       /**
        * <code>optional string reply_msg = 6;</code>
        */
       public boolean hasReplyMsg() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       /**
        * <code>optional string reply_msg = 6;</code>
@@ -12841,12 +13119,9 @@ public final class Comm {
       public java.lang.String getReplyMsg() {
         java.lang.Object ref = replyMsg_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            replyMsg_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          replyMsg_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -12876,7 +13151,7 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000100;
         replyMsg_ = value;
         onChanged();
         return this;
@@ -12885,7 +13160,7 @@ public final class Comm {
        * <code>optional string reply_msg = 6;</code>
        */
       public Builder clearReplyMsg() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000100);
         replyMsg_ = getDefaultInstance().getReplyMsg();
         onChanged();
         return this;
@@ -12898,18 +13173,19 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000100;
         replyMsg_ = value;
         onChanged();
         return this;
       }
 
+      // repeated .RoutingPath path = 7;
       private java.util.List<eye.Comm.RoutingPath> path_ =
         java.util.Collections.emptyList();
       private void ensurePathIsMutable() {
-        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+        if (!((bitField0_ & 0x00000200) == 0x00000200)) {
           path_ = new java.util.ArrayList<eye.Comm.RoutingPath>(path_);
-          bitField0_ |= 0x00000080;
+          bitField0_ |= 0x00000200;
          }
       }
 
@@ -13085,8 +13361,7 @@ public final class Comm {
           java.lang.Iterable<? extends eye.Comm.RoutingPath> values) {
         if (pathBuilder_ == null) {
           ensurePathIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, path_);
+          super.addAll(values, path_);
           onChanged();
         } else {
           pathBuilder_.addAllMessages(values);
@@ -13103,7 +13378,7 @@ public final class Comm {
       public Builder clearPath() {
         if (pathBuilder_ == null) {
           path_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000200);
           onChanged();
         } else {
           pathBuilder_.clear();
@@ -13208,7 +13483,7 @@ public final class Comm {
           pathBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               eye.Comm.RoutingPath, eye.Comm.RoutingPath.Builder, eye.Comm.RoutingPathOrBuilder>(
                   path_,
-                  ((bitField0_ & 0x00000080) == 0x00000080),
+                  ((bitField0_ & 0x00000200) == 0x00000200),
                   getParentForChildren(),
                   isClean());
           path_ = null;
@@ -13216,6 +13491,7 @@ public final class Comm {
         return pathBuilder_;
       }
 
+      // optional int32 toNode = 8;
       private int toNode_ ;
       /**
        * <code>optional int32 toNode = 8;</code>
@@ -13225,7 +13501,7 @@ public final class Comm {
        * </pre>
        */
       public boolean hasToNode() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       /**
        * <code>optional int32 toNode = 8;</code>
@@ -13245,7 +13521,7 @@ public final class Comm {
        * </pre>
        */
       public Builder setToNode(int value) {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000400;
         toNode_ = value;
         onChanged();
         return this;
@@ -13258,18 +13534,19 @@ public final class Comm {
        * </pre>
        */
       public Builder clearToNode() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000400);
         toNode_ = 0;
         onChanged();
         return this;
       }
 
+      // repeated .NameValueSet options = 9;
       private java.util.List<eye.Comm.NameValueSet> options_ =
         java.util.Collections.emptyList();
       private void ensureOptionsIsMutable() {
-        if (!((bitField0_ & 0x00000200) == 0x00000200)) {
+        if (!((bitField0_ & 0x00000800) == 0x00000800)) {
           options_ = new java.util.ArrayList<eye.Comm.NameValueSet>(options_);
-          bitField0_ |= 0x00000200;
+          bitField0_ |= 0x00000800;
          }
       }
 
@@ -13445,8 +13722,7 @@ public final class Comm {
           java.lang.Iterable<? extends eye.Comm.NameValueSet> values) {
         if (optionsBuilder_ == null) {
           ensureOptionsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, options_);
+          super.addAll(values, options_);
           onChanged();
         } else {
           optionsBuilder_.addAllMessages(values);
@@ -13463,7 +13739,7 @@ public final class Comm {
       public Builder clearOptions() {
         if (optionsBuilder_ == null) {
           options_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000200);
+          bitField0_ = (bitField0_ & ~0x00000800);
           onChanged();
         } else {
           optionsBuilder_.clear();
@@ -13568,7 +13844,7 @@ public final class Comm {
           optionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               eye.Comm.NameValueSet, eye.Comm.NameValueSet.Builder, eye.Comm.NameValueSetOrBuilder>(
                   options_,
-                  ((bitField0_ & 0x00000200) == 0x00000200),
+                  ((bitField0_ & 0x00000800) == 0x00000800),
                   getParentForChildren(),
                   isClean());
           options_ = null;
@@ -13587,10 +13863,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Header)
   }
 
-  public interface PayloadOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Payload)
-      com.google.protobuf.MessageOrBuilder {
+  public interface PayloadOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // optional .Ping ping = 1;
     /**
      * <code>optional .Ping ping = 1;</code>
      *
@@ -13616,6 +13892,7 @@ public final class Comm {
      */
     eye.Comm.PingOrBuilder getPingOrBuilder();
 
+    // optional .NameSpaceOperation space_op = 2;
     /**
      * <code>optional .NameSpaceOperation space_op = 2;</code>
      *
@@ -13641,6 +13918,7 @@ public final class Comm {
      */
     eye.Comm.NameSpaceOperationOrBuilder getSpaceOpOrBuilder();
 
+    // optional .JobOperation job_op = 3;
     /**
      * <code>optional .JobOperation job_op = 3;</code>
      */
@@ -13654,6 +13932,7 @@ public final class Comm {
      */
     eye.Comm.JobOperationOrBuilder getJobOpOrBuilder();
 
+    // optional .JobStatus job_status = 13;
     /**
      * <code>optional .JobStatus job_status = 13;</code>
      *
@@ -13679,6 +13958,7 @@ public final class Comm {
      */
     eye.Comm.JobStatusOrBuilder getJobStatusOrBuilder();
 
+    // optional .NameSpaceStatus space_status = 12;
     /**
      * <code>optional .NameSpaceStatus space_status = 12;</code>
      */
@@ -13692,6 +13972,7 @@ public final class Comm {
      */
     eye.Comm.NameSpaceStatusOrBuilder getSpaceStatusOrBuilder();
 
+    // optional .PhotoPayload photoPayload = 4;
     /**
      * <code>optional .PhotoPayload photoPayload = 4;</code>
      *
@@ -13726,9 +14007,8 @@ public final class Comm {
    * </pre>
    */
   public static final class Payload extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Payload)
-      PayloadOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements PayloadOrBuilder {
     // Use Payload.newBuilder() to construct.
     private Payload(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -13892,6 +14172,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // optional .Ping ping = 1;
     public static final int PING_FIELD_NUMBER = 1;
     private eye.Comm.Ping ping_;
     /**
@@ -13925,6 +14206,7 @@ public final class Comm {
       return ping_;
     }
 
+    // optional .NameSpaceOperation space_op = 2;
     public static final int SPACE_OP_FIELD_NUMBER = 2;
     private eye.Comm.NameSpaceOperation spaceOp_;
     /**
@@ -13958,6 +14240,7 @@ public final class Comm {
       return spaceOp_;
     }
 
+    // optional .JobOperation job_op = 3;
     public static final int JOB_OP_FIELD_NUMBER = 3;
     private eye.Comm.JobOperation jobOp_;
     /**
@@ -13979,6 +14262,7 @@ public final class Comm {
       return jobOp_;
     }
 
+    // optional .JobStatus job_status = 13;
     public static final int JOB_STATUS_FIELD_NUMBER = 13;
     private eye.Comm.JobStatus jobStatus_;
     /**
@@ -14012,6 +14296,7 @@ public final class Comm {
       return jobStatus_;
     }
 
+    // optional .NameSpaceStatus space_status = 12;
     public static final int SPACE_STATUS_FIELD_NUMBER = 12;
     private eye.Comm.NameSpaceStatus spaceStatus_;
     /**
@@ -14033,6 +14318,7 @@ public final class Comm {
       return spaceStatus_;
     }
 
+    // optional .PhotoPayload photoPayload = 4;
     public static final int PHOTOPAYLOAD_FIELD_NUMBER = 4;
     private eye.Comm.PhotoPayload photoPayload_;
     /**
@@ -14077,8 +14363,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (hasPing()) {
         if (!getPing().isInitialized()) {
@@ -14255,9 +14540,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Payload)
-        eye.Comm.PayloadOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.PayloadOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Payload_descriptor;
@@ -14499,6 +14783,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // optional .Ping ping = 1;
       private eye.Comm.Ping ping_ = eye.Comm.Ping.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Ping, eye.Comm.Ping.Builder, eye.Comm.PingOrBuilder> pingBuilder_;
@@ -14643,7 +14928,7 @@ public final class Comm {
         if (pingBuilder_ == null) {
           pingBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.Ping, eye.Comm.Ping.Builder, eye.Comm.PingOrBuilder>(
-                  getPing(),
+                  ping_,
                   getParentForChildren(),
                   isClean());
           ping_ = null;
@@ -14651,6 +14936,7 @@ public final class Comm {
         return pingBuilder_;
       }
 
+      // optional .NameSpaceOperation space_op = 2;
       private eye.Comm.NameSpaceOperation spaceOp_ = eye.Comm.NameSpaceOperation.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameSpaceOperation, eye.Comm.NameSpaceOperation.Builder, eye.Comm.NameSpaceOperationOrBuilder> spaceOpBuilder_;
@@ -14795,7 +15081,7 @@ public final class Comm {
         if (spaceOpBuilder_ == null) {
           spaceOpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameSpaceOperation, eye.Comm.NameSpaceOperation.Builder, eye.Comm.NameSpaceOperationOrBuilder>(
-                  getSpaceOp(),
+                  spaceOp_,
                   getParentForChildren(),
                   isClean());
           spaceOp_ = null;
@@ -14803,6 +15089,7 @@ public final class Comm {
         return spaceOpBuilder_;
       }
 
+      // optional .JobOperation job_op = 3;
       private eye.Comm.JobOperation jobOp_ = eye.Comm.JobOperation.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.JobOperation, eye.Comm.JobOperation.Builder, eye.Comm.JobOperationOrBuilder> jobOpBuilder_;
@@ -14911,7 +15198,7 @@ public final class Comm {
         if (jobOpBuilder_ == null) {
           jobOpBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.JobOperation, eye.Comm.JobOperation.Builder, eye.Comm.JobOperationOrBuilder>(
-                  getJobOp(),
+                  jobOp_,
                   getParentForChildren(),
                   isClean());
           jobOp_ = null;
@@ -14919,6 +15206,7 @@ public final class Comm {
         return jobOpBuilder_;
       }
 
+      // optional .JobStatus job_status = 13;
       private eye.Comm.JobStatus jobStatus_ = eye.Comm.JobStatus.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.JobStatus, eye.Comm.JobStatus.Builder, eye.Comm.JobStatusOrBuilder> jobStatusBuilder_;
@@ -15063,7 +15351,7 @@ public final class Comm {
         if (jobStatusBuilder_ == null) {
           jobStatusBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.JobStatus, eye.Comm.JobStatus.Builder, eye.Comm.JobStatusOrBuilder>(
-                  getJobStatus(),
+                  jobStatus_,
                   getParentForChildren(),
                   isClean());
           jobStatus_ = null;
@@ -15071,6 +15359,7 @@ public final class Comm {
         return jobStatusBuilder_;
       }
 
+      // optional .NameSpaceStatus space_status = 12;
       private eye.Comm.NameSpaceStatus spaceStatus_ = eye.Comm.NameSpaceStatus.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameSpaceStatus, eye.Comm.NameSpaceStatus.Builder, eye.Comm.NameSpaceStatusOrBuilder> spaceStatusBuilder_;
@@ -15179,7 +15468,7 @@ public final class Comm {
         if (spaceStatusBuilder_ == null) {
           spaceStatusBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.NameSpaceStatus, eye.Comm.NameSpaceStatus.Builder, eye.Comm.NameSpaceStatusOrBuilder>(
-                  getSpaceStatus(),
+                  spaceStatus_,
                   getParentForChildren(),
                   isClean());
           spaceStatus_ = null;
@@ -15187,6 +15476,7 @@ public final class Comm {
         return spaceStatusBuilder_;
       }
 
+      // optional .PhotoPayload photoPayload = 4;
       private eye.Comm.PhotoPayload photoPayload_ = eye.Comm.PhotoPayload.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.PhotoPayload, eye.Comm.PhotoPayload.Builder, eye.Comm.PhotoPayloadOrBuilder> photoPayloadBuilder_;
@@ -15331,7 +15621,7 @@ public final class Comm {
         if (photoPayloadBuilder_ == null) {
           photoPayloadBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.PhotoPayload, eye.Comm.PhotoPayload.Builder, eye.Comm.PhotoPayloadOrBuilder>(
-                  getPhotoPayload(),
+                  photoPayload_,
                   getParentForChildren(),
                   isClean());
           photoPayload_ = null;
@@ -15350,10 +15640,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Payload)
   }
 
-  public interface PhotoHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:PhotoHeader)
-      com.google.protobuf.MessageOrBuilder {
+  public interface PhotoHeaderOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // optional .PhotoHeader.RequestType requestType = 1 [default = read];
     /**
      * <code>optional .PhotoHeader.RequestType requestType = 1 [default = read];</code>
      */
@@ -15363,6 +15653,7 @@ public final class Comm {
      */
     eye.Comm.PhotoHeader.RequestType getRequestType();
 
+    // optional .PhotoHeader.ResponseFlag responseFlag = 2 [default = success];
     /**
      * <code>optional .PhotoHeader.ResponseFlag responseFlag = 2 [default = success];</code>
      */
@@ -15372,6 +15663,7 @@ public final class Comm {
      */
     eye.Comm.PhotoHeader.ResponseFlag getResponseFlag();
 
+    // optional int64 lastModified = 3;
     /**
      * <code>optional int64 lastModified = 3;</code>
      *
@@ -15389,6 +15681,7 @@ public final class Comm {
      */
     long getLastModified();
 
+    // optional int32 contentLength = 4;
     /**
      * <code>optional int32 contentLength = 4;</code>
      */
@@ -15402,9 +15695,8 @@ public final class Comm {
    * Protobuf type {@code PhotoHeader}
    */
   public static final class PhotoHeader extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:PhotoHeader)
-      PhotoHeaderOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements PhotoHeaderOrBuilder {
     // Use PhotoHeader.newBuilder() to construct.
     private PhotoHeader(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -15695,6 +15987,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // optional .PhotoHeader.RequestType requestType = 1 [default = read];
     public static final int REQUESTTYPE_FIELD_NUMBER = 1;
     private eye.Comm.PhotoHeader.RequestType requestType_;
     /**
@@ -15710,6 +16003,7 @@ public final class Comm {
       return requestType_;
     }
 
+    // optional .PhotoHeader.ResponseFlag responseFlag = 2 [default = success];
     public static final int RESPONSEFLAG_FIELD_NUMBER = 2;
     private eye.Comm.PhotoHeader.ResponseFlag responseFlag_;
     /**
@@ -15725,6 +16019,7 @@ public final class Comm {
       return responseFlag_;
     }
 
+    // optional int64 lastModified = 3;
     public static final int LASTMODIFIED_FIELD_NUMBER = 3;
     private long lastModified_;
     /**
@@ -15748,6 +16043,7 @@ public final class Comm {
       return lastModified_;
     }
 
+    // optional int32 contentLength = 4;
     public static final int CONTENTLENGTH_FIELD_NUMBER = 4;
     private int contentLength_;
     /**
@@ -15772,8 +16068,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       memoizedIsInitialized = 1;
       return true;
@@ -15901,9 +16196,8 @@ public final class Comm {
      * Protobuf type {@code PhotoHeader}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:PhotoHeader)
-        eye.Comm.PhotoHeaderOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.PhotoHeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_PhotoHeader_descriptor;
@@ -16043,6 +16337,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // optional .PhotoHeader.RequestType requestType = 1 [default = read];
       private eye.Comm.PhotoHeader.RequestType requestType_ = eye.Comm.PhotoHeader.RequestType.read;
       /**
        * <code>optional .PhotoHeader.RequestType requestType = 1 [default = read];</code>
@@ -16078,6 +16373,7 @@ public final class Comm {
         return this;
       }
 
+      // optional .PhotoHeader.ResponseFlag responseFlag = 2 [default = success];
       private eye.Comm.PhotoHeader.ResponseFlag responseFlag_ = eye.Comm.PhotoHeader.ResponseFlag.success;
       /**
        * <code>optional .PhotoHeader.ResponseFlag responseFlag = 2 [default = success];</code>
@@ -16113,6 +16409,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 lastModified = 3;
       private long lastModified_ ;
       /**
        * <code>optional int64 lastModified = 3;</code>
@@ -16161,6 +16458,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 contentLength = 4;
       private int contentLength_ ;
       /**
        * <code>optional int32 contentLength = 4;</code>
@@ -16204,10 +16502,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:PhotoHeader)
   }
 
-  public interface PhotoPayloadOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:PhotoPayload)
-      com.google.protobuf.MessageOrBuilder {
+  public interface PhotoPayloadOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // optional string uuid = 1;
     /**
      * <code>optional string uuid = 1;</code>
      *
@@ -16234,6 +16532,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getUuidBytes();
 
+    // optional string name = 2;
     /**
      * <code>optional string name = 2;</code>
      *
@@ -16260,6 +16559,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getNameBytes();
 
+    // optional bytes data = 3;
     /**
      * <code>optional bytes data = 3;</code>
      *
@@ -16281,9 +16581,8 @@ public final class Comm {
    * Protobuf type {@code PhotoPayload}
    */
   public static final class PhotoPayload extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:PhotoPayload)
-      PhotoPayloadOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements PhotoPayloadOrBuilder {
     // Use PhotoPayload.newBuilder() to construct.
     private PhotoPayload(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -16330,15 +16629,13 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              uuid_ = bs;
+              uuid_ = input.readBytes();
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              name_ = bs;
+              name_ = input.readBytes();
               break;
             }
             case 26: {
@@ -16386,6 +16683,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // optional string uuid = 1;
     public static final int UUID_FIELD_NUMBER = 1;
     private java.lang.Object uuid_;
     /**
@@ -16440,6 +16738,7 @@ public final class Comm {
       }
     }
 
+    // optional string name = 2;
     public static final int NAME_FIELD_NUMBER = 2;
     private java.lang.Object name_;
     /**
@@ -16494,6 +16793,7 @@ public final class Comm {
       }
     }
 
+    // optional bytes data = 3;
     public static final int DATA_FIELD_NUMBER = 3;
     private com.google.protobuf.ByteString data_;
     /**
@@ -16525,8 +16825,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       memoizedIsInitialized = 1;
       return true;
@@ -16647,9 +16946,8 @@ public final class Comm {
      * Protobuf type {@code PhotoPayload}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:PhotoPayload)
-        eye.Comm.PhotoPayloadOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.PhotoPayloadOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_PhotoPayload_descriptor;
@@ -16784,6 +17082,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // optional string uuid = 1;
       private java.lang.Object uuid_ = "";
       /**
        * <code>optional string uuid = 1;</code>
@@ -16805,12 +17104,9 @@ public final class Comm {
       public java.lang.String getUuid() {
         java.lang.Object ref = uuid_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            uuid_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          uuid_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -16884,6 +17180,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string name = 2;
       private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 2;</code>
@@ -16905,12 +17202,9 @@ public final class Comm {
       public java.lang.String getName() {
         java.lang.Object ref = name_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            name_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          name_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -16984,6 +17278,7 @@ public final class Comm {
         return this;
       }
 
+      // optional bytes data = 3;
       private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>optional bytes data = 3;</code>
@@ -17046,10 +17341,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:PhotoPayload)
   }
 
-  public interface RequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Request)
-      com.google.protobuf.MessageOrBuilder {
+  public interface RequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required .Header header = 1;
     /**
      * <code>required .Header header = 1;</code>
      */
@@ -17063,6 +17358,7 @@ public final class Comm {
      */
     eye.Comm.HeaderOrBuilder getHeaderOrBuilder();
 
+    // required .Payload body = 2;
     /**
      * <code>required .Payload body = 2;</code>
      */
@@ -17080,9 +17376,8 @@ public final class Comm {
    * Protobuf type {@code Request}
    */
   public static final class Request extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Request)
-      RequestOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements RequestOrBuilder {
     // Use Request.newBuilder() to construct.
     private Request(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -17194,6 +17489,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required .Header header = 1;
     public static final int HEADER_FIELD_NUMBER = 1;
     private eye.Comm.Header header_;
     /**
@@ -17215,6 +17511,7 @@ public final class Comm {
       return header_;
     }
 
+    // required .Payload body = 2;
     public static final int BODY_FIELD_NUMBER = 2;
     private eye.Comm.Payload body_;
     /**
@@ -17243,8 +17540,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasHeader()) {
         memoizedIsInitialized = 0;
@@ -17374,9 +17670,8 @@ public final class Comm {
      * Protobuf type {@code Request}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Request)
-        eye.Comm.RequestOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Request_descriptor;
@@ -17532,6 +17827,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required .Header header = 1;
       private eye.Comm.Header header_ = eye.Comm.Header.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Header, eye.Comm.Header.Builder, eye.Comm.HeaderOrBuilder> headerBuilder_;
@@ -17640,7 +17936,7 @@ public final class Comm {
         if (headerBuilder_ == null) {
           headerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.Header, eye.Comm.Header.Builder, eye.Comm.HeaderOrBuilder>(
-                  getHeader(),
+                  header_,
                   getParentForChildren(),
                   isClean());
           header_ = null;
@@ -17648,6 +17944,7 @@ public final class Comm {
         return headerBuilder_;
       }
 
+      // required .Payload body = 2;
       private eye.Comm.Payload body_ = eye.Comm.Payload.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Payload, eye.Comm.Payload.Builder, eye.Comm.PayloadOrBuilder> bodyBuilder_;
@@ -17756,7 +18053,7 @@ public final class Comm {
         if (bodyBuilder_ == null) {
           bodyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.Payload, eye.Comm.Payload.Builder, eye.Comm.PayloadOrBuilder>(
-                  getBody(),
+                  body_,
                   getParentForChildren(),
                   isClean());
           body_ = null;
@@ -17775,10 +18072,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Request)
   }
 
-  public interface HeartbeatOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Heartbeat)
-      com.google.protobuf.MessageOrBuilder {
+  public interface HeartbeatOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required int64 time_ref = 2;
     /**
      * <code>required int64 time_ref = 2;</code>
      */
@@ -17792,9 +18089,8 @@ public final class Comm {
    * Protobuf type {@code Heartbeat}
    */
   public static final class Heartbeat extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Heartbeat)
-      HeartbeatOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements HeartbeatOrBuilder {
     // Use Heartbeat.newBuilder() to construct.
     private Heartbeat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -17885,6 +18181,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required int64 time_ref = 2;
     public static final int TIME_REF_FIELD_NUMBER = 2;
     private long timeRef_;
     /**
@@ -17906,8 +18203,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasTimeRef()) {
         memoizedIsInitialized = 0;
@@ -18018,9 +18314,8 @@ public final class Comm {
      * Protobuf type {@code Heartbeat}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Heartbeat)
-        eye.Comm.HeartbeatOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.HeartbeatOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Heartbeat_descriptor;
@@ -18137,6 +18432,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required int64 time_ref = 2;
       private long timeRef_ ;
       /**
        * <code>required int64 time_ref = 2;</code>
@@ -18180,10 +18476,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Heartbeat)
   }
 
-  public interface NetworkOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Network)
-      com.google.protobuf.MessageOrBuilder {
+  public interface NetworkOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required int32 from_node_id = 1;
     /**
      * <code>required int32 from_node_id = 1;</code>
      */
@@ -18193,6 +18489,7 @@ public final class Comm {
      */
     int getFromNodeId();
 
+    // required int32 to_node_id = 2;
     /**
      * <code>required int32 to_node_id = 2;</code>
      */
@@ -18202,6 +18499,7 @@ public final class Comm {
      */
     int getToNodeId();
 
+    // required .Network.NetworkAction action = 3;
     /**
      * <code>required .Network.NetworkAction action = 3;</code>
      */
@@ -18215,9 +18513,8 @@ public final class Comm {
    * Protobuf type {@code Network}
    */
   public static final class Network extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Network)
-      NetworkOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements NetworkOrBuilder {
     // Use Network.newBuilder() to construct.
     private Network(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -18442,6 +18739,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required int32 from_node_id = 1;
     public static final int FROM_NODE_ID_FIELD_NUMBER = 1;
     private int fromNodeId_;
     /**
@@ -18457,6 +18755,7 @@ public final class Comm {
       return fromNodeId_;
     }
 
+    // required int32 to_node_id = 2;
     public static final int TO_NODE_ID_FIELD_NUMBER = 2;
     private int toNodeId_;
     /**
@@ -18472,6 +18771,7 @@ public final class Comm {
       return toNodeId_;
     }
 
+    // required .Network.NetworkAction action = 3;
     public static final int ACTION_FIELD_NUMBER = 3;
     private eye.Comm.Network.NetworkAction action_;
     /**
@@ -18495,8 +18795,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasFromNodeId()) {
         memoizedIsInitialized = 0;
@@ -18629,9 +18928,8 @@ public final class Comm {
      * Protobuf type {@code Network}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Network)
-        eye.Comm.NetworkOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.NetworkOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Network_descriptor;
@@ -18774,6 +19072,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required int32 from_node_id = 1;
       private int fromNodeId_ ;
       /**
        * <code>required int32 from_node_id = 1;</code>
@@ -18806,6 +19105,7 @@ public final class Comm {
         return this;
       }
 
+      // required int32 to_node_id = 2;
       private int toNodeId_ ;
       /**
        * <code>required int32 to_node_id = 2;</code>
@@ -18838,6 +19138,7 @@ public final class Comm {
         return this;
       }
 
+      // required .Network.NetworkAction action = 3;
       private eye.Comm.Network.NetworkAction action_ = eye.Comm.Network.NetworkAction.NODEJOIN;
       /**
        * <code>required .Network.NetworkAction action = 3;</code>
@@ -18884,10 +19185,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Network)
   }
 
-  public interface LeaderElectionOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:LeaderElection)
-      com.google.protobuf.MessageOrBuilder {
+  public interface LeaderElectionOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string elect_id = 2;
     /**
      * <code>required string elect_id = 2;</code>
      *
@@ -18914,6 +19215,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getElectIdBytes();
 
+    // required int32 candidate_id = 3;
     /**
      * <code>required int32 candidate_id = 3;</code>
      */
@@ -18923,6 +19225,7 @@ public final class Comm {
      */
     int getCandidateId();
 
+    // optional string desc = 4;
     /**
      * <code>optional string desc = 4;</code>
      */
@@ -18937,6 +19240,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getDescBytes();
 
+    // required .LeaderElection.ElectAction action = 5;
     /**
      * <code>required .LeaderElection.ElectAction action = 5;</code>
      */
@@ -18946,6 +19250,7 @@ public final class Comm {
      */
     eye.Comm.LeaderElection.ElectAction getAction();
 
+    // optional int64 expires = 6 [default = -1];
     /**
      * <code>optional int64 expires = 6 [default = -1];</code>
      *
@@ -18963,6 +19268,7 @@ public final class Comm {
      */
     long getExpires();
 
+    // optional int32 hops = 7 [default = -1];
     /**
      * <code>optional int32 hops = 7 [default = -1];</code>
      *
@@ -18990,9 +19296,8 @@ public final class Comm {
    * Protobuf type {@code LeaderElection}
    */
   public static final class LeaderElection extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:LeaderElection)
-      LeaderElectionOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements LeaderElectionOrBuilder {
     // Use LeaderElection.newBuilder() to construct.
     private LeaderElection(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -19039,9 +19344,8 @@ public final class Comm {
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              electId_ = bs;
+              electId_ = input.readBytes();
               break;
             }
             case 24: {
@@ -19050,9 +19354,8 @@ public final class Comm {
               break;
             }
             case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000004;
-              desc_ = bs;
+              desc_ = input.readBytes();
               break;
             }
             case 40: {
@@ -19243,6 +19546,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string elect_id = 2;
     public static final int ELECT_ID_FIELD_NUMBER = 2;
     private java.lang.Object electId_;
     /**
@@ -19297,6 +19601,7 @@ public final class Comm {
       }
     }
 
+    // required int32 candidate_id = 3;
     public static final int CANDIDATE_ID_FIELD_NUMBER = 3;
     private int candidateId_;
     /**
@@ -19312,6 +19617,7 @@ public final class Comm {
       return candidateId_;
     }
 
+    // optional string desc = 4;
     public static final int DESC_FIELD_NUMBER = 4;
     private java.lang.Object desc_;
     /**
@@ -19354,6 +19660,7 @@ public final class Comm {
       }
     }
 
+    // required .LeaderElection.ElectAction action = 5;
     public static final int ACTION_FIELD_NUMBER = 5;
     private eye.Comm.LeaderElection.ElectAction action_;
     /**
@@ -19369,6 +19676,7 @@ public final class Comm {
       return action_;
     }
 
+    // optional int64 expires = 6 [default = -1];
     public static final int EXPIRES_FIELD_NUMBER = 6;
     private long expires_;
     /**
@@ -19392,6 +19700,7 @@ public final class Comm {
       return expires_;
     }
 
+    // optional int32 hops = 7 [default = -1];
     public static final int HOPS_FIELD_NUMBER = 7;
     private int hops_;
     /**
@@ -19432,8 +19741,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasElectId()) {
         memoizedIsInitialized = 0;
@@ -19587,9 +19895,8 @@ public final class Comm {
      * Protobuf type {@code LeaderElection}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:LeaderElection)
-        eye.Comm.LeaderElectionOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.LeaderElectionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_LeaderElection_descriptor;
@@ -19763,6 +20070,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string elect_id = 2;
       private java.lang.Object electId_ = "";
       /**
        * <code>required string elect_id = 2;</code>
@@ -19784,12 +20092,9 @@ public final class Comm {
       public java.lang.String getElectId() {
         java.lang.Object ref = electId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            electId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          electId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -19863,6 +20168,7 @@ public final class Comm {
         return this;
       }
 
+      // required int32 candidate_id = 3;
       private int candidateId_ ;
       /**
        * <code>required int32 candidate_id = 3;</code>
@@ -19895,6 +20201,7 @@ public final class Comm {
         return this;
       }
 
+      // optional string desc = 4;
       private java.lang.Object desc_ = "";
       /**
        * <code>optional string desc = 4;</code>
@@ -19908,12 +20215,9 @@ public final class Comm {
       public java.lang.String getDesc() {
         java.lang.Object ref = desc_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            desc_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          desc_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -19971,6 +20275,7 @@ public final class Comm {
         return this;
       }
 
+      // required .LeaderElection.ElectAction action = 5;
       private eye.Comm.LeaderElection.ElectAction action_ = eye.Comm.LeaderElection.ElectAction.DECLAREELECTION;
       /**
        * <code>required .LeaderElection.ElectAction action = 5;</code>
@@ -20006,6 +20311,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 expires = 6 [default = -1];
       private long expires_ = -1L;
       /**
        * <code>optional int64 expires = 6 [default = -1];</code>
@@ -20054,6 +20360,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 hops = 7 [default = -1];
       private int hops_ = -1;
       /**
        * <code>optional int32 hops = 7 [default = -1];</code>
@@ -20125,10 +20432,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:LeaderElection)
   }
 
-  public interface VotingBallotOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:VotingBallot)
-      com.google.protobuf.MessageOrBuilder {
+  public interface VotingBallotOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string ballot_id = 1;
     /**
      * <code>required string ballot_id = 1;</code>
      */
@@ -20143,6 +20450,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getBallotIdBytes();
 
+    // required string desc = 2;
     /**
      * <code>required string desc = 2;</code>
      */
@@ -20157,6 +20465,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getDescBytes();
 
+    // required .VotingBallot.BallotType ballot_format = 3;
     /**
      * <code>required .VotingBallot.BallotType ballot_format = 3;</code>
      */
@@ -20166,6 +20475,7 @@ public final class Comm {
      */
     eye.Comm.VotingBallot.BallotType getBallotFormat();
 
+    // optional int64 expires_sec = 6;
     /**
      * <code>optional int64 expires_sec = 6;</code>
      *
@@ -20183,6 +20493,7 @@ public final class Comm {
      */
     long getExpiresSec();
 
+    // optional int32 margin_to_win = 7;
     /**
      * <code>optional int32 margin_to_win = 7;</code>
      *
@@ -20200,6 +20511,7 @@ public final class Comm {
      */
     int getMarginToWin();
 
+    // optional int32 max_hops = 8 [default = -1];
     /**
      * <code>optional int32 max_hops = 8 [default = -1];</code>
      *
@@ -20229,9 +20541,8 @@ public final class Comm {
    * </pre>
    */
   public static final class VotingBallot extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:VotingBallot)
-      VotingBallotOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements VotingBallotOrBuilder {
     // Use VotingBallot.newBuilder() to construct.
     private VotingBallot(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -20278,15 +20589,13 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              ballotId_ = bs;
+              ballotId_ = input.readBytes();
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              desc_ = bs;
+              desc_ = input.readBytes();
               break;
             }
             case 24: {
@@ -20455,6 +20764,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string ballot_id = 1;
     public static final int BALLOT_ID_FIELD_NUMBER = 1;
     private java.lang.Object ballotId_;
     /**
@@ -20497,6 +20807,7 @@ public final class Comm {
       }
     }
 
+    // required string desc = 2;
     public static final int DESC_FIELD_NUMBER = 2;
     private java.lang.Object desc_;
     /**
@@ -20539,6 +20850,7 @@ public final class Comm {
       }
     }
 
+    // required .VotingBallot.BallotType ballot_format = 3;
     public static final int BALLOT_FORMAT_FIELD_NUMBER = 3;
     private eye.Comm.VotingBallot.BallotType ballotFormat_;
     /**
@@ -20554,6 +20866,7 @@ public final class Comm {
       return ballotFormat_;
     }
 
+    // optional int64 expires_sec = 6;
     public static final int EXPIRES_SEC_FIELD_NUMBER = 6;
     private long expiresSec_;
     /**
@@ -20577,6 +20890,7 @@ public final class Comm {
       return expiresSec_;
     }
 
+    // optional int32 margin_to_win = 7;
     public static final int MARGIN_TO_WIN_FIELD_NUMBER = 7;
     private int marginToWin_;
     /**
@@ -20600,6 +20914,7 @@ public final class Comm {
       return marginToWin_;
     }
 
+    // optional int32 max_hops = 8 [default = -1];
     public static final int MAX_HOPS_FIELD_NUMBER = 8;
     private int maxHops_;
     /**
@@ -20638,8 +20953,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasBallotId()) {
         memoizedIsInitialized = 0;
@@ -20797,9 +21111,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:VotingBallot)
-        eye.Comm.VotingBallotOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.VotingBallotOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_VotingBallot_descriptor;
@@ -20973,6 +21286,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string ballot_id = 1;
       private java.lang.Object ballotId_ = "";
       /**
        * <code>required string ballot_id = 1;</code>
@@ -20986,12 +21300,9 @@ public final class Comm {
       public java.lang.String getBallotId() {
         java.lang.Object ref = ballotId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            ballotId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          ballotId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -21049,6 +21360,7 @@ public final class Comm {
         return this;
       }
 
+      // required string desc = 2;
       private java.lang.Object desc_ = "";
       /**
        * <code>required string desc = 2;</code>
@@ -21062,12 +21374,9 @@ public final class Comm {
       public java.lang.String getDesc() {
         java.lang.Object ref = desc_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            desc_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          desc_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -21125,6 +21434,7 @@ public final class Comm {
         return this;
       }
 
+      // required .VotingBallot.BallotType ballot_format = 3;
       private eye.Comm.VotingBallot.BallotType ballotFormat_ = eye.Comm.VotingBallot.BallotType.SIMPLEMAJORITY;
       /**
        * <code>required .VotingBallot.BallotType ballot_format = 3;</code>
@@ -21160,6 +21470,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 expires_sec = 6;
       private long expiresSec_ ;
       /**
        * <code>optional int64 expires_sec = 6;</code>
@@ -21208,6 +21519,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 margin_to_win = 7;
       private int marginToWin_ ;
       /**
        * <code>optional int32 margin_to_win = 7;</code>
@@ -21256,6 +21568,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 max_hops = 8 [default = -1];
       private int maxHops_ = -1;
       /**
        * <code>optional int32 max_hops = 8 [default = -1];</code>
@@ -21323,10 +21636,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:VotingBallot)
   }
 
-  public interface VotingCastOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:VotingCast)
-      com.google.protobuf.MessageOrBuilder {
+  public interface VotingCastOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string voter = 1;
     /**
      * <code>required string voter = 1;</code>
      */
@@ -21341,6 +21654,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getVoterBytes();
 
+    // required string ballot_id = 2;
     /**
      * <code>required string ballot_id = 2;</code>
      */
@@ -21355,6 +21669,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getBallotIdBytes();
 
+    // optional int32 candidate = 10;
     /**
      * <code>optional int32 candidate = 10;</code>
      *
@@ -21372,6 +21687,7 @@ public final class Comm {
      */
     int getCandidate();
 
+    // optional int32 rank = 11;
     /**
      * <code>optional int32 rank = 11;</code>
      *
@@ -21397,9 +21713,8 @@ public final class Comm {
    * </pre>
    */
   public static final class VotingCast extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:VotingCast)
-      VotingCastOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements VotingCastOrBuilder {
     // Use VotingCast.newBuilder() to construct.
     private VotingCast(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -21446,15 +21761,13 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              voter_ = bs;
+              voter_ = input.readBytes();
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000002;
-              ballotId_ = bs;
+              ballotId_ = input.readBytes();
               break;
             }
             case 80: {
@@ -21507,6 +21820,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string voter = 1;
     public static final int VOTER_FIELD_NUMBER = 1;
     private java.lang.Object voter_;
     /**
@@ -21549,6 +21863,7 @@ public final class Comm {
       }
     }
 
+    // required string ballot_id = 2;
     public static final int BALLOT_ID_FIELD_NUMBER = 2;
     private java.lang.Object ballotId_;
     /**
@@ -21591,6 +21906,7 @@ public final class Comm {
       }
     }
 
+    // optional int32 candidate = 10;
     public static final int CANDIDATE_FIELD_NUMBER = 10;
     private int candidate_;
     /**
@@ -21614,6 +21930,7 @@ public final class Comm {
       return candidate_;
     }
 
+    // optional int32 rank = 11;
     public static final int RANK_FIELD_NUMBER = 11;
     private int rank_;
     /**
@@ -21646,8 +21963,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasVoter()) {
         memoizedIsInitialized = 0;
@@ -21787,9 +22103,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:VotingCast)
-        eye.Comm.VotingCastOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.VotingCastOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_VotingCast_descriptor;
@@ -21941,6 +22256,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string voter = 1;
       private java.lang.Object voter_ = "";
       /**
        * <code>required string voter = 1;</code>
@@ -21954,12 +22270,9 @@ public final class Comm {
       public java.lang.String getVoter() {
         java.lang.Object ref = voter_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            voter_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          voter_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -22017,6 +22330,7 @@ public final class Comm {
         return this;
       }
 
+      // required string ballot_id = 2;
       private java.lang.Object ballotId_ = "";
       /**
        * <code>required string ballot_id = 2;</code>
@@ -22030,12 +22344,9 @@ public final class Comm {
       public java.lang.String getBallotId() {
         java.lang.Object ref = ballotId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            ballotId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          ballotId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -22093,6 +22404,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 candidate = 10;
       private int candidate_ ;
       /**
        * <code>optional int32 candidate = 10;</code>
@@ -22141,6 +22453,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 rank = 11;
       private int rank_ ;
       /**
        * <code>optional int32 rank = 11;</code>
@@ -22200,10 +22513,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:VotingCast)
   }
 
-  public interface VotingStatusOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:VotingStatus)
-      com.google.protobuf.MessageOrBuilder {
+  public interface VotingStatusOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string ballot_id = 1;
     /**
      * <code>required string ballot_id = 1;</code>
      */
@@ -22218,6 +22531,7 @@ public final class Comm {
     com.google.protobuf.ByteString
         getBallotIdBytes();
 
+    // required .VotingStatus.VoteStatus status = 2;
     /**
      * <code>required .VotingStatus.VoteStatus status = 2;</code>
      */
@@ -22227,6 +22541,7 @@ public final class Comm {
      */
     eye.Comm.VotingStatus.VoteStatus getStatus();
 
+    // optional int32 winner = 3;
     /**
      * <code>optional int32 winner = 3;</code>
      */
@@ -22244,9 +22559,8 @@ public final class Comm {
    * </pre>
    */
   public static final class VotingStatus extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:VotingStatus)
-      VotingStatusOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements VotingStatusOrBuilder {
     // Use VotingStatus.newBuilder() to construct.
     private VotingStatus(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -22293,9 +22607,8 @@ public final class Comm {
               break;
             }
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
-              ballotId_ = bs;
+              ballotId_ = input.readBytes();
               break;
             }
             case 16: {
@@ -22436,6 +22749,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required string ballot_id = 1;
     public static final int BALLOT_ID_FIELD_NUMBER = 1;
     private java.lang.Object ballotId_;
     /**
@@ -22478,6 +22792,7 @@ public final class Comm {
       }
     }
 
+    // required .VotingStatus.VoteStatus status = 2;
     public static final int STATUS_FIELD_NUMBER = 2;
     private eye.Comm.VotingStatus.VoteStatus status_;
     /**
@@ -22493,6 +22808,7 @@ public final class Comm {
       return status_;
     }
 
+    // optional int32 winner = 3;
     public static final int WINNER_FIELD_NUMBER = 3;
     private int winner_;
     /**
@@ -22516,8 +22832,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasBallotId()) {
         memoizedIsInitialized = 0;
@@ -22650,9 +22965,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:VotingStatus)
-        eye.Comm.VotingStatusOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.VotingStatusOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_VotingStatus_descriptor;
@@ -22793,6 +23107,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required string ballot_id = 1;
       private java.lang.Object ballotId_ = "";
       /**
        * <code>required string ballot_id = 1;</code>
@@ -22806,12 +23121,9 @@ public final class Comm {
       public java.lang.String getBallotId() {
         java.lang.Object ref = ballotId_;
         if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            ballotId_ = s;
-          }
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          ballotId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
@@ -22869,6 +23181,7 @@ public final class Comm {
         return this;
       }
 
+      // required .VotingStatus.VoteStatus status = 2;
       private eye.Comm.VotingStatus.VoteStatus status_ = eye.Comm.VotingStatus.VoteStatus.BALLOTABANDONED;
       /**
        * <code>required .VotingStatus.VoteStatus status = 2;</code>
@@ -22904,6 +23217,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int32 winner = 3;
       private int winner_ ;
       /**
        * <code>optional int32 winner = 3;</code>
@@ -22947,10 +23261,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:VotingStatus)
   }
 
-  public interface MgmtHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:MgmtHeader)
-      com.google.protobuf.MessageOrBuilder {
+  public interface MgmtHeaderOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required int32 originator = 2;
     /**
      * <code>required int32 originator = 2;</code>
      */
@@ -22960,6 +23274,7 @@ public final class Comm {
      */
     int getOriginator();
 
+    // optional int64 time = 4;
     /**
      * <code>optional int64 time = 4;</code>
      */
@@ -22969,6 +23284,7 @@ public final class Comm {
      */
     long getTime();
 
+    // repeated .RoutingPath path = 7;
     /**
      * <code>repeated .RoutingPath path = 7;</code>
      *
@@ -23013,6 +23329,7 @@ public final class Comm {
     eye.Comm.RoutingPathOrBuilder getPathOrBuilder(
         int index);
 
+    // optional int32 toNode = 8;
     /**
      * <code>optional int32 toNode = 8;</code>
      *
@@ -23038,9 +23355,8 @@ public final class Comm {
    * </pre>
    */
   public static final class MgmtHeader extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:MgmtHeader)
-      MgmtHeaderOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements MgmtHeaderOrBuilder {
     // Use MgmtHeader.newBuilder() to construct.
     private MgmtHeader(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -23152,6 +23468,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required int32 originator = 2;
     public static final int ORIGINATOR_FIELD_NUMBER = 2;
     private int originator_;
     /**
@@ -23167,6 +23484,7 @@ public final class Comm {
       return originator_;
     }
 
+    // optional int64 time = 4;
     public static final int TIME_FIELD_NUMBER = 4;
     private long time_;
     /**
@@ -23182,6 +23500,7 @@ public final class Comm {
       return time_;
     }
 
+    // repeated .RoutingPath path = 7;
     public static final int PATH_FIELD_NUMBER = 7;
     private java.util.List<eye.Comm.RoutingPath> path_;
     /**
@@ -23237,6 +23556,7 @@ public final class Comm {
       return path_.get(index);
     }
 
+    // optional int32 toNode = 8;
     public static final int TONODE_FIELD_NUMBER = 8;
     private int toNode_;
     /**
@@ -23269,8 +23589,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasOriginator()) {
         memoizedIsInitialized = 0;
@@ -23412,9 +23731,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:MgmtHeader)
-        eye.Comm.MgmtHeaderOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.MgmtHeaderOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_MgmtHeader_descriptor;
@@ -23597,6 +23915,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required int32 originator = 2;
       private int originator_ ;
       /**
        * <code>required int32 originator = 2;</code>
@@ -23629,6 +23948,7 @@ public final class Comm {
         return this;
       }
 
+      // optional int64 time = 4;
       private long time_ ;
       /**
        * <code>optional int64 time = 4;</code>
@@ -23661,6 +23981,7 @@ public final class Comm {
         return this;
       }
 
+      // repeated .RoutingPath path = 7;
       private java.util.List<eye.Comm.RoutingPath> path_ =
         java.util.Collections.emptyList();
       private void ensurePathIsMutable() {
@@ -23842,8 +24163,7 @@ public final class Comm {
           java.lang.Iterable<? extends eye.Comm.RoutingPath> values) {
         if (pathBuilder_ == null) {
           ensurePathIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, path_);
+          super.addAll(values, path_);
           onChanged();
         } else {
           pathBuilder_.addAllMessages(values);
@@ -23973,6 +24293,7 @@ public final class Comm {
         return pathBuilder_;
       }
 
+      // optional int32 toNode = 8;
       private int toNode_ ;
       /**
        * <code>optional int32 toNode = 8;</code>
@@ -24032,10 +24353,10 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:MgmtHeader)
   }
 
-  public interface ManagementOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Management)
-      com.google.protobuf.MessageOrBuilder {
+  public interface ManagementOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required .MgmtHeader header = 1;
     /**
      * <code>required .MgmtHeader header = 1;</code>
      */
@@ -24049,6 +24370,7 @@ public final class Comm {
      */
     eye.Comm.MgmtHeaderOrBuilder getHeaderOrBuilder();
 
+    // optional .Network graph = 2;
     /**
      * <code>optional .Network graph = 2;</code>
      *
@@ -24074,6 +24396,7 @@ public final class Comm {
      */
     eye.Comm.NetworkOrBuilder getGraphOrBuilder();
 
+    // optional .Heartbeat beat = 3;
     /**
      * <code>optional .Heartbeat beat = 3;</code>
      *
@@ -24099,6 +24422,7 @@ public final class Comm {
      */
     eye.Comm.HeartbeatOrBuilder getBeatOrBuilder();
 
+    // optional .LeaderElection election = 4;
     /**
      * <code>optional .LeaderElection election = 4;</code>
      *
@@ -24124,6 +24448,7 @@ public final class Comm {
      */
     eye.Comm.LeaderElectionOrBuilder getElectionOrBuilder();
 
+    // optional .JobProposal job_propose = 5;
     /**
      * <code>optional .JobProposal job_propose = 5;</code>
      *
@@ -24152,6 +24477,7 @@ public final class Comm {
      */
     eye.Comm.JobProposalOrBuilder getJobProposeOrBuilder();
 
+    // optional .JobBid job_bid = 6;
     /**
      * <code>optional .JobBid job_bid = 6;</code>
      */
@@ -24165,6 +24491,7 @@ public final class Comm {
      */
     eye.Comm.JobBidOrBuilder getJobBidOrBuilder();
 
+    // optional .VotingBallot vote_declare = 7;
     /**
      * <code>optional .VotingBallot vote_declare = 7;</code>
      *
@@ -24190,6 +24517,7 @@ public final class Comm {
      */
     eye.Comm.VotingBallotOrBuilder getVoteDeclareOrBuilder();
 
+    // optional .VotingCast vote_cast = 8;
     /**
      * <code>optional .VotingCast vote_cast = 8;</code>
      */
@@ -24203,6 +24531,7 @@ public final class Comm {
      */
     eye.Comm.VotingCastOrBuilder getVoteCastOrBuilder();
 
+    // optional .VotingStatus vote_status = 9;
     /**
      * <code>optional .VotingStatus vote_status = 9;</code>
      */
@@ -24224,9 +24553,8 @@ public final class Comm {
    * </pre>
    */
   public static final class Management extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:Management)
-      ManagementOrBuilder {
+      com.google.protobuf.GeneratedMessage
+      implements ManagementOrBuilder {
     // Use Management.newBuilder() to construct.
     private Management(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
@@ -24429,6 +24757,7 @@ public final class Comm {
     }
 
     private int bitField0_;
+    // required .MgmtHeader header = 1;
     public static final int HEADER_FIELD_NUMBER = 1;
     private eye.Comm.MgmtHeader header_;
     /**
@@ -24450,6 +24779,7 @@ public final class Comm {
       return header_;
     }
 
+    // optional .Network graph = 2;
     public static final int GRAPH_FIELD_NUMBER = 2;
     private eye.Comm.Network graph_;
     /**
@@ -24483,6 +24813,7 @@ public final class Comm {
       return graph_;
     }
 
+    // optional .Heartbeat beat = 3;
     public static final int BEAT_FIELD_NUMBER = 3;
     private eye.Comm.Heartbeat beat_;
     /**
@@ -24516,6 +24847,7 @@ public final class Comm {
       return beat_;
     }
 
+    // optional .LeaderElection election = 4;
     public static final int ELECTION_FIELD_NUMBER = 4;
     private eye.Comm.LeaderElection election_;
     /**
@@ -24549,6 +24881,7 @@ public final class Comm {
       return election_;
     }
 
+    // optional .JobProposal job_propose = 5;
     public static final int JOB_PROPOSE_FIELD_NUMBER = 5;
     private eye.Comm.JobProposal jobPropose_;
     /**
@@ -24585,6 +24918,7 @@ public final class Comm {
       return jobPropose_;
     }
 
+    // optional .JobBid job_bid = 6;
     public static final int JOB_BID_FIELD_NUMBER = 6;
     private eye.Comm.JobBid jobBid_;
     /**
@@ -24606,6 +24940,7 @@ public final class Comm {
       return jobBid_;
     }
 
+    // optional .VotingBallot vote_declare = 7;
     public static final int VOTE_DECLARE_FIELD_NUMBER = 7;
     private eye.Comm.VotingBallot voteDeclare_;
     /**
@@ -24639,6 +24974,7 @@ public final class Comm {
       return voteDeclare_;
     }
 
+    // optional .VotingCast vote_cast = 8;
     public static final int VOTE_CAST_FIELD_NUMBER = 8;
     private eye.Comm.VotingCast voteCast_;
     /**
@@ -24660,6 +24996,7 @@ public final class Comm {
       return voteCast_;
     }
 
+    // optional .VotingStatus vote_status = 9;
     public static final int VOTE_STATUS_FIELD_NUMBER = 9;
     private eye.Comm.VotingStatus voteStatus_;
     /**
@@ -24695,8 +25032,7 @@ public final class Comm {
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+      if (isInitialized != -1) return isInitialized == 1;
 
       if (!hasHeader()) {
         memoizedIsInitialized = 0;
@@ -24919,9 +25255,8 @@ public final class Comm {
      * </pre>
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Management)
-        eye.Comm.ManagementOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.ManagementOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return eye.Comm.internal_static_Management_descriptor;
@@ -25243,6 +25578,7 @@ public final class Comm {
       }
       private int bitField0_;
 
+      // required .MgmtHeader header = 1;
       private eye.Comm.MgmtHeader header_ = eye.Comm.MgmtHeader.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.MgmtHeader, eye.Comm.MgmtHeader.Builder, eye.Comm.MgmtHeaderOrBuilder> headerBuilder_;
@@ -25351,7 +25687,7 @@ public final class Comm {
         if (headerBuilder_ == null) {
           headerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.MgmtHeader, eye.Comm.MgmtHeader.Builder, eye.Comm.MgmtHeaderOrBuilder>(
-                  getHeader(),
+                  header_,
                   getParentForChildren(),
                   isClean());
           header_ = null;
@@ -25359,6 +25695,7 @@ public final class Comm {
         return headerBuilder_;
       }
 
+      // optional .Network graph = 2;
       private eye.Comm.Network graph_ = eye.Comm.Network.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Network, eye.Comm.Network.Builder, eye.Comm.NetworkOrBuilder> graphBuilder_;
@@ -25503,7 +25840,7 @@ public final class Comm {
         if (graphBuilder_ == null) {
           graphBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.Network, eye.Comm.Network.Builder, eye.Comm.NetworkOrBuilder>(
-                  getGraph(),
+                  graph_,
                   getParentForChildren(),
                   isClean());
           graph_ = null;
@@ -25511,6 +25848,7 @@ public final class Comm {
         return graphBuilder_;
       }
 
+      // optional .Heartbeat beat = 3;
       private eye.Comm.Heartbeat beat_ = eye.Comm.Heartbeat.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Heartbeat, eye.Comm.Heartbeat.Builder, eye.Comm.HeartbeatOrBuilder> beatBuilder_;
@@ -25655,7 +25993,7 @@ public final class Comm {
         if (beatBuilder_ == null) {
           beatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.Heartbeat, eye.Comm.Heartbeat.Builder, eye.Comm.HeartbeatOrBuilder>(
-                  getBeat(),
+                  beat_,
                   getParentForChildren(),
                   isClean());
           beat_ = null;
@@ -25663,6 +26001,7 @@ public final class Comm {
         return beatBuilder_;
       }
 
+      // optional .LeaderElection election = 4;
       private eye.Comm.LeaderElection election_ = eye.Comm.LeaderElection.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.LeaderElection, eye.Comm.LeaderElection.Builder, eye.Comm.LeaderElectionOrBuilder> electionBuilder_;
@@ -25807,7 +26146,7 @@ public final class Comm {
         if (electionBuilder_ == null) {
           electionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.LeaderElection, eye.Comm.LeaderElection.Builder, eye.Comm.LeaderElectionOrBuilder>(
-                  getElection(),
+                  election_,
                   getParentForChildren(),
                   isClean());
           election_ = null;
@@ -25815,6 +26154,7 @@ public final class Comm {
         return electionBuilder_;
       }
 
+      // optional .JobProposal job_propose = 5;
       private eye.Comm.JobProposal jobPropose_ = eye.Comm.JobProposal.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.JobProposal, eye.Comm.JobProposal.Builder, eye.Comm.JobProposalOrBuilder> jobProposeBuilder_;
@@ -25968,7 +26308,7 @@ public final class Comm {
         if (jobProposeBuilder_ == null) {
           jobProposeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.JobProposal, eye.Comm.JobProposal.Builder, eye.Comm.JobProposalOrBuilder>(
-                  getJobPropose(),
+                  jobPropose_,
                   getParentForChildren(),
                   isClean());
           jobPropose_ = null;
@@ -25976,6 +26316,7 @@ public final class Comm {
         return jobProposeBuilder_;
       }
 
+      // optional .JobBid job_bid = 6;
       private eye.Comm.JobBid jobBid_ = eye.Comm.JobBid.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.JobBid, eye.Comm.JobBid.Builder, eye.Comm.JobBidOrBuilder> jobBidBuilder_;
@@ -26084,7 +26425,7 @@ public final class Comm {
         if (jobBidBuilder_ == null) {
           jobBidBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.JobBid, eye.Comm.JobBid.Builder, eye.Comm.JobBidOrBuilder>(
-                  getJobBid(),
+                  jobBid_,
                   getParentForChildren(),
                   isClean());
           jobBid_ = null;
@@ -26092,6 +26433,7 @@ public final class Comm {
         return jobBidBuilder_;
       }
 
+      // optional .VotingBallot vote_declare = 7;
       private eye.Comm.VotingBallot voteDeclare_ = eye.Comm.VotingBallot.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.VotingBallot, eye.Comm.VotingBallot.Builder, eye.Comm.VotingBallotOrBuilder> voteDeclareBuilder_;
@@ -26236,7 +26578,7 @@ public final class Comm {
         if (voteDeclareBuilder_ == null) {
           voteDeclareBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.VotingBallot, eye.Comm.VotingBallot.Builder, eye.Comm.VotingBallotOrBuilder>(
-                  getVoteDeclare(),
+                  voteDeclare_,
                   getParentForChildren(),
                   isClean());
           voteDeclare_ = null;
@@ -26244,6 +26586,7 @@ public final class Comm {
         return voteDeclareBuilder_;
       }
 
+      // optional .VotingCast vote_cast = 8;
       private eye.Comm.VotingCast voteCast_ = eye.Comm.VotingCast.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.VotingCast, eye.Comm.VotingCast.Builder, eye.Comm.VotingCastOrBuilder> voteCastBuilder_;
@@ -26352,7 +26695,7 @@ public final class Comm {
         if (voteCastBuilder_ == null) {
           voteCastBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.VotingCast, eye.Comm.VotingCast.Builder, eye.Comm.VotingCastOrBuilder>(
-                  getVoteCast(),
+                  voteCast_,
                   getParentForChildren(),
                   isClean());
           voteCast_ = null;
@@ -26360,6 +26703,7 @@ public final class Comm {
         return voteCastBuilder_;
       }
 
+      // optional .VotingStatus vote_status = 9;
       private eye.Comm.VotingStatus voteStatus_ = eye.Comm.VotingStatus.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.VotingStatus, eye.Comm.VotingStatus.Builder, eye.Comm.VotingStatusOrBuilder> voteStatusBuilder_;
@@ -26468,7 +26812,7 @@ public final class Comm {
         if (voteStatusBuilder_ == null) {
           voteStatusBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.VotingStatus, eye.Comm.VotingStatus.Builder, eye.Comm.VotingStatusOrBuilder>(
-                  getVoteStatus(),
+                  voteStatus_,
                   getParentForChildren(),
                   isClean());
           voteStatus_ = null;
@@ -26487,122 +26831,122 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Management)
   }
 
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_NameValueSet_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_NameValueSet_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_NameSpace_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_NameSpace_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_JobDesc_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_JobDesc_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Ping_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Ping_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_NameSpaceOperation_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_NameSpaceOperation_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_NameSpaceStatus_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_NameSpaceStatus_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_JobOperation_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_JobOperation_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_JobProposal_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_JobProposal_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_JobBid_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_JobBid_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_JobStatus_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_JobStatus_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_RoutingPath_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_RoutingPath_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Header_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Header_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Payload_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Payload_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_PhotoHeader_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_PhotoHeader_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_PhotoPayload_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_PhotoPayload_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Request_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Request_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Heartbeat_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Heartbeat_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Network_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Network_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_LeaderElection_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_LeaderElection_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_VotingBallot_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VotingBallot_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_VotingCast_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VotingCast_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_VotingStatus_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_VotingStatus_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_MgmtHeader_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_MgmtHeader_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Management_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -26651,226 +26995,227 @@ public final class Comm {
       "\n\006status\030\002 \002(\0162\013.PokeStatus\022#\n\tjob_state" +
       "\030\003 \002(\0162\020.JobDesc.JobCode\022\026\n\004data\030\004 \003(\0132\010" +
       ".JobDesc\",\n\013RoutingPath\022\017\n\007node_id\030\001 \002(\005" +
-      "\022\014\n\004time\030\002 \002(\003\"\307\002\n\006Header\022#\n\nrouting_id\030" +
-      "\001 \002(\0162\017.Header.Routing\022\022\n\noriginator\030\002 \002" +
-      "(\005\022\013\n\003tag\030\003 \001(\t\022\014\n\004time\030\004 \001(\003\022!\n\013photoHe" +
-      "ader\030\n \001(\0132\014.PhotoHeader\022\037\n\nreply_code\030\005" +
-      " \001(\0162\013.PokeStatus\022\021\n\treply_msg\030\006 \001(\t\022\032\n\004",
+      "\022\014\n\004time\030\002 \002(\003\"\361\002\n\006Header\022\021\n\tleader_id\030\013" +
+      " \001(\003\022\025\n\runique_job_id\030\014 \001(\t\022#\n\nrouting_i" +
+      "d\030\001 \002(\0162\017.Header.Routing\022\022\n\noriginator\030\002" +
+      " \002(\005\022\013\n\003tag\030\003 \001(\t\022\014\n\004time\030\004 \001(\003\022!\n\013photo" +
+      "Header\030\n \001(\0132\014.PhotoHeader\022\037\n\nreply_code",
+      "\030\005 \001(\0162\013.PokeStatus\022\021\n\treply_msg\030\006 \001(\t\022\032" +
+      "\n\004path\030\007 \003(\0132\014.RoutingPath\022\016\n\006toNode\030\010 \001" +
+      "(\005\022\036\n\007options\030\t \003(\0132\r.NameValueSet\"F\n\007Ro" +
+      "uting\022\010\n\004PING\020\002\022\016\n\nNAMESPACES\020\003\022\010\n\004JOBS\020" +
+      "\004\022\013\n\007REPORTS\020\n\022\n\n\006MANAGE\020d\"\321\001\n\007Payload\022\023" +
+      "\n\004ping\030\001 \001(\0132\005.Ping\022%\n\010space_op\030\002 \001(\0132\023." +
+      "NameSpaceOperation\022\035\n\006job_op\030\003 \001(\0132\r.Job" +
+      "Operation\022\036\n\njob_status\030\r \001(\0132\n.JobStatu" +
+      "s\022&\n\014space_status\030\014 \001(\0132\020.NameSpaceStatu" +
+      "s\022#\n\014photoPayload\030\004 \001(\0132\r.PhotoPayload\"\203",
+      "\002\n\013PhotoHeader\0223\n\013requestType\030\001 \001(\0162\030.Ph" +
+      "otoHeader.RequestType:\004read\0228\n\014responseF" +
+      "lag\030\002 \001(\0162\031.PhotoHeader.ResponseFlag:\007su" +
+      "ccess\022\024\n\014lastModified\030\003 \001(\003\022\025\n\rcontentLe" +
+      "ngth\030\004 \001(\005\".\n\013RequestType\022\010\n\004read\020\000\022\t\n\005w" +
+      "rite\020\001\022\n\n\006delete\020\002\"(\n\014ResponseFlag\022\013\n\007su" +
+      "ccess\020\000\022\013\n\007failure\020\001\"8\n\014PhotoPayload\022\014\n\004" +
+      "uuid\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\":" +
+      "\n\007Request\022\027\n\006header\030\001 \002(\0132\007.Header\022\026\n\004bo" +
+      "dy\030\002 \002(\0132\010.Payload\"\035\n\tHeartbeat\022\020\n\010time_",
+      "ref\030\002 \002(\003\"\303\001\n\007Network\022\024\n\014from_node_id\030\001 " +
+      "\002(\005\022\022\n\nto_node_id\030\002 \002(\005\022&\n\006action\030\003 \002(\0162" +
+      "\026.Network.NetworkAction\"f\n\rNetworkAction" +
+      "\022\014\n\010NODEJOIN\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEA" +
+      "D\020\003\022\r\n\tCREATEMAP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUT" +
+      "DOWN\020\347\007\"\243\002\n\016LeaderElection\022\020\n\010elect_id\030\002" +
+      " \002(\t\022\024\n\014candidate_id\030\003 \002(\005\022\014\n\004desc\030\004 \001(\t" +
+      "\022+\n\006action\030\005 \002(\0162\033.LeaderElection.ElectA" +
+      "ction\022\023\n\007expires\030\006 \001(\003:\002-1\022\020\n\004hops\030\007 \001(\005" +
+      ":\002-1\"\206\001\n\013ElectAction\022\023\n\017DECLAREELECTION\020",
+      "\001\022\014\n\010NOMINATE\020\002\022\013\n\007ABSTAIN\020\003\022\021\n\rDECLAREW" +
+      "INNER\020\004\022\017\n\013DECLAREVOID\020\005\022\022\n\016WHOISTHELEAD" +
+      "ER\020\006\022\017\n\013THELEADERIS\020\007\"\200\002\n\014VotingBallot\022\021" +
+      "\n\tballot_id\030\001 \002(\t\022\014\n\004desc\030\002 \002(\t\022/\n\rballo" +
+      "t_format\030\003 \002(\0162\030.VotingBallot.BallotType" +
+      "\022\023\n\013expires_sec\030\006 \001(\003\022\025\n\rmargin_to_win\030\007" +
+      " \001(\005\022\024\n\010max_hops\030\010 \001(\005:\002-1\"\\\n\nBallotType" +
+      "\022\022\n\016SIMPLEMAJORITY\020\001\022\033\n\027TIMECONSTRAINEDM" +
+      "AJORITY\020\002\022\n\n\006RANKED\020\003\022\021\n\rINSTANTRUNOFF\020\004" +
+      "\"O\n\nVotingCast\022\r\n\005voter\030\001 \002(\t\022\021\n\tballot_",
+      "id\030\002 \002(\t\022\021\n\tcandidate\030\n \001(\005\022\014\n\004rank\030\013 \001(" +
+      "\005\"\220\001\n\014VotingStatus\022\021\n\tballot_id\030\001 \002(\t\022(\n" +
+      "\006status\030\002 \002(\0162\030.VotingStatus.VoteStatus\022" +
+      "\016\n\006winner\030\003 \001(\005\"3\n\nVoteStatus\022\023\n\017BALLOTA" +
+      "BANDONED\020\001\022\020\n\014BALLOTWINNER\020\002\"Z\n\nMgmtHead" +
+      "er\022\022\n\noriginator\030\002 \002(\005\022\014\n\004time\030\004 \001(\003\022\032\n\004" +
       "path\030\007 \003(\0132\014.RoutingPath\022\016\n\006toNode\030\010 \001(\005" +
-      "\022\036\n\007options\030\t \003(\0132\r.NameValueSet\"F\n\007Rout" +
-      "ing\022\010\n\004PING\020\002\022\016\n\nNAMESPACES\020\003\022\010\n\004JOBS\020\004\022" +
-      "\013\n\007REPORTS\020\n\022\n\n\006MANAGE\020d\"\321\001\n\007Payload\022\023\n\004" +
-      "ping\030\001 \001(\0132\005.Ping\022%\n\010space_op\030\002 \001(\0132\023.Na" +
-      "meSpaceOperation\022\035\n\006job_op\030\003 \001(\0132\r.JobOp" +
-      "eration\022\036\n\njob_status\030\r \001(\0132\n.JobStatus\022" +
-      "&\n\014space_status\030\014 \001(\0132\020.NameSpaceStatus\022" +
-      "#\n\014photoPayload\030\004 \001(\0132\r.PhotoPayload\"\203\002\n" +
-      "\013PhotoHeader\0223\n\013requestType\030\001 \001(\0162\030.Phot",
-      "oHeader.RequestType:\004read\0228\n\014responseFla" +
-      "g\030\002 \001(\0162\031.PhotoHeader.ResponseFlag:\007succ" +
-      "ess\022\024\n\014lastModified\030\003 \001(\003\022\025\n\rcontentLeng" +
-      "th\030\004 \001(\005\".\n\013RequestType\022\010\n\004read\020\000\022\t\n\005wri" +
-      "te\020\001\022\n\n\006delete\020\002\"(\n\014ResponseFlag\022\013\n\007succ" +
-      "ess\020\000\022\013\n\007failure\020\001\"8\n\014PhotoPayload\022\014\n\004uu" +
-      "id\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\014\n\004data\030\003 \001(\014\":\n\007" +
-      "Request\022\027\n\006header\030\001 \002(\0132\007.Header\022\026\n\004body" +
-      "\030\002 \002(\0132\010.Payload\"\035\n\tHeartbeat\022\020\n\010time_re" +
-      "f\030\002 \002(\003\"\303\001\n\007Network\022\024\n\014from_node_id\030\001 \002(",
-      "\005\022\022\n\nto_node_id\030\002 \002(\005\022&\n\006action\030\003 \002(\0162\026." +
-      "Network.NetworkAction\"f\n\rNetworkAction\022\014" +
-      "\n\010NODEJOIN\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEAD\020" +
-      "\003\022\r\n\tCREATEMAP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDO" +
-      "WN\020\347\007\"\243\002\n\016LeaderElection\022\020\n\010elect_id\030\002 \002" +
-      "(\t\022\024\n\014candidate_id\030\003 \002(\005\022\014\n\004desc\030\004 \001(\t\022+" +
-      "\n\006action\030\005 \002(\0162\033.LeaderElection.ElectAct" +
-      "ion\022\023\n\007expires\030\006 \001(\003:\002-1\022\020\n\004hops\030\007 \001(\005:\002" +
-      "-1\"\206\001\n\013ElectAction\022\023\n\017DECLAREELECTION\020\001\022" +
-      "\014\n\010NOMINATE\020\002\022\013\n\007ABSTAIN\020\003\022\021\n\rDECLAREWIN",
-      "NER\020\004\022\017\n\013DECLAREVOID\020\005\022\022\n\016WHOISTHELEADER" +
-      "\020\006\022\017\n\013THELEADERIS\020\007\"\200\002\n\014VotingBallot\022\021\n\t" +
-      "ballot_id\030\001 \002(\t\022\014\n\004desc\030\002 \002(\t\022/\n\rballot_" +
-      "format\030\003 \002(\0162\030.VotingBallot.BallotType\022\023" +
-      "\n\013expires_sec\030\006 \001(\003\022\025\n\rmargin_to_win\030\007 \001" +
-      "(\005\022\024\n\010max_hops\030\010 \001(\005:\002-1\"\\\n\nBallotType\022\022" +
-      "\n\016SIMPLEMAJORITY\020\001\022\033\n\027TIMECONSTRAINEDMAJ" +
-      "ORITY\020\002\022\n\n\006RANKED\020\003\022\021\n\rINSTANTRUNOFF\020\004\"O" +
-      "\n\nVotingCast\022\r\n\005voter\030\001 \002(\t\022\021\n\tballot_id" +
-      "\030\002 \002(\t\022\021\n\tcandidate\030\n \001(\005\022\014\n\004rank\030\013 \001(\005\"",
-      "\220\001\n\014VotingStatus\022\021\n\tballot_id\030\001 \002(\t\022(\n\006s" +
-      "tatus\030\002 \002(\0162\030.VotingStatus.VoteStatus\022\016\n" +
-      "\006winner\030\003 \001(\005\"3\n\nVoteStatus\022\023\n\017BALLOTABA" +
-      "NDONED\020\001\022\020\n\014BALLOTWINNER\020\002\"Z\n\nMgmtHeader" +
-      "\022\022\n\noriginator\030\002 \002(\005\022\014\n\004time\030\004 \001(\003\022\032\n\004pa" +
-      "th\030\007 \003(\0132\014.RoutingPath\022\016\n\006toNode\030\010 \001(\005\"\245" +
-      "\002\n\nManagement\022\033\n\006header\030\001 \002(\0132\013.MgmtHead" +
-      "er\022\027\n\005graph\030\002 \001(\0132\010.Network\022\030\n\004beat\030\003 \001(" +
-      "\0132\n.Heartbeat\022!\n\010election\030\004 \001(\0132\017.Leader" +
-      "Election\022!\n\013job_propose\030\005 \001(\0132\014.JobPropo",
-      "sal\022\030\n\007job_bid\030\006 \001(\0132\007.JobBid\022#\n\014vote_de" +
-      "clare\030\007 \001(\0132\r.VotingBallot\022\036\n\tvote_cast\030" +
-      "\010 \001(\0132\013.VotingCast\022\"\n\013vote_status\030\t \001(\0132" +
-      "\r.VotingStatus*\221\001\n\nPokeStatus\022\n\n\006UKNOWN\020" +
-      "\001\022\013\n\007SUCCESS\020\002\022\013\n\007NOFOUND\020d\022\020\n\014NOINCOMPL" +
-      "ETE\020e\022\n\n\006NOAUTH\020f\022\020\n\014NOCONNECTION\020g\022\017\n\013N" +
-      "OREACHABLE\020h\022\016\n\nNORESOURCE\020i\022\014\n\007FAILURE\020" +
-      "\307\001B\007\n\003eyeH\001"
+      "\"\245\002\n\nManagement\022\033\n\006header\030\001 \002(\0132\013.MgmtHe" +
+      "ader\022\027\n\005graph\030\002 \001(\0132\010.Network\022\030\n\004beat\030\003 " +
+      "\001(\0132\n.Heartbeat\022!\n\010election\030\004 \001(\0132\017.Lead",
+      "erElection\022!\n\013job_propose\030\005 \001(\0132\014.JobPro" +
+      "posal\022\030\n\007job_bid\030\006 \001(\0132\007.JobBid\022#\n\014vote_" +
+      "declare\030\007 \001(\0132\r.VotingBallot\022\036\n\tvote_cas" +
+      "t\030\010 \001(\0132\013.VotingCast\022\"\n\013vote_status\030\t \001(" +
+      "\0132\r.VotingStatus*\221\001\n\nPokeStatus\022\n\n\006UKNOW" +
+      "N\020\001\022\013\n\007SUCCESS\020\002\022\013\n\007NOFOUND\020d\022\020\n\014NOINCOM" +
+      "PLETE\020e\022\n\n\006NOAUTH\020f\022\020\n\014NOCONNECTION\020g\022\017\n" +
+      "\013NOREACHABLE\020h\022\016\n\nNORESOURCE\020i\022\014\n\007FAILUR" +
+      "E\020\307\001B\007\n\003eyeH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
+      new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+        public com.google.protobuf.ExtensionRegistry assignDescriptors(
+            com.google.protobuf.Descriptors.FileDescriptor root) {
+          descriptor = root;
+          internal_static_NameValueSet_descriptor =
+            getDescriptor().getMessageTypes().get(0);
+          internal_static_NameValueSet_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_NameValueSet_descriptor,
+              new java.lang.String[] { "NodeType", "Name", "Value", "Node", });
+          internal_static_NameSpace_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_NameSpace_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_NameSpace_descriptor,
+              new java.lang.String[] { "NsId", "Name", "Desc", "Created", "LastModified", "Owner", "Properties", });
+          internal_static_JobDesc_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_JobDesc_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_JobDesc_descriptor,
+              new java.lang.String[] { "NameSpace", "OwnerId", "JobId", "Status", "Options", });
+          internal_static_Ping_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_Ping_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Ping_descriptor,
+              new java.lang.String[] { "Number", "Tag", });
+          internal_static_NameSpaceOperation_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_NameSpaceOperation_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_NameSpaceOperation_descriptor,
+              new java.lang.String[] { "Action", "NsId", "Data", "Options", });
+          internal_static_NameSpaceStatus_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_NameSpaceStatus_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_NameSpaceStatus_descriptor,
+              new java.lang.String[] { "Status", "Data", });
+          internal_static_JobOperation_descriptor =
+            getDescriptor().getMessageTypes().get(6);
+          internal_static_JobOperation_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_JobOperation_descriptor,
+              new java.lang.String[] { "Action", "JobId", "Data", });
+          internal_static_JobProposal_descriptor =
+            getDescriptor().getMessageTypes().get(7);
+          internal_static_JobProposal_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_JobProposal_descriptor,
+              new java.lang.String[] { "NameSpace", "OwnerId", "JobId", "Weight", "Options", });
+          internal_static_JobBid_descriptor =
+            getDescriptor().getMessageTypes().get(8);
+          internal_static_JobBid_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_JobBid_descriptor,
+              new java.lang.String[] { "NameSpace", "OwnerId", "JobId", "Bid", });
+          internal_static_JobStatus_descriptor =
+            getDescriptor().getMessageTypes().get(9);
+          internal_static_JobStatus_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_JobStatus_descriptor,
+              new java.lang.String[] { "JobId", "Status", "JobState", "Data", });
+          internal_static_RoutingPath_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_RoutingPath_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_RoutingPath_descriptor,
+              new java.lang.String[] { "NodeId", "Time", });
+          internal_static_Header_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_Header_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Header_descriptor,
+              new java.lang.String[] { "LeaderId", "UniqueJobId", "RoutingId", "Originator", "Tag", "Time", "PhotoHeader", "ReplyCode", "ReplyMsg", "Path", "ToNode", "Options", });
+          internal_static_Payload_descriptor =
+            getDescriptor().getMessageTypes().get(12);
+          internal_static_Payload_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Payload_descriptor,
+              new java.lang.String[] { "Ping", "SpaceOp", "JobOp", "JobStatus", "SpaceStatus", "PhotoPayload", });
+          internal_static_PhotoHeader_descriptor =
+            getDescriptor().getMessageTypes().get(13);
+          internal_static_PhotoHeader_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PhotoHeader_descriptor,
+              new java.lang.String[] { "RequestType", "ResponseFlag", "LastModified", "ContentLength", });
+          internal_static_PhotoPayload_descriptor =
+            getDescriptor().getMessageTypes().get(14);
+          internal_static_PhotoPayload_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_PhotoPayload_descriptor,
+              new java.lang.String[] { "Uuid", "Name", "Data", });
+          internal_static_Request_descriptor =
+            getDescriptor().getMessageTypes().get(15);
+          internal_static_Request_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Request_descriptor,
+              new java.lang.String[] { "Header", "Body", });
+          internal_static_Heartbeat_descriptor =
+            getDescriptor().getMessageTypes().get(16);
+          internal_static_Heartbeat_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Heartbeat_descriptor,
+              new java.lang.String[] { "TimeRef", });
+          internal_static_Network_descriptor =
+            getDescriptor().getMessageTypes().get(17);
+          internal_static_Network_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Network_descriptor,
+              new java.lang.String[] { "FromNodeId", "ToNodeId", "Action", });
+          internal_static_LeaderElection_descriptor =
+            getDescriptor().getMessageTypes().get(18);
+          internal_static_LeaderElection_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_LeaderElection_descriptor,
+              new java.lang.String[] { "ElectId", "CandidateId", "Desc", "Action", "Expires", "Hops", });
+          internal_static_VotingBallot_descriptor =
+            getDescriptor().getMessageTypes().get(19);
+          internal_static_VotingBallot_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_VotingBallot_descriptor,
+              new java.lang.String[] { "BallotId", "Desc", "BallotFormat", "ExpiresSec", "MarginToWin", "MaxHops", });
+          internal_static_VotingCast_descriptor =
+            getDescriptor().getMessageTypes().get(20);
+          internal_static_VotingCast_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_VotingCast_descriptor,
+              new java.lang.String[] { "Voter", "BallotId", "Candidate", "Rank", });
+          internal_static_VotingStatus_descriptor =
+            getDescriptor().getMessageTypes().get(21);
+          internal_static_VotingStatus_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_VotingStatus_descriptor,
+              new java.lang.String[] { "BallotId", "Status", "Winner", });
+          internal_static_MgmtHeader_descriptor =
+            getDescriptor().getMessageTypes().get(22);
+          internal_static_MgmtHeader_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_MgmtHeader_descriptor,
+              new java.lang.String[] { "Originator", "Time", "Path", "ToNode", });
+          internal_static_Management_descriptor =
+            getDescriptor().getMessageTypes().get(23);
+          internal_static_Management_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Management_descriptor,
+              new java.lang.String[] { "Header", "Graph", "Beat", "Election", "JobPropose", "JobBid", "VoteDeclare", "VoteCast", "VoteStatus", });
+          return null;
+        }
+      };
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_NameValueSet_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_NameValueSet_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_NameValueSet_descriptor,
-        new java.lang.String[] { "NodeType", "Name", "Value", "Node", });
-    internal_static_NameSpace_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_NameSpace_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_NameSpace_descriptor,
-        new java.lang.String[] { "NsId", "Name", "Desc", "Created", "LastModified", "Owner", "Properties", });
-    internal_static_JobDesc_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_JobDesc_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_JobDesc_descriptor,
-        new java.lang.String[] { "NameSpace", "OwnerId", "JobId", "Status", "Options", });
-    internal_static_Ping_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_Ping_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Ping_descriptor,
-        new java.lang.String[] { "Number", "Tag", });
-    internal_static_NameSpaceOperation_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_NameSpaceOperation_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_NameSpaceOperation_descriptor,
-        new java.lang.String[] { "Action", "NsId", "Data", "Options", });
-    internal_static_NameSpaceStatus_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_NameSpaceStatus_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_NameSpaceStatus_descriptor,
-        new java.lang.String[] { "Status", "Data", });
-    internal_static_JobOperation_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_JobOperation_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_JobOperation_descriptor,
-        new java.lang.String[] { "Action", "JobId", "Data", });
-    internal_static_JobProposal_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_JobProposal_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_JobProposal_descriptor,
-        new java.lang.String[] { "NameSpace", "OwnerId", "JobId", "Weight", "Options", });
-    internal_static_JobBid_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_JobBid_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_JobBid_descriptor,
-        new java.lang.String[] { "NameSpace", "OwnerId", "JobId", "Bid", });
-    internal_static_JobStatus_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_JobStatus_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_JobStatus_descriptor,
-        new java.lang.String[] { "JobId", "Status", "JobState", "Data", });
-    internal_static_RoutingPath_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_RoutingPath_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_RoutingPath_descriptor,
-        new java.lang.String[] { "NodeId", "Time", });
-    internal_static_Header_descriptor =
-      getDescriptor().getMessageTypes().get(11);
-    internal_static_Header_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Header_descriptor,
-        new java.lang.String[] { "RoutingId", "Originator", "Tag", "Time", "PhotoHeader", "ReplyCode", "ReplyMsg", "Path", "ToNode", "Options", });
-    internal_static_Payload_descriptor =
-      getDescriptor().getMessageTypes().get(12);
-    internal_static_Payload_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Payload_descriptor,
-        new java.lang.String[] { "Ping", "SpaceOp", "JobOp", "JobStatus", "SpaceStatus", "PhotoPayload", });
-    internal_static_PhotoHeader_descriptor =
-      getDescriptor().getMessageTypes().get(13);
-    internal_static_PhotoHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_PhotoHeader_descriptor,
-        new java.lang.String[] { "RequestType", "ResponseFlag", "LastModified", "ContentLength", });
-    internal_static_PhotoPayload_descriptor =
-      getDescriptor().getMessageTypes().get(14);
-    internal_static_PhotoPayload_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_PhotoPayload_descriptor,
-        new java.lang.String[] { "Uuid", "Name", "Data", });
-    internal_static_Request_descriptor =
-      getDescriptor().getMessageTypes().get(15);
-    internal_static_Request_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Request_descriptor,
-        new java.lang.String[] { "Header", "Body", });
-    internal_static_Heartbeat_descriptor =
-      getDescriptor().getMessageTypes().get(16);
-    internal_static_Heartbeat_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Heartbeat_descriptor,
-        new java.lang.String[] { "TimeRef", });
-    internal_static_Network_descriptor =
-      getDescriptor().getMessageTypes().get(17);
-    internal_static_Network_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Network_descriptor,
-        new java.lang.String[] { "FromNodeId", "ToNodeId", "Action", });
-    internal_static_LeaderElection_descriptor =
-      getDescriptor().getMessageTypes().get(18);
-    internal_static_LeaderElection_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_LeaderElection_descriptor,
-        new java.lang.String[] { "ElectId", "CandidateId", "Desc", "Action", "Expires", "Hops", });
-    internal_static_VotingBallot_descriptor =
-      getDescriptor().getMessageTypes().get(19);
-    internal_static_VotingBallot_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_VotingBallot_descriptor,
-        new java.lang.String[] { "BallotId", "Desc", "BallotFormat", "ExpiresSec", "MarginToWin", "MaxHops", });
-    internal_static_VotingCast_descriptor =
-      getDescriptor().getMessageTypes().get(20);
-    internal_static_VotingCast_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_VotingCast_descriptor,
-        new java.lang.String[] { "Voter", "BallotId", "Candidate", "Rank", });
-    internal_static_VotingStatus_descriptor =
-      getDescriptor().getMessageTypes().get(21);
-    internal_static_VotingStatus_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_VotingStatus_descriptor,
-        new java.lang.String[] { "BallotId", "Status", "Winner", });
-    internal_static_MgmtHeader_descriptor =
-      getDescriptor().getMessageTypes().get(22);
-    internal_static_MgmtHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_MgmtHeader_descriptor,
-        new java.lang.String[] { "Originator", "Time", "Path", "ToNode", });
-    internal_static_Management_descriptor =
-      getDescriptor().getMessageTypes().get(23);
-    internal_static_Management_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_Management_descriptor,
-        new java.lang.String[] { "Header", "Graph", "Beat", "Election", "JobPropose", "JobBid", "VoteDeclare", "VoteCast", "VoteStatus", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

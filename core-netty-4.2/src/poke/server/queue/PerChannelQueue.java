@@ -20,19 +20,27 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 
 import java.lang.Thread.State;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.client.ClientCommand;
 import poke.server.conf.ServerConf;
+import poke.server.managers.ConnectionManager;
 import poke.server.managers.ElectionManager;
+import poke.server.managers.HeartbeatData;
+import poke.server.managers.HeartbeatManager;
+import poke.server.managers.RoutedJobManager;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceFactory;
 import poke.server.resources.ResourceUtil;
 
 import com.google.protobuf.GeneratedMessage;
 
+import eye.Comm.Header;
 import eye.Comm.PokeStatus;
 import eye.Comm.Request;
 
@@ -50,7 +58,7 @@ import eye.Comm.Request;
 public class PerChannelQueue implements ChannelQueue {
 	protected static Logger logger = LoggerFactory.getLogger("server");
 
-	private Channel channel;
+	public Channel channel;
 	protected ServerConf conf = new ServerConf();
 	// The queues feed work to the inbound and outbound threads (workers). The
 	// threads perform a blocking 'get' on the queue until a new event/task is
@@ -183,15 +191,14 @@ public class PerChannelQueue implements ChannelQueue {
 				try {
 					// block until a message is enqueued
 					GeneratedMessage msg = sq.outbound.take();
-					//System.out.println("Outbound Messageeeeeeeeeeeeeeeeeee ::"+msg);
 					if (conn.isWritable()) {
 						boolean rtn = false;
 						if (channel != null && channel.isOpen() && channel.isWritable()) {
 							ChannelFuture cf = channel.writeAndFlush(msg);
-							System.out.println("I am OUTBOUND WORKER");
+							logger.info("I am OUTBOUND WORKER");
 							// blocks on write - use listener to be async
 							if(cf.isDone()) {
-								System.out.println("done///////////////////////////////////////////////////////////");
+								logger.info("done");
 							}
 							cf.awaitUninterruptibly();
 							rtn = cf.isSuccess();
@@ -231,12 +238,12 @@ public class PerChannelQueue implements ChannelQueue {
 		}
 		//Check if the node is Leader
 		public boolean isLeader() {
-			System.out.println("leader insided            "+ElectionManager.getInstance().whoIsTheLeader());
+			logger.info("Check if leader :: "+ElectionManager.getInstance().whoIsTheLeader());
 			return ElectionManager.getInstance().whoIsTheLeader()
 					.equals(getMyNode()); }
 		//get node details
 		public int getMyNode() {
-			System.out.println("NODE ID:::::::::::::       "+ ResourceFactory.getCfg().getNodeId());
+			logger.info("NODE ID :: "+ ResourceFactory.getCfg().getNodeId());
 			return ResourceFactory.getCfg().getNodeId();
 		}
 		@Override
@@ -258,27 +265,52 @@ public class PerChannelQueue implements ChannelQueue {
 					// process request and enqueue response
 					if (msg instanceof Request) {
 						Request req = ((Request) msg);
-
+						
 						// do we need to route the request?
-
-						// handle it locally
-						Resource rsc = ResourceFactory.getInstance().resourceInstance(req.getHeader());
-
-						Request reply = null;
-						if (rsc == null) {
-							logger.error("failed to obtain resource for " + req);
-							reply = ResourceUtil.buildError(req.getHeader(), PokeStatus.NORESOURCE,
-									"Request not processed");
-						} else
-							reply = rsc.process(req);
+						logger.info(" total number of node connection "+ConnectionManager.getNumMgmtConnections());
 						
-						
-						
-							System.out.println("reply.................."+ reply.toString());
-
-							sq.enqueueResponse(reply, null);
+						if(isLeader()){
+							UUID uniqueJobId = UUID.randomUUID();
+							Request.Builder rb = Request.newBuilder();
+							
+							Header.Builder header = req.getHeader().toBuilder();
+							header.setLeaderId(ResourceFactory.getCfg().getNodeId());
+							header.setUniqueJobId(uniqueJobId.toString());
+							
+							rb.setHeader(header);
+							rb.setBody(req.getBody());
+							
+							req = rb.build();
+							
+							ConcurrentHashMap<Channel, HeartbeatData> outgoingHB = HeartbeatManager.getInstance().getOutgoingHB();
+							for(Channel ch : outgoingHB.keySet()){
+								HeartbeatData hbd = outgoingHB.get(ch);
+								logger.info(" ----------- "+hbd.getNodeId());
+							
+							}
+							
+							ClientCommand cc = new ClientCommand("localhost", 5573);
+							cc.forwardMsg(req);
+							//cc.poke("2", 1);
+							ConcurrentHashMap<String, PerChannelQueue> outgoingJOBs = RoutedJobManager.getInstance().getJobMap();
+							outgoingJOBs.put(uniqueJobId.toString(), sq);
+							RoutedJobManager.getInstance().setJobMap(outgoingJOBs);
+							logger.info(" size of the map "+RoutedJobManager.getInstance().getJobMap().size());
+						}else{
+							// handle it locally
+							Resource rsc = ResourceFactory.getInstance().resourceInstance(req.getHeader());
+							logger.info("request from leader node "+msg);
+							Request reply = null;
+							if (rsc == null) {
+								logger.error("failed to obtain resource for " + req);
+								reply = ResourceUtil.buildError(req.getHeader(), PokeStatus.NORESOURCE,
+										"Request not processed");
+							} else
+								reply = rsc.process(req);	
+								logger.info("reply..."+ reply.toString());
+								sq.enqueueResponse(reply, null);
+							}
 						}
-
 					} catch (InterruptedException ie) {
 						break;
 					} catch (Exception e) {
