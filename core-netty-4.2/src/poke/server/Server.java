@@ -290,11 +290,10 @@ public class Server {
 		// create manager for accepting jobs
 		jobMgr = JobManager.initManager(conf);
 		
-		//create manager for routed jobs
-		routedJobManager = RoutedJobManager.initManager();
-		
 		//initialize load balancer map
-		routingInitializer = RoutingInitializer.initManager();
+				routingInitializer = RoutingInitializer.initManager();
+				if (routingInitializer == null)
+					System.out.println("nul routingInitializer");
 		
 		// establish nearest nodes and start sending heartbeats
 		heartbeatMgr = HeartbeatManager.initManager(conf);
@@ -306,10 +305,16 @@ public class Server {
 		}
 		heartbeatMgr.start();
 
+		
+		//create manager for routed jobs
+		routedJobManager = RoutedJobManager.initManager();
+		
+		
+		
 		// manage heartbeatMgr connections
 		HeartbeatPusher conn = HeartbeatPusher.getInstance();
 		conn.start();
-
+		
 		logger.info("Server " + conf.getNodeId() + ", managers initialized");
 	}
 

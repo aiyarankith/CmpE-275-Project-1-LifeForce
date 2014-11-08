@@ -40,10 +40,20 @@ public class HeartbeatPusher extends Thread {
 	private ConcurrentLinkedQueue<HeartMonitor> monitors = new ConcurrentLinkedQueue<HeartMonitor>();
 	private int sConnectRate = 2000; // msec
 	private boolean forever = true;
+	ConcurrentHashMap<Integer, RoundRobinInitilizers> loadbalancer = null;
+	
 
 	public static HeartbeatPusher getInstance() {
 		instance.compareAndSet(null, new HeartbeatPusher());
 		return instance.get();
+	}
+	
+	public HeartbeatPusher() {
+		//add this node to load balancer map
+				RoutingInitializer rbi = RoutingInitializer.getInstance();
+				if(rbi == null)
+					System.out.println("nulll");
+				loadbalancer =  rbi.getBalancer();
 	}
 
 	/**
@@ -68,14 +78,15 @@ public class HeartbeatPusher extends Thread {
 		HeartMonitor hm = new HeartMonitor(iamNode, node.getHost(), node.getMgmtport(), node.getNodeId());
 		monitors.add(hm);
 		
-		//add this node to load balancer map
-		ConcurrentHashMap<Integer, RoundRobinInitilizers> loadbalancer = RoutingInitializer.getInstance().getBalancer();
-		loadbalancer.put(node.getNodeId(), RoundRobinInitilizers.getInstance());
+		
 		
 		// artifact of the client-side listener - processing is done in the
 		// inbound mgmt worker
 		HeartbeatStubListener notused = new HeartbeatStubListener(node);
 		hm.addListener(notused);
+		
+		loadbalancer.put(node.getNodeId(), RoundRobinInitilizers.getInstance());
+
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RoundRobinInitilizers {
 	private int processWeight = 3;
 	private int jobsInQueue = 0;
-	private static RoundRobinInitilizers instance = null;
+	private static RoundRobinInitilizers instance = new RoundRobinInitilizers();
 	
 	AtomicInteger jobCountToThisQ = new AtomicInteger(0);
 	
