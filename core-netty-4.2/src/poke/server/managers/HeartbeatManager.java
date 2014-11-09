@@ -237,7 +237,13 @@ public class HeartbeatManager extends Thread {
 					for (HeartbeatData hd : outgoingHB.values()) {
 						// if failed sends exceed threshold, stop sending
 						if (hd.getFailuresOnSend() > HeartbeatData.sFailureToSendThresholdDefault) {
-							// TODO mark as possible broken connection
+							hd.setStatus(BeatStatus.Failed);
+							continue;
+						}
+						
+						//Check to see if the Heartbeat fails. 
+						if (BeatStatus.Failed.equals(hd.getStatus())) {
+							logger.debug("NOT sending heartbeat to the failed/unknown node: " + hd.getNodeId());
 							continue;
 						}
 
