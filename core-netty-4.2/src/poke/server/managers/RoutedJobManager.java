@@ -28,6 +28,14 @@ public class RoutedJobManager {
 		
 	}
 	
+	public void putJob (String uuid, PerChannelQueue pcq) {
+		outgoingJOBs.put(uuid, pcq);
+	}
+	
+	public void removeJob (String uuid) {
+		outgoingJOBs.remove(uuid);
+	}
+	
 	public ConcurrentHashMap<String, PerChannelQueue> getJobMap(){
 		return this.outgoingJOBs;
 	}

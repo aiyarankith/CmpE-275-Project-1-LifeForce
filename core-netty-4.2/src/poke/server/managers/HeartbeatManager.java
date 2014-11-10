@@ -95,6 +95,10 @@ public class HeartbeatManager extends Thread {
 		return outgoingHB;
 	}
 	
+	public ConcurrentHashMap<Integer, HeartbeatData> getIncomingHB(){
+		return incomingHB;
+	}
+	
 	/**
 	 * create/register expected connections that this node will make. These
 	 * edges are connections this node is responsible for monitoring.
@@ -238,6 +242,7 @@ public class HeartbeatManager extends Thread {
 						// if failed sends exceed threshold, stop sending
 						if (hd.getFailuresOnSend() > HeartbeatData.sFailureToSendThresholdDefault) {
 							hd.setStatus(BeatStatus.Failed);
+							logger.info("node dead/ re-route the data");
 							continue;
 						}
 						
@@ -294,6 +299,10 @@ public class HeartbeatManager extends Thread {
 		public void operationComplete(ChannelFuture future) throws Exception {
 			if (outgoingHB.containsValue(heart)) {
 				logger.warn("HB outgoing channel closing for node '" + heart.getNodeId() + "' at " + heart.getHost());
+				logger.info("node dead/ re-route the data" +heart.getNodeId());
+				RoutingManager.getInstance().getBalancer().remove(heart.getNodeId());
+				int index = RoutingManager.getInstance().getActiveNodeList().indexOf(heart.getNodeId());
+				RoutingManager.getInstance().getActiveNodeList().remove(index);
 				outgoingHB.remove(future.channel());
 			} else if (incomingHB.containsValue(heart)) {
 				logger.warn("HB incoming channel closing for node '" + heart.getNodeId() + "' at " + heart.getHost());

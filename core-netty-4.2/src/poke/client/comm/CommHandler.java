@@ -26,12 +26,18 @@ import java.util.concurrent.ConcurrentMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.client.ClientCommand;
+import poke.server.managers.ConnectionManager;
 import poke.server.managers.RoutedJobManager;
+import poke.server.managers.RoutingManager;
 import poke.server.queue.PerChannelQueue;
+import poke.server.roundrobin.RoundRobinInitilizers;
 
 import com.google.protobuf.GeneratedMessage;
 
+import eye.Comm.PhotoHeader.ResponseFlag;
 import eye.Comm.Request;
+import eye.Comm.PhotoHeader.RequestType;
 
 public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	protected static Logger logger = LoggerFactory.getLogger("connect");
@@ -104,7 +110,9 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 		for(String uuidsample : outgoingJOBs.keySet()){
 			if(uuidsample.equals(uuid)){
 				PerChannelQueue pq = outgoingJOBs.get(uuid);
-				logger.info(" selected perchannelqueue instance "+pq.toString());
+				RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(pq.getRouteNodeId());
+				rri.reduceJobsInQueue();
+				logger.info("  current jobs with node"+ pq.getRouteNodeId() +" are "+rri.getJobsInQueue());
 				if(pq.channel != null){
 					pq.enqueueResponse(msg, pq.channel);
 				}else{
@@ -112,6 +120,7 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 				}
 				outgoingJOBs.remove(uuid);
 				RoutedJobManager.getInstance().setJobMap(outgoingJOBs);
+				ctx.channel().close();
 			}
 		}
 	}

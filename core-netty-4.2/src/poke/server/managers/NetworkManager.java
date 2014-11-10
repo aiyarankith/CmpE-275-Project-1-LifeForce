@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.server.conf.ServerConf;
+import poke.server.roundrobin.RoundRobinInitilizers;
 import eye.Comm.Management;
 import eye.Comm.Network;
 import eye.Comm.Network.NetworkAction;
@@ -90,7 +91,12 @@ public class NetworkManager {
 					logger.info("NODEJOIN: " + isa.getHostName() + ", " + isa.getPort());
 					HeartbeatManager.getInstance().addOutgoingChannel(req.getFromNodeId(), isa.getHostName(),
 							isa.getPort(), channel, socka);
-					/*RoutingInitializer.getInstance().*/
+					RoutingManager.getInstance().addNodeToList(req.getFromNodeId());
+					RoutingManager.getInstance().putRobinForNode(req.getFromNodeId(), RoundRobinInitilizers.getInstance());
+					
+					System.out.println("------------------------------------------------");
+					System.out.println(" node joined and added "+req.getFromNodeId());
+					System.out.println("------------------------------------------------");
 				}
 			} else
 				logger.warn(req.getFromNodeId() + " not writable");

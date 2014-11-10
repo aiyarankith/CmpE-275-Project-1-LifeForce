@@ -47,8 +47,9 @@ import poke.server.managers.HeartbeatManager;
 import poke.server.managers.JobManager;
 import poke.server.managers.NetworkManager;
 import poke.server.managers.RoutedJobManager;
-import poke.server.managers.RoutingInitializer;
+import poke.server.managers.RoutingManager;
 import poke.server.resources.ResourceFactory;
+import poke.server.roundrobin.RoundRobinInitilizers;
 import poke.server.storage.jdbc.DatabaseStorage;
 
 /**
@@ -73,7 +74,7 @@ public class Server {
 	protected JobManager jobMgr;
 	protected NetworkManager networkMgr;
 	protected RoutedJobManager routedJobManager;
-	protected RoutingInitializer routingInitializer;
+	protected RoutingManager routingManager;
 	protected HeartbeatManager heartbeatMgr;
 	protected ElectionManager electionMgr;
 	//Database
@@ -291,9 +292,9 @@ public class Server {
 		jobMgr = JobManager.initManager(conf);
 		
 		//initialize load balancer map
-				routingInitializer = RoutingInitializer.initManager();
-				if (routingInitializer == null)
-					System.out.println("nul routingInitializer");
+		routingManager = RoutingManager.initManager();
+		if (routingManager == null)
+			System.out.println("null routingManager");
 		
 		// establish nearest nodes and start sending heartbeats
 		heartbeatMgr = HeartbeatManager.initManager(conf);
@@ -315,6 +316,12 @@ public class Server {
 		HeartbeatPusher conn = HeartbeatPusher.getInstance();
 		conn.start();
 		
+		RoutingManager.getInstance().addNodeToList(conf.getNodeId());
+		RoutingManager.getInstance().putRobinForNode(conf.getNodeId(), RoundRobinInitilizers.getInstance());
+		
+		logger.info("------------------------------------------------");
+		logger.info(" server itself added to worker queue "+conf.getNodeId());
+		logger.info("------------------------------------------------");
 		logger.info("Server " + conf.getNodeId() + ", managers initialized");
 	}
 

@@ -81,16 +81,10 @@ public class ResourceFactory {
 	 */
 	public Resource resourceInstance(Header header ) {
 		// is the message for this server?
-		if (header.hasToNode()) {
-			if (cfg.getNodeId() == header.getToNode())
-				; // fall through and process normally
-			else {
-				// forward request
-			}
-		}
 		
 		logger.info("Header :: "+header.toString());
 		ResourceConf rc = cfg.findById(header.getRoutingId().getNumber());
+		
 		logger.info("JOB Number :: "+header.getRoutingId().getNumber());
 		if (rc == null)
 			return null;

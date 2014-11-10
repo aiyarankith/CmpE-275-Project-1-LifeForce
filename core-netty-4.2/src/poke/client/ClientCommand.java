@@ -103,7 +103,7 @@ public class ClientCommand {
 		eye.Comm.Header.Builder h = Header.newBuilder();
 		h.setOriginator(1000);
 		h.setTag("test finger");
-		h.setTime(System.currentTimeMillis());
+		h.setTime(System.nanoTime());
 		h.setRoutingId(eye.Comm.Header.Routing.PING);
 		r.setHeader(h.build());
 

@@ -157,7 +157,7 @@ message RoutingPath {
 }
 
 message Header { 
-	optional int64 leader_id =11;
+	optional int32 leader_id =11;
 	optional string unique_job_id = 12;
     required Routing routing_id = 1;
     required int32 originator = 2;

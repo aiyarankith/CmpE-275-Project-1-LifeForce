@@ -38,10 +38,11 @@ import eye.Comm.NameSpace;
 public class DatabaseStorage implements TenantStorage {
 	protected static Logger logger = LoggerFactory.getLogger("database");
 
-	/*public static final String sDriver = "com.mysql.jdbc.Driver";
-	public static final String sUrl = "jdbc:mysql://localhost/test";
-	public static final String sUser = "root";
-	public static final String sPass = "root";*/
+	/*
+	 * public static final String sDriver = "com.mysql.jdbc.Driver"; public
+	 * static final String sUrl = "jdbc:mysql://localhost/test"; public static
+	 * final String sUser = "root"; public static final String sPass = "root";
+	 */
 
 	protected Properties cfg;
 	protected static BoneCP cpool;
@@ -61,7 +62,7 @@ public class DatabaseStorage implements TenantStorage {
 
 		this.cfg = cfg;
 
-		try {			
+		try {
 			Class.forName(cfg.getProperty("DB_DRIVER_CLASS"));
 			BoneCPConfig config = new BoneCPConfig();
 			config.setJdbcUrl(cfg.getProperty("DB_URL"));
@@ -72,7 +73,6 @@ public class DatabaseStorage implements TenantStorage {
 			config.setPartitionCount(1);
 
 			cpool = new BoneCP(config);
-			System.out.println("POlllllllllllllllllllllllllllllll");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -103,12 +103,18 @@ public class DatabaseStorage implements TenantStorage {
 			// TODO complete code to retrieve through JDBC/SQL
 			// select * from space where id = spaceId
 
-			if (conn != null){
-				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				Statement stmt =  conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM test"); // do something with the connection.
-				while(rs.next()){
-					System.out.println(rs.getString(1)); // should print out "1"'
+			if (conn != null) {
+				System.out
+						.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM test"); // do
+																		// something
+																		// with
+																		// the
+																		// connection.
+				while (rs.next()) {
+					System.out.println(rs.getString(1)); // should print out
+															// "1"'
 				}
 			}
 			logger.info("This is inside JDBC ................................................");
@@ -226,35 +232,31 @@ public class DatabaseStorage implements TenantStorage {
 
 	@Override
 	public String addImage(String photoname, ByteString data) {
+		return null;
+	}
+
+	public boolean addImageWithId(String photoName, ByteString data, String uuid) {
+
 		System.out.println("INSIDE ADD IMAGE");
 		Connection conn = null;
-		String insertId = null;
 		try {
 			conn = cpool.getConnection();
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
-			// TODO complete code to retrieve through JDBC/SQL
 
-			String insert = "insert into ImageStore (name, image) values('" + photoname + "','" + data + "');"; 
-			String select = "SELECT LAST_INSERT_ID();";
-			if (conn != null){
-				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				Statement stmt =  conn.createStatement();
-				stmt.executeUpdate(insert);
-				ResultSet rs = stmt.executeQuery(select);
-				while (rs.next()) {
-					System.out.println("IDDDDDDDDDDDDDDDDDDDDDd::::::::::::: UUID:: "+rs.getLong("last_insert_id()"));
-					insertId = rs.getString("last_insert_id()"); 
+			String insert = "insert into ImageStore (uuid, name, image) values('"+ uuid + "','" + photoName + "','" + data + "');";
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				int result = stmt.executeUpdate(insert);
+				if (result > 0) {
+					logger.debug("Image inserted.");
+					return true;
+				} else {
+					logger.debug("Image insertion failed.");
+					return false;
 				}
-
-
-				logger.debug("Storing Image " + photoname + " - ");
-				return insertId;
 			}
-			logger.info("This is inside JDBC ................................................");
-
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
-			//logger.error("failed/exception on looking up space " + spaceId, ex);
 		} finally {
 			if (conn != null) {
 				try {
@@ -264,7 +266,7 @@ public class DatabaseStorage implements TenantStorage {
 				}
 			}
 		}
-		return insertId;
+		return false;
 	}
 
 	@Override
@@ -277,24 +279,28 @@ public class DatabaseStorage implements TenantStorage {
 			conn = cpool.getConnection();
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
-			String select = "SELECT * from ImageStore where uuid = '" +uuid+ "';";
-			if (conn != null){
-				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				Statement stmt =  conn.createStatement();
+			String select = "SELECT * from ImageStore where uuid = '" + uuid + "';";
+			
+			logger.info("select:" +select);
+			
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
 
 				ResultSet rs = stmt.executeQuery(select);
-				while (rs.next()) {
+				if (rs == null)
+					logger.info("rs is nulllllllll");
 
+				while (rs.next()) {
+					logger.info("indid next.....................");
 					image = ByteString.copyFrom(rs.getBytes("image"));
 				}
-
+				logger.info("image::" +image.toString());
 				return image;
 			}
-			logger.info("This is inside JDBC ................................................");
-
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
-			//logger.error("failed/exception on looking up space " + spaceId, ex);
+			// logger.error("failed/exception on looking up space " + spaceId,
+			// ex);
 		} finally {
 			if (conn != null) {
 				try {
@@ -313,23 +319,25 @@ public class DatabaseStorage implements TenantStorage {
 		// TODO Auto-generated method stub
 		System.out.println("INSIDE DELETE IMAGE");
 		Connection conn = null;
-		
+
 		try {
 			conn = cpool.getConnection();
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
-			String delete = "DELETE FROM ImageStore where uuid = '" +uuid+ "';";
-			if (conn != null){
-				System.out.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				Statement stmt =  conn.createStatement();
+			String delete = "DELETE FROM ImageStore where uuid = '" + uuid
+					+ "';";
+			if (conn != null) {
+
+				Statement stmt = conn.createStatement();
 				stmt.executeUpdate(delete);
-				
+
 				return true;
 			}
 
-		}catch (Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
-			//logger.error("failed/exception on looking up space " + spaceId, ex);
+			// logger.error("failed/exception on looking up space " + spaceId,
+			// ex);
 		} finally {
 			if (conn != null) {
 				try {

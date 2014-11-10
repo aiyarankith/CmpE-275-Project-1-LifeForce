@@ -20,12 +20,20 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.server.queue.ChannelQueue;
 import poke.server.queue.QueueFactory;
+import poke.server.resources.ResourceUtil;
+import eye.Comm.Header;
+import eye.Comm.Header.Routing;
+import eye.Comm.Payload;
+import eye.Comm.PhotoHeader.ResponseFlag;
+import eye.Comm.Request;
 
 /**
  * As implemented, this server handler does not share queues or worker threads
@@ -72,6 +80,41 @@ public class ServerHandler extends SimpleChannelInboundHandler<eye.Comm.Request>
 		ctx.close();
 	}
 
+	
+	@Override
+	public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
+			throws Exception {
+		
+		if (evt instanceof IdleStateEvent) {
+            IdleStateEvent e = (IdleStateEvent) evt;
+            if (e.state() == IdleState.READER_IDLE) {
+                ctx.close();
+            } else if (e.state() == IdleState.WRITER_IDLE) {
+                ctx.writeAndFlush(buildTimeOutMsg());
+                ctx.channel().close();
+            }
+        }
+	}
+
+	//Build Timeout Message
+	private Object buildTimeOutMsg() {
+		Request.Builder rb = Request.newBuilder();
+		
+		Header.Builder bldr = Header.newBuilder();
+		bldr.setOriginator(-1);
+		
+		bldr.setRoutingId(eye.Comm.Header.Routing.JOBS);
+		bldr.setReplyCode(eye.Comm.PokeStatus.FAILURE);
+		
+		rb.setHeader(bldr);
+		
+		Payload.Builder payLoad = Payload.newBuilder();
+		rb.setBody(payLoad);
+		
+		return rb.build();
+	}
+	
+	
 	/**
 	 * Isolate how the server finds the queue. Note this cannot return null.
 	 * 

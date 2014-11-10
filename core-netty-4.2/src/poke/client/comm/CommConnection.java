@@ -24,10 +24,14 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import poke.monitor.HeartMonitor;
+import poke.server.managers.HeartbeatPusher;
 
 import com.google.protobuf.GeneratedMessage;
 
@@ -59,6 +63,7 @@ public class CommConnection {
 
 	// message processing is delegated to a threading model
 	private OutboundWorker worker;
+	private ConcurrentLinkedQueue<HeartMonitor> monitors = null;
 
 	/**
 	 * Create a connection instance to this host/port. On construction the
@@ -72,6 +77,11 @@ public class CommConnection {
 		this.port = port;
 
 		init();
+	}
+	
+	public CommConnection(ConcurrentLinkedQueue<HeartMonitor> monitors) {
+		this.monitors = monitors;
+		initAllConn();
 	}
 
 	/**
@@ -113,7 +123,12 @@ public class CommConnection {
 		// the queue to support client-side surging
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 
-		group = new NioEventLoopGroup();
+		try {
+			group = new NioEventLoopGroup();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		try {
 			handler = new CommHandler();
 			CommInitializer ci = new CommInitializer(handler);
@@ -147,6 +162,18 @@ public class CommConnection {
 		worker = new OutboundWorker(this);
 		worker.start();
 	}
+	
+
+	private void initAllConn() {
+		for (HeartMonitor hb : monitors) {
+			if (hb.isConnected()) {
+				this.host = hb.getHost();
+				this.port = hb.getPort();
+				init();
+			}
+		}
+	}
+
 
 	/**
 	 * create connection to remote server

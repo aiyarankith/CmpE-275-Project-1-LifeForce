@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import poke.monitor.HeartMonitor;
 import poke.server.managers.HeartbeatData.BeatStatus;
+import poke.server.roundrobin.RoundRobinInitilizers;
 
 /**
  * This server-side class collects connection monitors (e.g., listeners
@@ -38,8 +39,11 @@ public class HeartbeatPusher extends Thread {
 	protected static AtomicReference<HeartbeatPusher> instance = new AtomicReference<HeartbeatPusher>();
 
 	private ConcurrentLinkedQueue<HeartMonitor> monitors = new ConcurrentLinkedQueue<HeartMonitor>();
+	
+
 	private int sConnectRate = 2000; // msec
 	private boolean forever = true;
+	
 	ConcurrentHashMap<Integer, RoundRobinInitilizers> loadbalancer = null;
 	
 
@@ -50,7 +54,7 @@ public class HeartbeatPusher extends Thread {
 	
 	public HeartbeatPusher() {
 		//add this node to load balancer map
-				RoutingInitializer rbi = RoutingInitializer.getInstance();
+				RoutingManager rbi = RoutingManager.getInstance();
 				if(rbi == null)
 					System.out.println("nulll");
 				loadbalancer =  rbi.getBalancer();
@@ -184,5 +188,9 @@ public class HeartbeatPusher extends Thread {
 				}
 			}
 		}
+	}
+
+	public ConcurrentLinkedQueue<HeartMonitor> getMonitors() {
+		return monitors;
 	}
 }

@@ -20,6 +20,8 @@ import java.util.List;
 import poke.server.conf.ServerConf;
 import eye.Comm.Header;
 import eye.Comm.Header.Routing;
+import eye.Comm.PhotoHeader;
+import eye.Comm.PhotoHeader.ResponseFlag;
 import eye.Comm.PokeStatus;
 import eye.Comm.Request;
 import eye.Comm.RoutingPath;
@@ -95,26 +97,28 @@ public class ResourceUtil {
 	}
 	
 	//Created -- 30th OCT
-	public static Header buildHeaderFrom(Header header, int successValue,
+	public static Header buildHeaderFrom(Header header, ResponseFlag rspFlag,
 			String statusMsg) {
 		// TODO Auto-generated method stub
-		return buildHeader(header.getRoutingId(), successValue, statusMsg, header.getOriginator(), header.getTag());
+		return buildHeader(header.getRoutingId(), rspFlag, statusMsg, header.getOriginator(), header.getTag());
 	}
 
-	private static Header buildHeader(Routing routingId, int successValue, String statusMsg,
+	private static Header buildHeader(Routing routingId, ResponseFlag rspFlag, String statusMsg,
 			int originator, String tag) {
-		// TODO Auto-generated method stub
-		Header.Builder bldr = Header.newBuilder();
-		bldr.setOriginator(originator);
-		bldr.setRoutingId(routingId);
-		bldr.setTag(tag);
-		//bldr.setReplyCode(successValue);
+		Header.Builder hdrBldr = Header.newBuilder();
+		hdrBldr.setOriginator(originator);
+		hdrBldr.setRoutingId(routingId);
+		hdrBldr.setTag(tag);
+		
+		PhotoHeader.Builder phdrBldr = PhotoHeader.newBuilder();
+		phdrBldr.setResponseFlag(rspFlag);
+		hdrBldr.setPhotoHeader(phdrBldr);
 
 		if (statusMsg != null)
-			bldr.setReplyMsg(statusMsg);
+			hdrBldr.setReplyMsg(statusMsg);
 
-		bldr.setTime(System.currentTimeMillis());
+		hdrBldr.setTime(System.currentTimeMillis());
 
-		return bldr.build();
+		return hdrBldr.build();
 	}
 }
