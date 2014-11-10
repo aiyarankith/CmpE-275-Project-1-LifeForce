@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RoundRobinInitilizers {
 	private int processWeight = 3;
-	private long lastAverageResponseTime = 0;
+	private long lastAverageResponseTime = -1;
 	/*private int jobsInQueue = 0;*/
 	
 	private static RoundRobinInitilizers instance = new RoundRobinInitilizers();
@@ -36,6 +36,14 @@ public class RoundRobinInitilizers {
 
 	public void setProcessWeight(int processWeight) {
 		this.processWeight = processWeight;
+	}
+	
+	public long getLastAverageResponseTime() {
+		return lastAverageResponseTime;
+	}
+
+	public void setLastAverageResponseTime(long lastAverageResponseTime) {
+		this.lastAverageResponseTime = lastAverageResponseTime;
 	}
 
 	public int getJobsInQueue() {

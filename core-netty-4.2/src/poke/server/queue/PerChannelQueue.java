@@ -125,7 +125,6 @@ public class PerChannelQueue implements ChannelQueue {
 	 */
 	@Override
 	public void shutdown(boolean hard) {
-		logger.info("server is shutting down");
 
 		channel = null;
 
@@ -221,7 +220,7 @@ public class PerChannelQueue implements ChannelQueue {
 							if (channel != null && channel.isOpen()
 									&& channel.isWritable()) {
 								ChannelFuture cf = channel.writeAndFlush(msg);
-								logger.info("I am OUTBOUND WORKER");
+								//logger.info("I am OUTBOUND WORKER");
 								// blocks on write - use listener to be async
 								if (cf.isDone()) {
 									logger.info("done");

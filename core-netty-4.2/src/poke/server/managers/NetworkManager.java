@@ -25,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.server.conf.ServerConf;
+import poke.server.roundrobin.LoadBalanceTask;
+import poke.server.roundrobin.ResponseCommunication;
 import poke.server.roundrobin.RoundRobinInitilizers;
 import eye.Comm.Management;
 import eye.Comm.Network;
@@ -93,10 +95,16 @@ public class NetworkManager {
 							isa.getPort(), channel, socka);
 					RoutingManager.getInstance().addNodeToList(req.getFromNodeId());
 					RoutingManager.getInstance().putRobinForNode(req.getFromNodeId(), RoundRobinInitilizers.getInstance());
-					
-					System.out.println("------------------------------------------------");
-					System.out.println(" node joined and added "+req.getFromNodeId());
-					System.out.println("------------------------------------------------");
+					if(RoutingManager.getInstance().getActiveNodeList().size()>1){
+						logger.info("initiate response time pusher");
+						ResponseCommunication rc = new ResponseCommunication();
+						rc.start();
+						/*LoadBalanceTask loadTask = new LoadBalanceTask();
+						loadTask.run();*/
+					}
+					logger.info("------------------------------------------------");
+					logger.info(" node joined and added "+req.getFromNodeId());
+					logger.info("------------------------------------------------");
 				}
 			} else
 				logger.warn(req.getFromNodeId() + " not writable");
