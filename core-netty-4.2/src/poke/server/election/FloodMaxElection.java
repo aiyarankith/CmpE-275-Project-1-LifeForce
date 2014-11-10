@@ -267,7 +267,7 @@ public class FloodMaxElection implements Election {
 		if (!allowCycles) {
 			List<RoutingPath> rtes = mgmt.getHeader().getPathList();
 			for (RoutingPath rp : rtes) {
-				if (rp.getNodeId() == this.nodeId) {
+				if (rp.getNodeId() == this.nodeId && req.getHops() >= maxHops) {
 					// logger.info("Node " + this.nodeId +
 					// " already in the routing path - not voting");
 					return null;
@@ -285,21 +285,23 @@ public class FloodMaxElection implements Election {
 
 		// reversing path. If I'm the farthest a message can travel, reverse the
 		// sending
-		if (elb.getHops() == 0)
+/*		if (elb.getHops() == 0)
 			mhb.clearPath();
-		else
+		else {
+			System.out.println("addalllllllll");
 			mhb.addAllPath(mgmt.getHeader().getPathList());
-
-		mhb.setOriginator(mgmt.getHeader().getOriginator());
+		}
+*/		mhb.setOriginator(mgmt.getHeader().getOriginator());
 
 		elb.setElectId(req.getElectId());
 		elb.setAction(ElectAction.NOMINATE);
 		elb.setDesc(req.getDesc());
 		elb.setExpires(req.getExpires());
 		elb.setCandidateId(req.getCandidateId());
-
+//System.out.println("req.getHops() >= maxHops max hops :: " +maxHops);
+//System.out.println("req.getHops() >= maxHops get hops :: "+req.getHops());
 		// my vote
-		if (req.getCandidateId() == this.nodeId) {
+		if (req.getCandidateId() == this.nodeId && req.getHops() <= maxHops) {
 			// if I am not in the list and the candidate is myself, I can
 			// declare myself to be the leader.
 			//
@@ -313,20 +315,24 @@ public class FloodMaxElection implements Election {
 			notify(true, this.nodeId);
 			elb.setAction(ElectAction.DECLAREWINNER);
 			elb.setHops(mgmt.getHeader().getPathCount());
-			logger.info("Node " + this.nodeId + " is declaring itself the leader");
+			logger.info("Node " + this.nodeId + " is declaring itself the leader!");
 		} else {
 			if (req.getCandidateId() < this.nodeId)
 				elb.setCandidateId(this.nodeId);
 			
-			if (req.getHops() == -1)
+			if (req.getHops() == -1) {
 				elb.setHops(-1);
-			else
+				System.out.println("set hops: -1" );
+			}
+			else {
 				elb.setHops(req.getHops() - 1);
-
+				System.out.println("set hops:: " + (req.getHops() - 1));
+			}
 			if (elb.getHops() == 0) {
 				// reverse travel of the message to ensure it gets back to
 				// the originator
 				elb.setHops(mgmt.getHeader().getPathCount());
+				System.out.println("set hops:mgmt.getHeader().getPathCount():"+mgmt.getHeader().getPathCount() );
 
 				// no clear winner, send back the candidate with the highest
 				// known ID. So, if a candidate sees itself, it will
@@ -337,13 +343,22 @@ public class FloodMaxElection implements Election {
 				mhb.addAllPath(mgmt.getHeader().getPathList());
 			}
 		}
+System.out.println("mgmt.getHeader().getPathList()::" +mgmt.getHeader().getPathList().size());
+	boolean exitingRoute = false;
+	for (RoutingPath rp: mgmt.getHeader().getPathList()) {
+		if (this.nodeId == rp.getNodeId()) {
+			exitingRoute = true;
+			break;
+		}
+	}
 
 		// add myself (may allow duplicate entries, if cycling is allowed)
+	if (exitingRoute) {
 		RoutingPath.Builder rpb = RoutingPath.newBuilder();
 		rpb.setNodeId(this.nodeId);
 		rpb.setTime(System.currentTimeMillis());
 		mhb.addPath(rpb);
-
+	}
 		Management.Builder mb = Management.newBuilder();
 		mb.setHeader(mhb.build());
 		mb.setElection(elb.build());

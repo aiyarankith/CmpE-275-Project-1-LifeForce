@@ -235,11 +235,17 @@ public class PerChannelQueue implements ChannelQueue {
 									sq.outbound.putFirst(msg);
 									responseCirBkr--;
 								}
+								else {
+									//close channel on success
+									logger.info("Reply Success!!");
+									channel.close();
+								}
 							}
 
 						} else {
 							sq.outbound.putFirst(msg);
 							responseCirBkr--;
+							
 						}
 
 					} else {
