@@ -64,8 +64,8 @@ public class JobResource implements Resource {
 		logger.info("REQUEST TYPE :: " + requesttype);
 		// Reading Image from the database
 		if (requesttype == PhotoHeader.RequestType.read.getNumber()) {
-			logger.info("REQUEST out READ :: " + request.getHeader());
-			logger.info("REQUEST   " + request.getBody());
+			System.out.println("READ REQUEST MSG:: " +request.toString());
+
 			ByteString value = storage.readImage(request.getBody().getPhotoPayload().getUuid());
 
 			if (value != null) {
@@ -94,19 +94,11 @@ public class JobResource implements Resource {
 
 		// Writing Image to the Database
 		else if (requesttype == PhotoHeader.RequestType.write.getNumber()) {
-			logger.info("REQUEST out WRITE :: "
-					+ request.getBody().getPhotoPayload().getName());
-			logger.info("REQUEST   "
-					+ request.getBody().getPhotoPayload().getData());
-
+System.out.println("WRITE REQUEST MSG:: " +request.toString());
 			boolean status = storage.addImageWithId(request.getBody().getPhotoPayload().getName(),
 					request.getBody().getPhotoPayload().getData(),
 					request.getBody().getPhotoPayload().getUuid());
 			if (status) {
-				/*
-				 * rb.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-				 * ResponseFlag.success_VALUE, "Image added successfully"));
-				 */
 				header.setReplyMsg("Image write successful");
 				rb.setHeader(header);
 				rb.setBody(request.getBody());

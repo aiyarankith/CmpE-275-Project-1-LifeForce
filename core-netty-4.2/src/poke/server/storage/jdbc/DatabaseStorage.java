@@ -244,6 +244,7 @@ public class DatabaseStorage implements TenantStorage {
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
 			String insert = "insert into ImageStore (uuid, name, image) values('"+ uuid + "','" + photoName + "','" + data + "');";
+			System.out.println("INSERT QU:" +insert);
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				int result = stmt.executeUpdate(insert);
@@ -281,7 +282,7 @@ public class DatabaseStorage implements TenantStorage {
 
 			String select = "SELECT * from ImageStore where uuid = '" + uuid + "';";
 			
-			logger.info("select:" +select);
+			logger.info("select:>>>>>" +select);
 			
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
@@ -294,7 +295,6 @@ public class DatabaseStorage implements TenantStorage {
 					logger.info("indid next.....................");
 					image = ByteString.copyFrom(rs.getBytes("image"));
 				}
-				logger.info("image::" +image.toString());
 				return image;
 			}
 		} catch (Exception ex) {

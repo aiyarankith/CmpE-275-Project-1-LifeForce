@@ -340,8 +340,11 @@ public class PerChannelQueue implements ChannelQueue {
 							logger.info("single node cluster");
 							logger.info("request processed by " + getMyNode());
 							
-							if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.write) {								
-								processJob(setImageUUIDToReq(req, metaDataMgr));
+							if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.write) {	
+								UUID imageId = UUID.randomUUID();
+								req = setImageUUIDToReq(req, imageId.toString());
+								setMetaData(metaDataMgr,  imageId, getMyNode());
+								processJob(req);
 							} else if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.read){
 								processJob(req);
 							}
@@ -415,9 +418,9 @@ public class PerChannelQueue implements ChannelQueue {
 									sq.enqueueResponse(req, null);
 								}
 							} else if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.write) {
-								req = setImageUUIDToReq(req, metaDataMgr);
-								int routedNodeId = RoutingManager.getInstance().routeJobs(getMyNode());
 								UUID imageId = UUID.randomUUID();
+								req = setImageUUIDToReq(req, imageId.toString());
+								int routedNodeId = RoutingManager.getInstance().routeJobs(getMyNode());
 								setMetaData(metaDataMgr,  imageId, routedNodeId);
 								
 								if (routedNodeId == getMyNode()) {
@@ -480,16 +483,13 @@ public class PerChannelQueue implements ChannelQueue {
 			}
 		}
 
-		private Request setImageUUIDToReq(Request req, MetaDataManager metaDataMgr)
-				throws Exception {
-			UUID imageId = UUID.randomUUID();
-			metaDataMgr.setNodeLocation(imageId.toString(), getMyNode());
-			
+		private Request setImageUUIDToReq(Request req, String imageId)
+				throws Exception {			
 			Request.Builder rqBldr = Request.newBuilder();
 			Payload.Builder plBldr = req.getBody().toBuilder();
 			
 			PhotoPayload.Builder phBldr = plBldr.getPhotoPayload().toBuilder();
-			phBldr.setUuid(imageId.toString());
+			phBldr.setUuid(imageId);
 			
 			plBldr.setPhotoPayload(phBldr);
 			
