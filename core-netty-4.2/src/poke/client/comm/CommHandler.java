@@ -19,6 +19,8 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -27,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.client.ClientCommand;
+import poke.server.ServerHandler;
 import poke.server.managers.ConnectionManager;
 import poke.server.managers.RoutedJobManager;
 import poke.server.managers.RoutingManager;
@@ -36,13 +39,14 @@ import poke.server.roundrobin.RoundRobinInitilizers;
 import com.google.protobuf.GeneratedMessage;
 
 import eye.Comm.PhotoHeader.ResponseFlag;
+import eye.Comm.Header;
+import eye.Comm.Payload;
 import eye.Comm.Request;
 import eye.Comm.PhotoHeader.RequestType;
 
 public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	protected static Logger logger = LoggerFactory.getLogger("connect");
 	protected ConcurrentMap<String, CommListener> listeners = new ConcurrentHashMap<String, CommListener>();
-	private volatile Channel channel;
 
 	public CommHandler() {
 	}
@@ -62,9 +66,9 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 		// connection. For the demonstration, we don't need it 
 
 		logger.info("request message "+msg);
-		
+
 		ChannelFuture cf = ch.writeAndFlush((Request)msg);
-		
+
 		cf.awaitUninterruptibly();
 		logger.info(" "+cf.cause());
 		if (cf.isDone() && !cf.isSuccess()) {
@@ -103,7 +107,7 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	 */
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, eye.Comm.Request msg) throws Exception {
-		
+
 		logger.info("reply message "+msg);
 		String uuid = msg.getHeader().getUniqueJobId();
 		ConcurrentHashMap<String, PerChannelQueue> outgoingJOBs = RoutedJobManager.getInstance().getJobMap();
@@ -124,16 +128,31 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 			}
 		}
 	}
-	
+
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		
+
 	}
-	
+
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 			throws Exception {
 		logger.error("Unexpected exception occureed", cause);
 		ctx.close();
+	}
+	
+	//Server Timeout Event
+	@Override
+	public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
+			throws Exception {
+		
+		if (evt instanceof IdleStateEvent) {
+            IdleStateEvent e = (IdleStateEvent) evt;
+            if (e.state() == IdleState.READER_IDLE) {
+                ctx.close();
+            } else if (e.state() == IdleState.WRITER_IDLE) {
+                ctx.channel().close();
+             }
+        }
 	}
 }

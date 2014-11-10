@@ -13,7 +13,7 @@ public class MetaDataManager {
 
 	private static Logger logger = LoggerFactory.getLogger("metaDataManager");
 	private final String USER_AGENT = "Mozilla/25.0";
-	private final String host = "10.0.0.7";
+	private final String host = "localhost";
 	private final int port = 3000;
 	private final String clientName = "leader";
 	private final String passcode = "unlockItsMe";

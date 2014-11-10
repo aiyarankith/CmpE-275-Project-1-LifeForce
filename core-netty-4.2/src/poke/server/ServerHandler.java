@@ -85,14 +85,9 @@ public class ServerHandler extends SimpleChannelInboundHandler<eye.Comm.Request>
 	public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
 			throws Exception {
 		
-		if (evt instanceof IdleStateEvent) {
-            IdleStateEvent e = (IdleStateEvent) evt;
-            if (e.state() == IdleState.READER_IDLE) {
-                ctx.close();
-            } else if (e.state() == IdleState.WRITER_IDLE) {
-                ctx.writeAndFlush(buildTimeOutMsg());
-                ctx.channel().close();
-            }
+		if (evt instanceof IdleStateEvent) {           
+            ctx.writeAndFlush(buildTimeOutMsg());
+            ctx.channel().close();
         }
 	}
 

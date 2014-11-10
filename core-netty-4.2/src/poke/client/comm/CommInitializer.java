@@ -10,6 +10,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import io.netty.handler.codec.protobuf.ProtobufEncoder;
+import io.netty.handler.timeout.IdleStateHandler;
 
 public class CommInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -30,6 +31,7 @@ public class CommInitializer extends ChannelInitializer<SocketChannel> {
 				eye.Comm.Request.getDefaultInstance()));
 		pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
 		pipeline.addLast("protobufEncoder", new ProtobufEncoder());
+		pipeline.addLast("idleStateHandler", new IdleStateHandler(60, 60, 0));
 		pipeline.addLast("handler", handler);
 	}
 }

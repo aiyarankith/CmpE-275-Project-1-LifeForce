@@ -29,16 +29,13 @@ import org.slf4j.LoggerFactory;
 
 import poke.client.ClientCommand;
 import poke.client.comm.MetaDataManager;
-import poke.monitor.HeartMonitor;
 import poke.server.conf.ServerConf;
 import poke.server.managers.ConnectionManager;
 import poke.server.managers.ElectionManager;
 import poke.server.managers.HeartbeatData;
 import poke.server.managers.HeartbeatManager;
-import poke.server.managers.HeartbeatPusher;
 import poke.server.managers.RoutedJobManager;
 import poke.server.managers.RoutingManager;
-import poke.server.managers.HeartbeatData.BeatStatus;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceFactory;
 import poke.server.resources.ResourceUtil;
