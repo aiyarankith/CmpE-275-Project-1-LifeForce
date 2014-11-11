@@ -304,10 +304,13 @@ public class HeartbeatManager extends Thread {
 				int index = RoutingManager.getInstance().getActiveNodeList().indexOf(heart.getNodeId());
 				RoutingManager.getInstance().getActiveNodeList().remove(index);
 				outgoingHB.remove(future.channel());
+				incomingHB.remove(heart.getNodeId());
+				ConnectionManager.removeConnection(heart.getNodeId(), true);
 			} else if (incomingHB.containsValue(heart)) {
 				logger.warn("HB incoming channel closing for node '" + heart.getNodeId() + "' at " + heart.getHost());
 				incomingHB.remove(future.channel());
 			}
+			
 		}
 	}
 }

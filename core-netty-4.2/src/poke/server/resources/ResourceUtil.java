@@ -22,6 +22,7 @@ import eye.Comm.Header;
 import eye.Comm.Header.Routing;
 import eye.Comm.PhotoHeader;
 import eye.Comm.PhotoHeader.ResponseFlag;
+import eye.Comm.Payload;
 import eye.Comm.PokeStatus;
 import eye.Comm.Request;
 import eye.Comm.RoutingPath;
@@ -120,5 +121,22 @@ public class ResourceUtil {
 		hdrBldr.setTime(System.currentTimeMillis());
 
 		return hdrBldr.build();
+	}
+	//Build Timeout Message
+	public static  Request buildErrMsg() {
+		Request.Builder rb = Request.newBuilder();
+		
+		Header.Builder bldr = Header.newBuilder();
+		bldr.setOriginator(-1);
+		
+		bldr.setRoutingId(eye.Comm.Header.Routing.JOBS);
+		bldr.setReplyCode(eye.Comm.PokeStatus.FAILURE);
+		
+		rb.setHeader(bldr);
+		
+		Payload.Builder payLoad = Payload.newBuilder();
+		rb.setBody(payLoad);
+		
+		return rb.build();
 	}
 }

@@ -95,13 +95,13 @@ public class NetworkManager {
 							isa.getPort(), channel, socka);
 					RoutingManager.getInstance().addNodeToList(req.getFromNodeId());
 					RoutingManager.getInstance().putRobinForNode(req.getFromNodeId(), RoundRobinInitilizers.getInstance());
-					if(RoutingManager.getInstance().getActiveNodeList().size()>1){
+					/*if(RoutingManager.getInstance().getActiveNodeList().size()>1){
 						logger.info("initiate response time pusher");
 						ResponseCommunication rc = new ResponseCommunication();
 						rc.start();
-						/*LoadBalanceTask loadTask = new LoadBalanceTask();
-						loadTask.run();*/
-					}
+						LoadBalanceTask loadTask = new LoadBalanceTask();
+						loadTask.run();
+					}*/
 					logger.info("------------------------------------------------");
 					logger.info(" node joined and added "+req.getFromNodeId());
 					logger.info("------------------------------------------------");

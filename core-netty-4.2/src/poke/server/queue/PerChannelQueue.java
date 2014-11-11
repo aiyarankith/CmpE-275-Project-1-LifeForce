@@ -379,14 +379,16 @@ public class PerChannelQueue implements ChannelQueue {
 									if(routingNodeId == hbd.getNodeId()) {
 										hostname = hbd.getHost();
 										hostport = hbd.getPort();
-										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
+										logger.info(" Forward reuqest to host address->>>>>"+hostname+":"+hostport);
 									}
-									
-									if(hostname == null){
-										//if host is not active anymore route this process to other host
-										sq.inbound.put(msg);
-										continue;
+									logger.info("RoutingManager.getInstance().getActiveNodeList().get(routingNodeId):"+RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId));
+									if(!RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId)){
+											logger.error("failed to obtain resource for " + req);
+											Request errReply = ResourceUtil.buildErrMsg();
+											sq.enqueueResponse(errReply, null);
+											break;
 									}
+								
 									
 									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routingNodeId);
 									rri.addJobsInQueue();

@@ -86,29 +86,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<eye.Comm.Request>
 			throws Exception {
 		
 		if (evt instanceof IdleStateEvent) {           
-            ctx.writeAndFlush(buildTimeOutMsg());
+            ctx.writeAndFlush(ResourceUtil.buildErrMsg());//to build timeout error message
             ctx.channel().close();
         }
 	}
-
-	//Build Timeout Message
-	private Object buildTimeOutMsg() {
-		Request.Builder rb = Request.newBuilder();
-		
-		Header.Builder bldr = Header.newBuilder();
-		bldr.setOriginator(-1);
-		
-		bldr.setRoutingId(eye.Comm.Header.Routing.JOBS);
-		bldr.setReplyCode(eye.Comm.PokeStatus.FAILURE);
-		
-		rb.setHeader(bldr);
-		
-		Payload.Builder payLoad = Payload.newBuilder();
-		rb.setBody(payLoad);
-		
-		return rb.build();
-	}
-	
 	
 	/**
 	 * Isolate how the server finds the queue. Note this cannot return null.

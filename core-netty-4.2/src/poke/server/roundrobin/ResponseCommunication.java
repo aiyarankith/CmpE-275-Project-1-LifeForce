@@ -74,7 +74,7 @@ public class ResponseCommunication extends Thread{
 					logger.info("response time pusher not started");
 				}
 			}
-			if(ElectionManager.getInstance().whoIsTheLeader()!=null && 
+			/*if(ElectionManager.getInstance().whoIsTheLeader()!=null && 
 					ElectionManager.getInstance().whoIsTheLeader()==ResourceFactory.getCfg().getNodeId()){
 				if(RoutingManager.getInstance().getActiveNodeList().size()>1){
 					for(int iterateNodeId : RoutingManager.getInstance().getActiveNodeList()){
@@ -84,7 +84,7 @@ public class ResponseCommunication extends Thread{
 						}
 					}
 				}
-			}
+			}*/
 		}
 		
 	}
