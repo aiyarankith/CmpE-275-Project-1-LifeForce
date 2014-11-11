@@ -104,20 +104,13 @@ public class DatabaseStorage implements TenantStorage {
 			// select * from space where id = spaceId
 
 			if (conn != null) {
-				System.out
-						.println("Connection successful!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
 				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM test"); // do
-																		// something
-																		// with
-																		// the
-																		// connection.
+				ResultSet rs = stmt.executeQuery("SELECT * FROM test");
 				while (rs.next()) {
-					System.out.println(rs.getString(1)); // should print out
-															// "1"'
+
 				}
 			}
-			logger.info("This is inside JDBC ................................................");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			logger.error("failed/exception on looking up space " + spaceId, ex);
@@ -236,15 +229,13 @@ public class DatabaseStorage implements TenantStorage {
 	}
 
 	public boolean addImageWithId(String photoName, ByteString data, String uuid) {
-
-		System.out.println("INSIDE ADD IMAGE");
 		Connection conn = null;
 		try {
 			conn = cpool.getConnection();
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
-			String insert = "insert into ImageStore (uuid, name, image) values('"+ uuid + "','" + photoName + "','" + data + "');";
-			System.out.println("INSERT QU:" +insert);
+			String insert = "insert into ImageStore (uuid, name, image) values('"
+					+ uuid + "','" + photoName + "','" + data + "');";
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				int result = stmt.executeUpdate(insert);
@@ -273,34 +264,28 @@ public class DatabaseStorage implements TenantStorage {
 	@Override
 	public ByteString readImage(String uuid) {
 		// TODO Auto-generated method stub
-		System.out.println("INSIDE READ IMAGE");
 		Connection conn = null;
 		ByteString image = null;
 		try {
 			conn = cpool.getConnection();
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 
-			String select = "SELECT * from ImageStore where uuid = '" + uuid + "';";
-			
-			logger.info("select:>>>>>" +select);
-			
+			String select = "SELECT * from ImageStore where uuid = '" + uuid
+					+ "';";
+
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 
 				ResultSet rs = stmt.executeQuery(select);
 				if (rs == null)
-					logger.info("rs is nulllllllll");
 
-				while (rs.next()) {
-					logger.info("indid next.....................");
-					image = ByteString.copyFrom(rs.getBytes("image"));
-				}
+					while (rs.next()) {
+						image = ByteString.copyFrom(rs.getBytes("image"));
+					}
 				return image;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			// logger.error("failed/exception on looking up space " + spaceId,
-			// ex);
 		} finally {
 			if (conn != null) {
 				try {
@@ -317,7 +302,6 @@ public class DatabaseStorage implements TenantStorage {
 	@Override
 	public boolean deleteImage(String uuid) {
 		// TODO Auto-generated method stub
-		System.out.println("INSIDE DELETE IMAGE");
 		Connection conn = null;
 
 		try {

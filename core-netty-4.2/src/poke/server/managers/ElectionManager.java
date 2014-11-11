@@ -312,7 +312,7 @@ public class ElectionManager implements ElectionListener {
 					// properties
 					if (election instanceof FloodMaxElection) {
 						logger.warn("Node " + conf.getNodeId() + " setting max hops to arbitrary value (4)");
-						logger.warn("Mesh Topology");
+					//	logger.warn("Mesh Topology");
 						((FloodMaxElection) election).setMaxHops(4);
 					}
 

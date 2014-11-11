@@ -281,15 +281,13 @@ public class PerChannelQueue implements ChannelQueue {
 
 		// Check if the node is Leader
 		public boolean isLeader() {
-			logger.info("Check if leader :: "
-					+ ElectionManager.getInstance().whoIsTheLeader());
+			logger.info("Check if leader :: "+ ElectionManager.getInstance().whoIsTheLeader());
 			return ElectionManager.getInstance().whoIsTheLeader()
 					.equals(getMyNode());
 		}
 
 		// get node details
 		public int getMyNode() {
-			logger.info("NODE ID :: " + ResourceFactory.getCfg().getNodeId());
 			return ResourceFactory.getCfg().getNodeId();
 		}
 
@@ -307,7 +305,6 @@ public class PerChannelQueue implements ChannelQueue {
 						PokeStatus.NORESOURCE, "Request not processed");
 			} else
 				reply = rsc.process(req);
-			// logger.info("reply..."+ reply.toString());
 			sq.enqueueResponse(reply, null);
 
 		}
@@ -332,15 +329,13 @@ public class PerChannelQueue implements ChannelQueue {
 					// process request and enqueue response
 					if (msg instanceof Request) {
 						Request req = ((Request) msg);
-						logger.info("REQUEST :: " + req.toString());
+						logger.info("REQUEST Message:: " + req.toString());
 						MetaDataManager metaDataMgr = new MetaDataManager();
-
-						logger.info(" total number of node connection " + ConnectionManager.getNumMgmtConnections());
 						
 						if (ConnectionManager.getNumMgmtConnections() == 0) {
 							
-							logger.info("single node cluster");
-							logger.info("request processed by " + getMyNode());
+							logger.info("Standalone System");
+							logger.info("Request processed by " + getMyNode());
 							
 							if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.write) {	
 								UUID imageId = UUID.randomUUID();
@@ -366,24 +361,24 @@ public class PerChannelQueue implements ChannelQueue {
 							if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.read) {
 
 								int routingNodeId = getMetaData(metaDataMgr, req.getBody().getPhotoPayload().getUuid());
-								logger.info("image location: "+ routingNodeId);
+								logger.info("Image location: "+ routingNodeId);
 								
 								if (routingNodeId != -1 && routingNodeId != getMyNode()) {
 									
 									String hostname = null;
 									int hostport = 0;
-									logger.info("req is routed to "+routingNodeId);
+									logger.info("Request is routed to Node: "+routingNodeId);
 									ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
 									
 									HeartbeatData hbd = incomingHB.get(routingNodeId);
 									if(routingNodeId == hbd.getNodeId()) {
 										hostname = hbd.getHost();
 										hostport = hbd.getPort();
-										logger.info(" Forward reuqest to host address->>>>>"+hostname+":"+hostport);
+										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
 									}
-									logger.info("RoutingManager.getInstance().getActiveNodeList().get(routingNodeId):"+RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId));
+									
 									if(!RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId)){
-											logger.error("failed to obtain resource for " + req);
+											logger.error("failed to obtain resource for this request: " + req);
 											Request errReply = ResourceUtil.buildErrMsg();
 											sq.enqueueResponse(errReply, null);
 											break;
@@ -392,7 +387,6 @@ public class PerChannelQueue implements ChannelQueue {
 									
 									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routingNodeId);
 									rri.addJobsInQueue();
-									logger.info(" current jobs with node "+routingNodeId +" are "+rri.getJobsInQueue());
 									RoutedJobManager.getInstance().putJob(uniqueJobId.toString(), sq);
 									
 									ClientCommand cc = new ClientCommand(hostname, hostport);									
@@ -404,7 +398,6 @@ public class PerChannelQueue implements ChannelQueue {
 								} else if (routingNodeId != -1 && routingNodeId == getMyNode()) {
 									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routingNodeId);
 									rri.addJobsInQueue();
-									logger.info(" current jobs with node "+routingNodeId +" are "+rri.getJobsInQueue());
 									
 									processJob(req);
 									
@@ -428,15 +421,14 @@ public class PerChannelQueue implements ChannelQueue {
 								setMetaData(metaDataMgr,  imageId, routedNodeId);
 								
 								if (routedNodeId == getMyNode()) {
-									logger.info(" req will be processed by leader "+routedNodeId);
+									logger.info(" Request will be processed by leader Node: "+routedNodeId);
 									processJob(req);
 									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routedNodeId);
 									rri.reduceJobsInQueue();
-									logger.info(" current jobs with node"+routedNodeId +" are "+rri.getJobsInQueue());
 								} else {
 									String hostname = null;
 									int hostport = 0;
-									logger.info("req is routed to "+routedNodeId);
+									logger.info("Request is routed to Node: "+routedNodeId);
 									ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
 									
 									HeartbeatData hbd = incomingHB.get(routedNodeId);
@@ -445,9 +437,7 @@ public class PerChannelQueue implements ChannelQueue {
 										hostport = hbd.getPort();
 										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
 									}
-									
-									if(hostname == null){
-										//if host is not active anymore route this process to other host
+									if(!RoutingManager.getInstance().getActiveNodeList().contains(routedNodeId)){
 										sq.inbound.put(msg);
 										continue;
 									}
@@ -462,14 +452,14 @@ public class PerChannelQueue implements ChannelQueue {
 							}
 						} else {
 							//check if req has leader value or not
-							if (ElectionManager.getInstance().whoIsTheLeader() != req.getHeader().getLeaderId()) {
-								logger.info(" Reject request becuase it didnt come from leader");
-								logger.info(" leader is "+ElectionManager.getInstance().whoIsTheLeader());
-								logger.info(" request came from "+req.getHeader().getLeaderId());
+							int leaderId = ElectionManager.getInstance().whoIsTheLeader();
+							if (leaderId != req.getHeader().getLeaderId()) {
+								logger.info(" Reject request becuase it didnt come to leader");
+								logger.info(" leader is Node: "+leaderId);
+								logger.info(" Request came from Node: "+req.getHeader().getLeaderId());
 								sq.channel.close();
 							} else {
-								logger.info("worker node");
-								//logger.info("request from leader node "+msg);
+								logger.info("worker node is processing request");
 								processJob(req);
 							}
 						}

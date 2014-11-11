@@ -269,7 +269,7 @@ public class CommConnection {
 		@Override
 		public void operationComplete(ChannelFuture future) throws Exception {
 			// we lost the connection or have shutdown.
-			logger.info("--------------------------------------------------------netsta");
+			logger.info("Close Connection with worker node.");
 			// @TODO if lost, try to re-establish the connection
 		}
 	}

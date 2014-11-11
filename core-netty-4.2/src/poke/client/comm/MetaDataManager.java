@@ -21,7 +21,6 @@ public class MetaDataManager {
 	public int getNodeLocation(String uuid) throws Exception {
 
 		String url = "http://" + host + ":" + port + "/get?uuid=" + uuid;
-		// String url = "http://"+ host +"/search?q=mkyong";
 		String response = "-1";
 
 		URL urlObj = new URL(url);
@@ -84,17 +83,4 @@ public class MetaDataManager {
 
 		return responseCode == 200;
 	}
-
-	public static void main(String[] args) throws Exception {
-
-		MetaDataManager http = new MetaDataManager();
-
-		System.out.println("Testing 1 - Send Http GET request");
-		http.getNodeLocation("2bb396fc-9cd6-4d3b-b1c4-94eb6abab2cd");
-
-		System.out.println("\nTesting 2 - Send Http POST request");
-//		 http.setNodeLocation("1111111", 1);
-
-	}
-
 }

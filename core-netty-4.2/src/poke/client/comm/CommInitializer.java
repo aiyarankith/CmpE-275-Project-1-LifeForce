@@ -23,7 +23,6 @@ public class CommInitializer extends ChannelInitializer<SocketChannel> {
 
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
-		logger.info("comm conection l=init....................................");
 		ChannelPipeline pipeline = ch.pipeline();
 		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
 				67108864, 0, 4, 0, 4));

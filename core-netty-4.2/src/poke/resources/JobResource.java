@@ -40,15 +40,6 @@ public class JobResource implements Resource {
 	@Override
 	public Request process(Request request) {
 
-		logger.info("poke: " + request.getBody().getJobOp().getAction());
-
-		/*
-		 * String type = new String(); type =
-		 * request.getBody().getJobOp().getAction().toString();
-		 */
-
-		logger.info("REQUEST :: " + request.toString());
-
 		// Get the routing id
 		// Routing routing_id = request.getHeader().getRoutingId();
 		// Get the operation read/write/delete from request header
@@ -61,12 +52,12 @@ public class JobResource implements Resource {
 
 		PhotoPayload.Builder fp = PhotoPayload.newBuilder();
 		Request reply = null;
-		logger.info("REQUEST TYPE :: " + requesttype);
 		// Reading Image from the database
 		if (requesttype == PhotoHeader.RequestType.read.getNumber()) {
-			System.out.println("READ REQUEST MSG:: " +request.toString());
+			logger.info("Read Message Received");
 
-			ByteString value = storage.readImage(request.getBody().getPhotoPayload().getUuid());
+			ByteString value = storage.readImage(request.getBody()
+					.getPhotoPayload().getUuid());
 
 			if (value != null) {
 				/*
@@ -78,9 +69,9 @@ public class JobResource implements Resource {
 				rb.setBody(request.getBody());
 				fp.setData(value);
 			} else {
-//				rb.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-//						ResponseFlag.failure, "Error in Retrive image"));
-				
+				// rb.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+				// ResponseFlag.failure, "Error in Retrive image"));
+
 				header.setReplyMsg("Error in Retrive image");
 				PhotoHeader.Builder phdrBldr = PhotoHeader.newBuilder();
 				phdrBldr.setResponseFlag(ResponseFlag.failure);
@@ -94,10 +85,11 @@ public class JobResource implements Resource {
 
 		// Writing Image to the Database
 		else if (requesttype == PhotoHeader.RequestType.write.getNumber()) {
-System.out.println("WRITE REQUEST MSG:: " +request.toString());
-			boolean status = storage.addImageWithId(request.getBody().getPhotoPayload().getName(),
-					request.getBody().getPhotoPayload().getData(),
-					request.getBody().getPhotoPayload().getUuid());
+			logger.info("Write Message Received");
+			boolean status = storage.addImageWithId(request.getBody()
+					.getPhotoPayload().getName(), request.getBody()
+					.getPhotoPayload().getData(), request.getBody()
+					.getPhotoPayload().getUuid());
 			if (status) {
 				header.setReplyMsg("Image write successful");
 				rb.setHeader(header);
@@ -112,8 +104,7 @@ System.out.println("WRITE REQUEST MSG:: " +request.toString());
 			rb.setBody(pb.build());
 			reply = rb.build();
 		} else if (requesttype == PhotoHeader.RequestType.delete.getNumber()) {
-			logger.info("REQUEST out Delete :: " + request.getHeader());
-			logger.info("REQUEST   " + request.getBody());
+			logger.info("Delete Message Received");
 
 			boolean value = storage.deleteImage(request.getBody()
 					.getPhotoPayload().getUuid());
@@ -132,8 +123,6 @@ System.out.println("WRITE REQUEST MSG:: " +request.toString());
 			reply = rb.build();
 
 		}
-
-		logger.info("Reply :: " + reply.toString());
 
 		return reply;
 	}

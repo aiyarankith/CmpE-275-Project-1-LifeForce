@@ -65,8 +65,6 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 		// TODO a queue is needed to prevent overloading of the socket
 		// connection. For the demonstration, we don't need it 
 
-		logger.info("request message "+msg);
-
 		ChannelFuture cf = ch.writeAndFlush((Request)msg);
 
 		cf.awaitUninterruptibly();
@@ -108,7 +106,7 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, eye.Comm.Request msg) throws Exception {
 
-		logger.info("reply message "+msg);
+		logger.info("Reply message: \n "+msg);
 		String uuid = msg.getHeader().getUniqueJobId();
 		ConcurrentHashMap<String, PerChannelQueue> outgoingJOBs = RoutedJobManager.getInstance().getJobMap();
 		for(String uuidsample : outgoingJOBs.keySet()){
@@ -116,7 +114,6 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 				PerChannelQueue pq = outgoingJOBs.get(uuid);
 				RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(pq.getRouteNodeId());
 				rri.reduceJobsInQueue();
-				logger.info("  current jobs with node"+ pq.getRouteNodeId() +" are "+rri.getJobsInQueue());
 				if(pq.channel != null){
 					pq.enqueueResponse(msg, pq.channel);
 				}else{
