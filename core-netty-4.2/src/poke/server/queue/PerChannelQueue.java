@@ -234,7 +234,7 @@ public class PerChannelQueue implements ChannelQueue {
 								else {
 									//close channel on success
 									logger.info("Reply Success!!");
-									channel.close();
+									//channel.close();
 								}
 							}
 
@@ -303,8 +303,9 @@ public class PerChannelQueue implements ChannelQueue {
 				logger.error("failed to obtain resource for " + req);
 				reply = ResourceUtil.buildError(req.getHeader(),
 						PokeStatus.NORESOURCE, "Request not processed");
-			} else
+			} else {
 				reply = rsc.process(req);
+			}
 			sq.enqueueResponse(reply, null);
 
 		}
@@ -331,19 +332,27 @@ public class PerChannelQueue implements ChannelQueue {
 						Request req = ((Request) msg);
 						logger.info("REQUEST Message:: " + req.toString());
 						MetaDataManager metaDataMgr = new MetaDataManager();
-						
+						logger.info(" total number of node connection " + ConnectionManager.getNumMgmtConnections());
+						if(req.getHeader().getRoutingId().toString().equals("PING")){
+							//logger.info("ping to calculate response time");
+							sq.enqueueResponse(req, conn);
+							continue;
+						}
 						if (ConnectionManager.getNumMgmtConnections() == 0) {
-							
+	
 							logger.info("Standalone System");
 							logger.info("Request processed by " + getMyNode());
 							
 							if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.write) {	
 								UUID imageId = UUID.randomUUID();
 								req = setImageUUIDToReq(req, imageId.toString());
-								setMetaData(metaDataMgr,  imageId, getMyNode());
 								processJob(req);
+								setMetaData(metaDataMgr,  imageId, getMyNode());
 							} else if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.read){
 								processJob(req);
+							}else if(req.getHeader().getPhotoHeader().getRequestType() == RequestType.delete){
+								processJob(req);
+								deleteMetaData(metaDataMgr,req.getBody().getPhotoPayload().getUuid().toString());
 							}
 						} else if (isLeader()) {
 							UUID uniqueJobId = UUID.randomUUID();
@@ -449,6 +458,62 @@ public class PerChannelQueue implements ChannelQueue {
 									
 									setRouteNodeId(routedNodeId);
 								}
+							} else if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.delete){
+								int routingNodeId = getMetaData(metaDataMgr, req.getBody().getPhotoPayload().getUuid());
+								logger.info("Image location for delete: "+ routingNodeId);
+								
+								if (routingNodeId != -1 && routingNodeId != getMyNode()) {
+									
+									String hostname = null;
+									int hostport = 0;
+									logger.info("Request is routed to Node: "+routingNodeId);
+									ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
+									
+									HeartbeatData hbd = incomingHB.get(routingNodeId);
+									if(routingNodeId == hbd.getNodeId()) {
+										hostname = hbd.getHost();
+										hostport = hbd.getPort();
+										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
+									}
+									
+									if(!RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId)){
+											logger.error("failed to obtain resource for this request: " + req);
+											Request errReply = ResourceUtil.buildErrMsg();
+											sq.enqueueResponse(errReply, null);
+											break;
+									}
+								
+									
+									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routingNodeId);
+									rri.addJobsInQueue();
+									RoutedJobManager.getInstance().putJob(uniqueJobId.toString(), sq);
+									
+									ClientCommand cc = new ClientCommand(hostname, hostport);									
+									cc.forwardMsg(req);
+
+									deleteMetaData(metaDataMgr,req.getBody().getPhotoPayload().getUuid().toString());
+									
+								} else if (routingNodeId != -1 && routingNodeId == getMyNode()) {
+									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routingNodeId);
+									rri.addJobsInQueue();
+									
+									processJob(req);
+									
+									rri.reduceJobsInQueue();
+									
+									deleteMetaData(metaDataMgr,req.getBody().getPhotoPayload().getUuid().toString());
+								} else {
+									//build image failure messgae
+									header.setReplyMsg("Error in Retrive image");
+									PhotoHeader.Builder phdrBldr = PhotoHeader.newBuilder();
+									phdrBldr.setResponseFlag(ResponseFlag.failure);
+									header.setPhotoHeader(phdrBldr);
+									rb.setHeader(header);
+									rb.setBody(req.getBody());
+									req = rb.build();
+									sq.enqueueResponse(req, null);
+								}
+							
 							}
 						} else {
 							//check if req has leader value or not
@@ -459,7 +524,7 @@ public class PerChannelQueue implements ChannelQueue {
 								logger.info(" Request came from Node: "+req.getHeader().getLeaderId());
 								sq.channel.close();
 							} else {
-								logger.info("worker node is processing request");
+								logger.info("worker node is processing request \n");
 								processJob(req);
 							}
 						}
@@ -512,6 +577,14 @@ public class PerChannelQueue implements ChannelQueue {
 				logger.error("Failed to obtain image location.");
 			}
 			return nodeId;
+		}
+		
+		private void deleteMetaData(MetaDataManager metaDataMgr, String imageId) throws Exception {
+			if (metaDataMgr.deleteNodeLocation(imageId)) {
+				logger.debug("Image location is saved.");
+			} else {
+				logger.error("Failed to stored image location.");
+			}
 		}
 	}
 

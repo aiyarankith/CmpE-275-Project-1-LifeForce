@@ -277,8 +277,10 @@ public class DatabaseStorage implements TenantStorage {
 				Statement stmt = conn.createStatement();
 
 				ResultSet rs = stmt.executeQuery(select);
-				if (rs == null)
-
+				if (rs == null){
+					logger.info("");
+				}
+					
 					while (rs.next()) {
 						image = ByteString.copyFrom(rs.getBytes("image"));
 					}

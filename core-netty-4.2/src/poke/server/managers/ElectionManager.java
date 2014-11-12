@@ -126,7 +126,7 @@ public class ElectionManager implements ElectionListener {
 		elb.setAction(ElectAction.DECLAREELECTION);
 		elb.setDesc("Node " + conf.getNodeId() + " detects no leader. Election!");
 		elb.setCandidateId(conf.getNodeId()); // promote self
-		elb.setExpires(30 * 1000 + System.currentTimeMillis()); // 1 minute
+		elb.setExpires(15 * 1000 + System.currentTimeMillis()); // 1 minute
 
 		// bias the voting with my number of votes (for algos that use vote
 		// counting)

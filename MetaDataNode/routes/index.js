@@ -76,3 +76,26 @@ exports.retrive = function(req, res){
 	}
 	
 };
+
+exports.deleteUUID = function(req, res){
+
+	var strQuery = "delete from MetaData where uuid = ?";
+	var uuid = req.query.uuid;
+
+	console.log("uuid "+uuid);
+
+	if (uuid != null) {
+		connection.getConnection(function(err, connection){
+			connection.query( strQuery, [uuid],  function(err, rows){
+				if(err)	{
+					throw err;
+				}else{
+					console.log( rows );
+				}
+			});
+			connection.release();
+		});
+	}
+	res.statusCode = 200;
+	res.end();
+};

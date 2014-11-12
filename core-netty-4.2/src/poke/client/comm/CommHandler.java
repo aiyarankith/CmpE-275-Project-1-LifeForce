@@ -113,7 +113,12 @@ public class CommHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 			if(uuidsample.equals(uuid)){
 				PerChannelQueue pq = outgoingJOBs.get(uuid);
 				RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(pq.getRouteNodeId());
-				rri.reduceJobsInQueue();
+				if(rri != null){
+					rri.reduceJobsInQueue();
+				}else{
+					logger.info("rri null");
+				}
+				
 				if(pq.channel != null){
 					pq.enqueueResponse(msg, pq.channel);
 				}else{

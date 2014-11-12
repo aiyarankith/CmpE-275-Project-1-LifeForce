@@ -45,7 +45,6 @@ public class JobResource implements Resource {
 		// Get the operation read/write/delete from request header
 		int requesttype = request.getHeader().getPhotoHeader().getRequestType()
 				.getNumber();
-
 		Request.Builder rb = Request.newBuilder();
 		Header.Builder header = request.getHeader().toBuilder();
 		Payload.Builder pb = Payload.newBuilder();
@@ -110,18 +109,18 @@ public class JobResource implements Resource {
 					.getPhotoPayload().getUuid());
 
 			if (value == true) {
-				rb.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-						ResponseFlag.success, "Image Deleted successfully"));
+				header.setReplyMsg("Image Deleted successfully");
+				rb.setHeader(header);
 				rb.setBody(request.getBody());
 			} else {
 				rb.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
 						ResponseFlag.failure, "Error in Delete image"));
 			}
-
+			
+			fp.setUuid(request.getBody().getPhotoPayload().getUuid());
 			pb.setPhotoPayload(fp.build());
 			rb.setBody(pb.build());
 			reply = rb.build();
-
 		}
 
 		return reply;

@@ -34,7 +34,7 @@ public class Jab {
 	}
 
 	public void run() {
-		ClientCommand cc = new ClientCommand("localhost", 5573);
+		ClientCommand cc = new ClientCommand("192.168.0.1", 5570);
 		CommListener listener = new ClientPrintListener("jab demo");
 		cc.addListener(listener);
 
