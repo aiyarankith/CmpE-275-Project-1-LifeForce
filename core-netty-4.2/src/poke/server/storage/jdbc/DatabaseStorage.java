@@ -27,7 +27,6 @@ import org.slf4j.LoggerFactory;
 
 import poke.server.storage.TenantStorage;
 
-import com.google.common.primitives.Bytes;
 import com.google.protobuf.ByteString;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
@@ -37,12 +36,6 @@ import eye.Comm.NameSpace;
 
 public class DatabaseStorage implements TenantStorage {
 	protected static Logger logger = LoggerFactory.getLogger("database");
-
-	/*
-	 * public static final String sDriver = "com.mysql.jdbc.Driver"; public
-	 * static final String sUrl = "jdbc:mysql://localhost/test"; public static
-	 * final String sUser = "root"; public static final String sPass = "root";
-	 */
 
 	protected Properties cfg;
 	protected static BoneCP cpool;
@@ -100,9 +93,7 @@ public class DatabaseStorage implements TenantStorage {
 		try {
 			conn = cpool.getConnection();
 			conn.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
-			// TODO complete code to retrieve through JDBC/SQL
-			// select * from space where id = spaceId
-
+			
 			if (conn != null) {
 
 				Statement stmt = conn.createStatement();
@@ -227,7 +218,14 @@ public class DatabaseStorage implements TenantStorage {
 	public String addImage(String photoname, ByteString data) {
 		return null;
 	}
-
+	
+	/**
+	 * Add image into database with uuid 
+	 * @param photoName
+	 * @param data
+	 * @param uuid
+	 * @return
+	 */
 	public boolean addImageWithId(String photoName, ByteString data, String uuid) {
 		Connection conn = null;
 		try {

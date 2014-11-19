@@ -17,16 +17,7 @@ import eye.Comm.Request;
 public class ResponseHandler extends SimpleChannelInboundHandler<eye.Comm.Request> {
 	protected static Logger logger = LoggerFactory.getLogger("response handler");
 	
-	
-	public ResponseHandler(){
-		
-	}
-	
 	public boolean send(GeneratedMessage msg, Channel ch ) throws InterruptedException {
-		// TODO a queue is needed to prevent overloading of the socket
-		// connection. For the demonstration, we don't need it 
-
-		//logger.info("request message "+msg);
 		
 		ChannelFuture cf = ch.writeAndFlush((Request)msg);
 		

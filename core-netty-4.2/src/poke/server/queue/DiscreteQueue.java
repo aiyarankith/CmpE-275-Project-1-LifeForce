@@ -15,13 +15,14 @@
  */
 package poke.server.queue;
 
+import io.netty.channel.Channel;
+
 import java.lang.Thread.State;
 import java.util.NavigableMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import io.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

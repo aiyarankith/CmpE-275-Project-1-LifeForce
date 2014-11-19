@@ -15,7 +15,6 @@
  */
 package poke.server.storage;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -25,7 +24,6 @@ import eye.Comm.LeaderElection;
 
 public class ElectionInMemoryStorage implements ElectionStorage {
 	protected static Logger logger = LoggerFactory.getLogger("storage");
-	private HashMap<Long, DataElection> spaces = new HashMap<Long, DataElection>();
 
 	@Override
 	public boolean addElection(LeaderElection le) {

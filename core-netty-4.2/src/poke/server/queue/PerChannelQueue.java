@@ -21,19 +21,15 @@ import io.netty.channel.ChannelFutureListener;
 
 import java.lang.Thread.State;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import poke.client.ClientCommand;
-import poke.client.comm.MetaDataManager;
 import poke.server.conf.ServerConf;
 import poke.server.managers.ConnectionManager;
 import poke.server.managers.ElectionManager;
-import poke.server.managers.HeartbeatData;
-import poke.server.managers.HeartbeatManager;
+import poke.server.managers.MetaDataManager;
 import poke.server.managers.RoutedJobManager;
 import poke.server.managers.RoutingManager;
 import poke.server.resources.Resource;
@@ -374,17 +370,7 @@ public class PerChannelQueue implements ChannelQueue {
 								
 								if (routingNodeId != -1 && routingNodeId != getMyNode()) {
 									
-									String hostname = null;
-									int hostport = 0;
 									logger.info("Request is routed to Node: "+routingNodeId);
-									ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
-									
-									HeartbeatData hbd = incomingHB.get(routingNodeId);
-									if(routingNodeId == hbd.getNodeId()) {
-										hostname = hbd.getHost();
-										hostport = hbd.getPort();
-										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
-									}
 									
 									if(!RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId)){
 											logger.error("failed to obtain resource for this request: " + req);
@@ -398,9 +384,10 @@ public class PerChannelQueue implements ChannelQueue {
 									rri.addJobsInQueue();
 									RoutedJobManager.getInstance().putJob(uniqueJobId.toString(), sq);
 									
-									ClientCommand cc = new ClientCommand(hostname, hostport);									
-									cc.forwardMsg(req);
-	
+									//Get existing channel with worker node
+									Channel channel = ConnectionManager.getConnection(routingNodeId, false);
+									channel.writeAndFlush(req);
+									
 									RoutedJobManager.getInstance().putJob(uniqueJobId.toString(), sq);
 									setRouteNodeId(routingNodeId);
 									
@@ -413,17 +400,15 @@ public class PerChannelQueue implements ChannelQueue {
 									rri.reduceJobsInQueue();
 									
 								} else {
-									//build image failure messgae
-									header.setReplyMsg("Error in Retrive image");
-									PhotoHeader.Builder phdrBldr = PhotoHeader.newBuilder();
-									phdrBldr.setResponseFlag(ResponseFlag.failure);
-									header.setPhotoHeader(phdrBldr);
-									rb.setHeader(header);
-									rb.setBody(req.getBody());
-									req = rb.build();
-									sq.enqueueResponse(req, null);
+									retrivalImageFailure(req, rb, header);
 								}
 							} else if (req.getHeader().getPhotoHeader().getRequestType() == RequestType.write) {
+								
+								if((req.getBody().getPhotoPayload().getData().size()/1024) > 56){
+									logger.info("Reject request/ file size not permitted");
+									sq.enqueueResponse(ResourceUtil.buildErrorMsgCommon(req), null);
+									continue;
+								}
 								UUID imageId = UUID.randomUUID();
 								req = setImageUUIDToReq(req, imageId.toString());
 								int routedNodeId = RoutingManager.getInstance().routeJobs(getMyNode());
@@ -435,25 +420,16 @@ public class PerChannelQueue implements ChannelQueue {
 									RoundRobinInitilizers rri = RoutingManager.getInstance().getBalancer().get(routedNodeId);
 									rri.reduceJobsInQueue();
 								} else {
-									String hostname = null;
-									int hostport = 0;
-									logger.info("Request is routed to Node: "+routedNodeId);
-									ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
 									
-									HeartbeatData hbd = incomingHB.get(routedNodeId);
-									if(routedNodeId == hbd.getNodeId()){
-										hostname = hbd.getHost();
-										hostport = hbd.getPort();
-										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
-									}
 									if(!RoutingManager.getInstance().getActiveNodeList().contains(routedNodeId)){
 										sq.inbound.put(msg);
 										continue;
 									}
 									
-									ClientCommand cc = new ClientCommand(hostname, hostport);									
-									cc.forwardMsg(req);
-
+									//Get existing channel with worker node
+									Channel channel = ConnectionManager.getConnection(routedNodeId, false);
+									channel.writeAndFlush(req);
+									
 									RoutedJobManager.getInstance().putJob(uniqueJobId.toString(), sq);
 									
 									setRouteNodeId(routedNodeId);
@@ -464,17 +440,7 @@ public class PerChannelQueue implements ChannelQueue {
 								
 								if (routingNodeId != -1 && routingNodeId != getMyNode()) {
 									
-									String hostname = null;
-									int hostport = 0;
 									logger.info("Request is routed to Node: "+routingNodeId);
-									ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
-									
-									HeartbeatData hbd = incomingHB.get(routingNodeId);
-									if(routingNodeId == hbd.getNodeId()) {
-										hostname = hbd.getHost();
-										hostport = hbd.getPort();
-										logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
-									}
 									
 									if(!RoutingManager.getInstance().getActiveNodeList().contains(routingNodeId)){
 											logger.error("failed to obtain resource for this request: " + req);
@@ -488,8 +454,9 @@ public class PerChannelQueue implements ChannelQueue {
 									rri.addJobsInQueue();
 									RoutedJobManager.getInstance().putJob(uniqueJobId.toString(), sq);
 									
-									ClientCommand cc = new ClientCommand(hostname, hostport);									
-									cc.forwardMsg(req);
+									//Get existing channel with worker node
+									Channel channel = ConnectionManager.getConnection(routingNodeId, false);
+									channel.writeAndFlush(req);
 
 									deleteMetaData(metaDataMgr,req.getBody().getPhotoPayload().getUuid().toString());
 									
@@ -504,14 +471,7 @@ public class PerChannelQueue implements ChannelQueue {
 									deleteMetaData(metaDataMgr,req.getBody().getPhotoPayload().getUuid().toString());
 								} else {
 									//build image failure messgae
-									header.setReplyMsg("Error in Retrive image");
-									PhotoHeader.Builder phdrBldr = PhotoHeader.newBuilder();
-									phdrBldr.setResponseFlag(ResponseFlag.failure);
-									header.setPhotoHeader(phdrBldr);
-									rb.setHeader(header);
-									rb.setBody(req.getBody());
-									req = rb.build();
-									sq.enqueueResponse(req, null);
+									retrivalImageFailure(req, rb, header);
 								}
 							
 							}
@@ -540,6 +500,18 @@ public class PerChannelQueue implements ChannelQueue {
 			if (!forever) {
 				PerChannelQueue.logger.info("connection queue closing");
 			}
+		}
+
+		private void retrivalImageFailure(Request req, Request.Builder rb,
+				Header.Builder header) {
+			header.setReplyMsg("Error in Retrive image");
+			PhotoHeader.Builder phdrBldr = PhotoHeader.newBuilder();
+			phdrBldr.setResponseFlag(ResponseFlag.failure);
+			header.setPhotoHeader(phdrBldr);
+			rb.setHeader(header);
+			rb.setBody(req.getBody());
+			req = rb.build();
+			sq.enqueueResponse(req, null);
 		}
 
 		private Request setImageUUIDToReq(Request req, String imageId)

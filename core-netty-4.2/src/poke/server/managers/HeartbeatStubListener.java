@@ -71,7 +71,6 @@ public class HeartbeatStubListener implements MonitorListener {
 	public void connectionClosed() {
 		// note a closed management port is likely to indicate the primary port
 		// has failed as well
-		System.out.println("ConnectionManager.getNumMgmtConnections():::::::"+ConnectionManager.getNumMgmtConnections());
 		if (ConnectionManager.getNumMgmtConnections() > 1) {
 			ElectionManager em = ElectionManager.getInstance();
 			if (data.getNodeId() == em.whoIsTheLeader()) {

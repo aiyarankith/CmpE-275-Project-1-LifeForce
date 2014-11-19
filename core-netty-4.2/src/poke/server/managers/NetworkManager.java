@@ -19,15 +19,15 @@ import io.netty.channel.Channel;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.server.conf.ServerConf;
-import poke.server.roundrobin.LoadBalanceTask;
-import poke.server.roundrobin.ResponseCommunication;
 import poke.server.roundrobin.RoundRobinInitilizers;
+import poke.server.worker.comm.CommConnection;
 import eye.Comm.Management;
 import eye.Comm.Network;
 import eye.Comm.Network.NetworkAction;
@@ -102,6 +102,17 @@ public class NetworkManager {
 						LoadBalanceTask loadTask = new LoadBalanceTask();
 						loadTask.run();
 					}*/
+					
+					//Create new channel with worker nodes and reuse them
+					String hostname = null;
+					int hostport = 0;
+					ConcurrentHashMap<Integer, HeartbeatData> incomingHB = HeartbeatManager.getInstance().getIncomingHB();
+					HeartbeatData hbd = incomingHB.get(req.getFromNodeId());
+					hostname = hbd.getHost();
+					hostport = hbd.getPort();
+					logger.info(" Forward reuqest to host address- "+hostname+":"+hostport);
+					CommConnection comm = new CommConnection(hostname,hostport);
+					ConnectionManager.addConnection(req.getFromNodeId(), comm.connect(), false);
 					logger.info("------------------------------------------------");
 					logger.info(" node joined and added "+req.getFromNodeId());
 					logger.info("------------------------------------------------");

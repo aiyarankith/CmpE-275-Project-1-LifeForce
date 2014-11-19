@@ -3,9 +3,11 @@ package poke.server.managers;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-import poke.server.conf.ServerConf;
 import poke.server.queue.PerChannelQueue;
 
+/**
+ * Roundrobin-- put reference uuid and corresponding client channel  
+ */
 public class RoutedJobManager {
 	protected static AtomicReference<RoutedJobManager> instance = new AtomicReference<RoutedJobManager>();
 	

@@ -90,6 +90,7 @@ public class ConnectionManager {
 			for (Integer nid : connections.keySet()) {
 				if (channel == connections.get(nid)) {
 					connections.remove(nid);
+					logger.info("connection closed for node"+nid);
 					break;
 				}
 			}

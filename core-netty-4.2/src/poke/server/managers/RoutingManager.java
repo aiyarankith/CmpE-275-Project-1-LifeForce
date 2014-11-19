@@ -12,8 +12,11 @@ import org.slf4j.LoggerFactory;
 
 import poke.server.roundrobin.RoundRobinInitilizers;
 
+/**
+ * Add nodeid and roundrobinintitializer object map for server-worker node routing
+ */
 public class RoutingManager {
-	protected static Logger logger = LoggerFactory.getLogger("server-server routing");
+	protected static Logger logger = LoggerFactory.getLogger("server-worker routing");
 	protected static AtomicReference<RoutingManager> instance = new AtomicReference<RoutingManager>();
 	
 	protected static ConcurrentHashMap<Integer, RoundRobinInitilizers> loadbalancer = 
@@ -22,15 +25,14 @@ public class RoutingManager {
 	protected static AtomicInteger lastAssigned = new AtomicInteger(-1);
 	
 	public static RoutingManager initManager() {
-		boolean modi = instance.compareAndSet(null, new RoutingManager());
-		if (modi) System.out.println("settt");
-		else System.out.println("not set");
-		if (instance == null)
-			System.out.println("null instance");
+		instance.compareAndSet(null, new RoutingManager());
 		return instance.get();
 	}
 
 	public static RoutingManager getInstance() {
+		if (instance.get() == null){
+			throw new NullPointerException();
+		}
 		return instance.get();
 	}
 
@@ -67,10 +69,9 @@ public class RoutingManager {
 		return loadbalancer;
 	}
 	
+	//Identify which worker node will get the next job
 	public int routeJobs(int nodeId){
 		int roundCompleted = 0;
-		/*logger.info("list elements "+nodeList.size());
-		logger.info("map elements "+loadbalancer.size());*/
 		
 		if(lastAssigned.get() == -1){
 			logger.info(" first requset by server, will be processed by itself " + lastAssigned.get());

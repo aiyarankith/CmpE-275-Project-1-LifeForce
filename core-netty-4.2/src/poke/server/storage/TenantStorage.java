@@ -20,7 +20,6 @@ import java.util.Properties;
 
 import com.google.protobuf.ByteString;
 
-import poke.server.conf.ServerConf.ResourceConf;
 import eye.Comm.JobDesc;
 import eye.Comm.NameSpace;
 

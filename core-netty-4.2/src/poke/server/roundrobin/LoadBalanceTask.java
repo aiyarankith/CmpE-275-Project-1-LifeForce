@@ -9,9 +9,6 @@ import poke.server.resources.ResourceFactory;
 
 public class LoadBalanceTask extends Thread{
 	protected static Logger logger =  LoggerFactory.getLogger("loadbalancethread");
-	public LoadBalanceTask(){
-		
-	}
 	
 	@Override 
 	public void run(){

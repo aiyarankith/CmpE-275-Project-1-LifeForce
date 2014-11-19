@@ -20,13 +20,10 @@ public class ResponseCommunication extends Thread{
 
 	private ResponseTimePusher comm;
 
-	public ResponseCommunication() {
-	}
-	
 	@Override
 	public void run(){
 		logger.info(" start response pusher");
-		boolean flag = true;
+		
 		while(true){
 			try {
 				logger.info("poke interval in seconds "+60);

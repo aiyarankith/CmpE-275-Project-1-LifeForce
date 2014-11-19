@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import poke.server.storage.noop.ElectionNoOpStorage;
 import poke.server.storage.noop.TenantNoOpStorage;
-import poke.server.storage.noop.VotingNoOpStorage;
 
 /**
  * Routing information for the general - internal use only
@@ -207,7 +206,6 @@ public class ServerConf {
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public static final class StorageConf {
 		private String tenant = TenantNoOpStorage.class.getName();
-		private String voting = VotingNoOpStorage.class.getName();
 		private String election = ElectionNoOpStorage.class.getName();
 
 		public String getTenant() {
@@ -216,14 +214,6 @@ public class ServerConf {
 
 		public void setTenant(String tenant) {
 			this.tenant = tenant;
-		}
-
-		public String getVoting() {
-			return voting;
-		}
-
-		public void setVoting(String voting) {
-			this.voting = voting;
 		}
 
 		public String getElection() {

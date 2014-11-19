@@ -20,9 +20,9 @@ import java.util.List;
 import poke.server.conf.ServerConf;
 import eye.Comm.Header;
 import eye.Comm.Header.Routing;
+import eye.Comm.Payload;
 import eye.Comm.PhotoHeader;
 import eye.Comm.PhotoHeader.ResponseFlag;
-import eye.Comm.Payload;
 import eye.Comm.PokeStatus;
 import eye.Comm.Request;
 import eye.Comm.RoutingPath;
@@ -92,15 +92,12 @@ public class ResourceUtil {
 		Header hdr = buildHeaderFrom(reqHeader, status, statusMsg);
 		bldr.setHeader(hdr);
 
-		// TODO add logging
-
 		return bldr.build();
 	}
 	
-	//Created -- 30th OCT
+
 	public static Header buildHeaderFrom(Header header, ResponseFlag rspFlag,
 			String statusMsg) {
-		// TODO Auto-generated method stub
 		return buildHeader(header.getRoutingId(), rspFlag, statusMsg, header.getOriginator(), header.getTag());
 	}
 
@@ -138,5 +135,19 @@ public class ResourceUtil {
 		rb.setBody(payLoad);
 		
 		return rb.build();
+	}
+	
+	//file size exceeded failure message
+	public static Request buildErrorMsgCommon(Request request){
+		Request.Builder rb = Request.newBuilder();
+		Header.Builder header = request.getHeader().toBuilder();
+		
+		Request reply = null;
+		header.setReplyMsg("Error / File size above permitted limit");
+		rb.setHeader(header);
+		rb.setBody(request.getBody());
+		
+		reply = rb.build();
+		return reply;
 	}
 }

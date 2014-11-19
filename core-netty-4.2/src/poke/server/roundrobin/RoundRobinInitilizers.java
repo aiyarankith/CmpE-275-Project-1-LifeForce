@@ -2,10 +2,15 @@ package poke.server.roundrobin;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author purval
+ * processWeight will keep track of how many tasks are with worker node
+ * lastAvarageResponseTime will have last response time in nanosec with worker node
+ * jobCountToThisQ will increment/decrement as per the work given/done to/by worker node
+ */
 public class RoundRobinInitilizers {
 	private int processWeight = 3;
 	private long lastAverageResponseTime = -1;
-	/*private int jobsInQueue = 0;*/
 	
 	private static RoundRobinInitilizers instance = new RoundRobinInitilizers();
 	
